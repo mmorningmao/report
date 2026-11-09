@@ -1,0 +1,1913 @@
+{
+  "days14": [
+    {
+      "day": "10.26",
+      "all_total": 7702736.0,
+      "all_pass": 98.93493688476406,
+      "video_total": 1136944.0,
+      "video_pass": 94.543442772907
+    },
+    {
+      "day": "10.27",
+      "all_total": 10943829.0,
+      "all_pass": 98.83036366887676,
+      "video_total": 1634948.0,
+      "video_pass": 94.09504155483845
+    },
+    {
+      "day": "10.28",
+      "all_total": 10881164.0,
+      "all_pass": 98.59904694019868,
+      "video_total": 1659074.0,
+      "video_pass": 93.60866362802382
+    },
+    {
+      "day": "10.29",
+      "all_total": 10347531.0,
+      "all_pass": 98.56917558401128,
+      "video_total": 1489881.0,
+      "video_pass": 92.444631483991
+    },
+    {
+      "day": "10.30",
+      "all_total": 10287087.0,
+      "all_pass": 98.47933627857915,
+      "video_total": 1478931.0,
+      "video_pass": 92.39599413360057
+    },
+    {
+      "day": "10.31",
+      "all_total": 8671328.0,
+      "all_pass": 98.58147448695286,
+      "video_total": 1172297.0,
+      "video_pass": 92.30254790381618
+    },
+    {
+      "day": "11.01",
+      "all_total": 7708753.0,
+      "all_pass": 98.47631646778667,
+      "video_total": 1068704.0,
+      "video_pass": 91.47696649399649
+    },
+    {
+      "day": "11.02",
+      "all_total": 9099310.0,
+      "all_pass": 98.5411091610243,
+      "video_total": 1319781.0,
+      "video_pass": 92.52322923272877
+    },
+    {
+      "day": "11.03",
+      "all_total": 11529763.0,
+      "all_pass": 98.56406415292318,
+      "video_total": 1769597.0,
+      "video_pass": 93.68421171600087
+    },
+    {
+      "day": "11.04",
+      "all_total": 11340166.0,
+      "all_pass": 98.74100608403792,
+      "video_total": 1635269.0,
+      "video_pass": 93.72843244750558
+    },
+    {
+      "day": "11.05",
+      "all_total": 10133364.0,
+      "all_pass": 98.59839239960196,
+      "video_total": 1631840.0,
+      "video_pass": 93.3856873222865
+    },
+    {
+      "day": "11.06",
+      "all_total": 11006631.0,
+      "all_pass": 98.491645627077,
+      "video_total": 1715795.0,
+      "video_pass": 92.90777744427513
+    },
+    {
+      "day": "11.07",
+      "all_total": 9404855.0,
+      "all_pass": 98.45631857163136,
+      "video_total": 1462131.0,
+      "video_pass": 92.65325747145776
+    },
+    {
+      "day": "11.08",
+      "all_total": 7791980.0,
+      "all_pass": 98.5366620550874,
+      "video_total": 1229687.0,
+      "video_pass": 92.80776327634594
+    }
+  ],
+  "months_video": [
+    {
+      "month": "01月",
+      "video_total": 14105404.0,
+      "video_pass": 71.42968042602679,
+      "adq_video_pass": 69.72064476826014,
+      "qyt_video_pass": 75.2065878728959
+    },
+    {
+      "month": "02月",
+      "video_total": 10016741.0,
+      "video_pass": 70.73703912280452,
+      "adq_video_pass": 69.36363059030232,
+      "qyt_video_pass": 74.03239917763348
+    },
+    {
+      "month": "03月",
+      "video_total": 14747736.0,
+      "video_pass": 75.95347516391668,
+      "adq_video_pass": 76.21721152127397,
+      "qyt_video_pass": 75.3133088063903
+    },
+    {
+      "month": "04月",
+      "video_total": 16593264.0,
+      "video_pass": 77.99086424467181,
+      "adq_video_pass": 78.44512339367947,
+      "qyt_video_pass": 76.47559582475859
+    },
+    {
+      "month": "05月",
+      "video_total": 18319411.0,
+      "video_pass": 84.48284718324186,
+      "adq_video_pass": 85.28660968931564,
+      "qyt_video_pass": 81.95649636964652
+    },
+    {
+      "month": "06月",
+      "video_total": 15779576.0,
+      "video_pass": 86.09658459771036,
+      "adq_video_pass": 86.6391506163633,
+      "qyt_video_pass": 82.36924396654481
+    },
+    {
+      "month": "07月",
+      "video_total": 17842262.0,
+      "video_pass": 86.5425975697476,
+      "adq_video_pass": 86.63834492281063,
+      "qyt_video_pass": 85.76463987750174
+    },
+    {
+      "month": "08月",
+      "video_total": 24040351.0,
+      "video_pass": 85.3732252079015,
+      "adq_video_pass": 85.32604127353099,
+      "qyt_video_pass": 85.66686757956842
+    },
+    {
+      "month": "09月",
+      "video_total": 23269569.0,
+      "video_pass": 87.67026583087981,
+      "adq_video_pass": 88.28064730241955,
+      "qyt_video_pass": 84.82125829542086
+    },
+    {
+      "month": "10月",
+      "video_total": 34442725.0,
+      "video_pass": 91.0476682666659,
+      "adq_video_pass": 91.6778682997858,
+      "qyt_video_pass": 86.98763752529239
+    },
+    {
+      "month": "11月",
+      "video_total": 11832804.0,
+      "video_pass": 92.98925258966514,
+      "adq_video_pass": 93.56047947582219,
+      "qyt_video_pass": 88.66417525007732
+    }
+  ],
+  "rules": [
+    {
+      "tag": "侵权他人名义及形象",
+      "l1": "违规侵权",
+      "l2": "人物名义形象侵权",
+      "reject": 203866.0,
+      "daily_avg": 29123.714285714286,
+      "trend": [
+        {
+          "day": "10.10",
+          "reject": 22819.0
+        },
+        {
+          "day": "10.11",
+          "reject": 17029.0
+        },
+        {
+          "day": "10.12",
+          "reject": 20219.0
+        },
+        {
+          "day": "10.13",
+          "reject": 36766.0
+        },
+        {
+          "day": "10.14",
+          "reject": 33030.0
+        },
+        {
+          "day": "10.15",
+          "reject": 32972.0
+        },
+        {
+          "day": "10.16",
+          "reject": 26515.0
+        },
+        {
+          "day": "10.17",
+          "reject": 23913.0
+        },
+        {
+          "day": "10.18",
+          "reject": 19418.0
+        },
+        {
+          "day": "10.19",
+          "reject": 22306.0
+        },
+        {
+          "day": "10.20",
+          "reject": 26148.0
+        },
+        {
+          "day": "10.21",
+          "reject": 25972.0
+        },
+        {
+          "day": "10.22",
+          "reject": 29652.0
+        },
+        {
+          "day": "10.23",
+          "reject": 29387.0
+        },
+        {
+          "day": "10.24",
+          "reject": 27683.0
+        },
+        {
+          "day": "10.25",
+          "reject": 16704.0
+        },
+        {
+          "day": "10.26",
+          "reject": 23213.0
+        },
+        {
+          "day": "10.27",
+          "reject": 29591.0
+        },
+        {
+          "day": "10.28",
+          "reject": 33917.0
+        },
+        {
+          "day": "10.29",
+          "reject": 47562.0
+        },
+        {
+          "day": "10.30",
+          "reject": 30402.0
+        },
+        {
+          "day": "10.31",
+          "reject": 23725.0
+        },
+        {
+          "day": "11.01",
+          "reject": 24307.0
+        },
+        {
+          "day": "11.02",
+          "reject": 29258.0
+        },
+        {
+          "day": "11.03",
+          "reject": 30469.0
+        },
+        {
+          "day": "11.04",
+          "reject": 26940.0
+        },
+        {
+          "day": "11.05",
+          "reject": 27655.0
+        },
+        {
+          "day": "11.06",
+          "reject": 30046.0
+        },
+        {
+          "day": "11.07",
+          "reject": 33707.0
+        },
+        {
+          "day": "11.08",
+          "reject": 25791.0
+        }
+      ],
+      "trend30_sum": 827116.0,
+      "trend30_days": 30,
+      "customers": [
+        {
+          "customer": "荆门市东宝区枫蒂百货店",
+          "reject": 17371.0,
+          "sales": "zhuowei"
+        },
+        {
+          "customer": "BUV",
+          "reject": 14431.0,
+          "sales": "graceyytang"
+        },
+        {
+          "customer": "抖嘉",
+          "reject": 14316.0,
+          "sales": "jodyjiang"
+        },
+        {
+          "customer": "蚁团美妆2025",
+          "reject": 10979.0,
+          "sales": "carinajlli"
+        },
+        {
+          "customer": "腾创未来",
+          "reject": 9883.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "纯朴",
+          "reject": 9601.0,
+          "sales": "graceyytang"
+        },
+        {
+          "customer": "卡姿兰",
+          "reject": 7123.0,
+          "sales": "amiewang"
+        },
+        {
+          "customer": "珂语",
+          "reject": 5724.0,
+          "sales": "yuexinzhang"
+        }
+      ]
+    },
+    {
+      "tag": "产品效果承诺",
+      "l1": "虚假夸大",
+      "l2": "虚构产品功效",
+      "reject": 181862.0,
+      "daily_avg": 25980.285714285714,
+      "trend": [
+        {
+          "day": "10.10",
+          "reject": null
+        },
+        {
+          "day": "10.11",
+          "reject": null
+        },
+        {
+          "day": "10.12",
+          "reject": null
+        },
+        {
+          "day": "10.13",
+          "reject": null
+        },
+        {
+          "day": "10.14",
+          "reject": 40.0
+        },
+        {
+          "day": "10.15",
+          "reject": 379.0
+        },
+        {
+          "day": "10.16",
+          "reject": 1065.0
+        },
+        {
+          "day": "10.17",
+          "reject": 1275.0
+        },
+        {
+          "day": "10.18",
+          "reject": 1088.0
+        },
+        {
+          "day": "10.19",
+          "reject": 1627.0
+        },
+        {
+          "day": "10.20",
+          "reject": 1639.0
+        },
+        {
+          "day": "10.21",
+          "reject": 3447.0
+        },
+        {
+          "day": "10.22",
+          "reject": 7621.0
+        },
+        {
+          "day": "10.23",
+          "reject": 7470.0
+        },
+        {
+          "day": "10.24",
+          "reject": 10574.0
+        },
+        {
+          "day": "10.25",
+          "reject": 5561.0
+        },
+        {
+          "day": "10.26",
+          "reject": 6764.0
+        },
+        {
+          "day": "10.27",
+          "reject": 17546.0
+        },
+        {
+          "day": "10.28",
+          "reject": 19543.0
+        },
+        {
+          "day": "10.29",
+          "reject": 20827.0
+        },
+        {
+          "day": "10.30",
+          "reject": 24589.0
+        },
+        {
+          "day": "10.31",
+          "reject": 20032.0
+        },
+        {
+          "day": "11.01",
+          "reject": 16555.0
+        },
+        {
+          "day": "11.02",
+          "reject": 25854.0
+        },
+        {
+          "day": "11.03",
+          "reject": 22872.0
+        },
+        {
+          "day": "11.04",
+          "reject": 21848.0
+        },
+        {
+          "day": "11.05",
+          "reject": 21339.0
+        },
+        {
+          "day": "11.06",
+          "reject": 32906.0
+        },
+        {
+          "day": "11.07",
+          "reject": 28939.0
+        },
+        {
+          "day": "11.08",
+          "reject": 28104.0
+        }
+      ],
+      "trend30_sum": 349504.0,
+      "trend30_days": 26,
+      "customers": [
+        {
+          "customer": "腾创未来",
+          "reject": 59168.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "百雀羚护肤",
+          "reject": 13383.0,
+          "sales": "amiewang"
+        },
+        {
+          "customer": "自然堂",
+          "reject": 11014.0,
+          "sales": "zoeyshuang"
+        },
+        {
+          "customer": "倾颜",
+          "reject": 9349.0,
+          "sales": "jiinnchen"
+        },
+        {
+          "customer": "仙霸",
+          "reject": 7631.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "慕可",
+          "reject": 7500.0,
+          "sales": "joannzhang"
+        },
+        {
+          "customer": "谷雨",
+          "reject": 6030.0,
+          "sales": "joannzhang"
+        },
+        {
+          "customer": "美溪",
+          "reject": 4983.0,
+          "sales": "jodyjiang"
+        }
+      ]
+    },
+    {
+      "tag": "广告风险警示语/要素缺失-视频号",
+      "l1": "业务警示语规范",
+      "l2": "警示语使用规范",
+      "reject": 90543.0,
+      "daily_avg": 12934.714285714286,
+      "trend": [
+        {
+          "day": "10.10",
+          "reject": 13004.0
+        },
+        {
+          "day": "10.11",
+          "reject": 12719.0
+        },
+        {
+          "day": "10.12",
+          "reject": 12529.0
+        },
+        {
+          "day": "10.13",
+          "reject": 22643.0
+        },
+        {
+          "day": "10.14",
+          "reject": 17556.0
+        },
+        {
+          "day": "10.15",
+          "reject": 16783.0
+        },
+        {
+          "day": "10.16",
+          "reject": 16781.0
+        },
+        {
+          "day": "10.17",
+          "reject": 13614.0
+        },
+        {
+          "day": "10.18",
+          "reject": 12190.0
+        },
+        {
+          "day": "10.19",
+          "reject": 9391.0
+        },
+        {
+          "day": "10.20",
+          "reject": 10692.0
+        },
+        {
+          "day": "10.21",
+          "reject": 13511.0
+        },
+        {
+          "day": "10.22",
+          "reject": 14161.0
+        },
+        {
+          "day": "10.23",
+          "reject": 14414.0
+        },
+        {
+          "day": "10.24",
+          "reject": 14897.0
+        },
+        {
+          "day": "10.25",
+          "reject": 9868.0
+        },
+        {
+          "day": "10.26",
+          "reject": 9506.0
+        },
+        {
+          "day": "10.27",
+          "reject": 13989.0
+        },
+        {
+          "day": "10.28",
+          "reject": 18516.0
+        },
+        {
+          "day": "10.29",
+          "reject": 17702.0
+        },
+        {
+          "day": "10.30",
+          "reject": 17842.0
+        },
+        {
+          "day": "10.31",
+          "reject": 14025.0
+        },
+        {
+          "day": "11.01",
+          "reject": 15479.0
+        },
+        {
+          "day": "11.02",
+          "reject": 14495.0
+        },
+        {
+          "day": "11.03",
+          "reject": 14436.0
+        },
+        {
+          "day": "11.04",
+          "reject": 11752.0
+        },
+        {
+          "day": "11.05",
+          "reject": 10087.0
+        },
+        {
+          "day": "11.06",
+          "reject": 14097.0
+        },
+        {
+          "day": "11.07",
+          "reject": 14697.0
+        },
+        {
+          "day": "11.08",
+          "reject": 10979.0
+        }
+      ],
+      "trend30_sum": 422355.0,
+      "trend30_days": 30,
+      "customers": [
+        {
+          "customer": "荆门市东宝区枫蒂百货店",
+          "reject": 12786.0,
+          "sales": "zhuowei"
+        },
+        {
+          "customer": "Diary言之有物",
+          "reject": 3495.0,
+          "sales": "zoeyshuang"
+        },
+        {
+          "customer": "纯朴",
+          "reject": 2637.0,
+          "sales": "graceyytang"
+        },
+        {
+          "customer": "杭州余杭颂汀电子商务商行(个体工商户)",
+          "reject": 2558.0,
+          "sales": "zhuowei"
+        },
+        {
+          "customer": "百雀羚护肤",
+          "reject": 2438.0,
+          "sales": "amiewang"
+        },
+        {
+          "customer": "藏容",
+          "reject": 2012.0,
+          "sales": "jodyjiang"
+        },
+        {
+          "customer": "蚁团美妆2025",
+          "reject": 1580.0,
+          "sales": "carinajlli"
+        },
+        {
+          "customer": "必扬",
+          "reject": 1575.0,
+          "sales": "zoeyshuang"
+        }
+      ]
+    },
+    {
+      "tag": "虚假活动规则",
+      "l1": "虚假夸大",
+      "l2": "虚假营销活动",
+      "reject": 43324.0,
+      "daily_avg": 6189.142857142857,
+      "trend": [
+        {
+          "day": "10.10",
+          "reject": 3078.0
+        },
+        {
+          "day": "10.11",
+          "reject": 1707.0
+        },
+        {
+          "day": "10.12",
+          "reject": 3306.0
+        },
+        {
+          "day": "10.13",
+          "reject": 3457.0
+        },
+        {
+          "day": "10.14",
+          "reject": 4524.0
+        },
+        {
+          "day": "10.15",
+          "reject": 5597.0
+        },
+        {
+          "day": "10.16",
+          "reject": 7155.0
+        },
+        {
+          "day": "10.17",
+          "reject": 5903.0
+        },
+        {
+          "day": "10.18",
+          "reject": 2536.0
+        },
+        {
+          "day": "10.19",
+          "reject": 3825.0
+        },
+        {
+          "day": "10.20",
+          "reject": 3194.0
+        },
+        {
+          "day": "10.21",
+          "reject": 3076.0
+        },
+        {
+          "day": "10.22",
+          "reject": 3576.0
+        },
+        {
+          "day": "10.23",
+          "reject": 4139.0
+        },
+        {
+          "day": "10.24",
+          "reject": 5139.0
+        },
+        {
+          "day": "10.25",
+          "reject": 2661.0
+        },
+        {
+          "day": "10.26",
+          "reject": 3051.0
+        },
+        {
+          "day": "10.27",
+          "reject": 6268.0
+        },
+        {
+          "day": "10.28",
+          "reject": 4144.0
+        },
+        {
+          "day": "10.29",
+          "reject": 4946.0
+        },
+        {
+          "day": "10.30",
+          "reject": 5458.0
+        },
+        {
+          "day": "10.31",
+          "reject": 4594.0
+        },
+        {
+          "day": "11.01",
+          "reject": 2859.0
+        },
+        {
+          "day": "11.02",
+          "reject": 4128.0
+        },
+        {
+          "day": "11.03",
+          "reject": 7309.0
+        },
+        {
+          "day": "11.04",
+          "reject": 5150.0
+        },
+        {
+          "day": "11.05",
+          "reject": 6333.0
+        },
+        {
+          "day": "11.06",
+          "reject": 10745.0
+        },
+        {
+          "day": "11.07",
+          "reject": 5829.0
+        },
+        {
+          "day": "11.08",
+          "reject": 3830.0
+        }
+      ],
+      "trend30_sum": 137517.0,
+      "trend30_days": 30,
+      "customers": [
+        {
+          "customer": "韩束",
+          "reject": 4502.0,
+          "sales": "joannzhang"
+        },
+        {
+          "customer": "广州捷允科技有限公司",
+          "reject": 3425.0,
+          "sales": "carinajlli"
+        },
+        {
+          "customer": "蚁团美妆2025",
+          "reject": 3109.0,
+          "sales": "carinajlli"
+        },
+        {
+          "customer": "广州祝荣百货有限公司",
+          "reject": 2887.0,
+          "sales": "carinajlli"
+        },
+        {
+          "customer": "自然堂",
+          "reject": 2823.0,
+          "sales": "zoeyshuang"
+        },
+        {
+          "customer": "倾颜",
+          "reject": 2231.0,
+          "sales": "jiinnchen"
+        },
+        {
+          "customer": "广州佰沅科技有限公司",
+          "reject": 2216.0,
+          "sales": "carinajlli"
+        },
+        {
+          "customer": "百雀羚护肤",
+          "reject": 1608.0,
+          "sales": "amiewang"
+        }
+      ]
+    },
+    {
+      "tag": "违背正向婚恋价值观",
+      "l1": "价值观导向",
+      "l2": "负向价值观",
+      "reject": 28545.0,
+      "daily_avg": 4077.8571428571427,
+      "trend": [
+        {
+          "day": "10.10",
+          "reject": 500.0
+        },
+        {
+          "day": "10.11",
+          "reject": 368.0
+        },
+        {
+          "day": "10.12",
+          "reject": 398.0
+        },
+        {
+          "day": "10.13",
+          "reject": 970.0
+        },
+        {
+          "day": "10.14",
+          "reject": 628.0
+        },
+        {
+          "day": "10.15",
+          "reject": 1056.0
+        },
+        {
+          "day": "10.16",
+          "reject": 1378.0
+        },
+        {
+          "day": "10.17",
+          "reject": 1288.0
+        },
+        {
+          "day": "10.18",
+          "reject": 496.0
+        },
+        {
+          "day": "10.19",
+          "reject": 1093.0
+        },
+        {
+          "day": "10.20",
+          "reject": 1481.0
+        },
+        {
+          "day": "10.21",
+          "reject": 1805.0
+        },
+        {
+          "day": "10.22",
+          "reject": 1593.0
+        },
+        {
+          "day": "10.23",
+          "reject": 1313.0
+        },
+        {
+          "day": "10.24",
+          "reject": 1299.0
+        },
+        {
+          "day": "10.25",
+          "reject": 966.0
+        },
+        {
+          "day": "10.26",
+          "reject": 874.0
+        },
+        {
+          "day": "10.27",
+          "reject": 2060.0
+        },
+        {
+          "day": "10.28",
+          "reject": 2491.0
+        },
+        {
+          "day": "10.29",
+          "reject": 2285.0
+        },
+        {
+          "day": "10.30",
+          "reject": 4311.0
+        },
+        {
+          "day": "10.31",
+          "reject": 2946.0
+        },
+        {
+          "day": "11.01",
+          "reject": 3314.0
+        },
+        {
+          "day": "11.02",
+          "reject": 3076.0
+        },
+        {
+          "day": "11.03",
+          "reject": 4443.0
+        },
+        {
+          "day": "11.04",
+          "reject": 3980.0
+        },
+        {
+          "day": "11.05",
+          "reject": 3569.0
+        },
+        {
+          "day": "11.06",
+          "reject": 5806.0
+        },
+        {
+          "day": "11.07",
+          "reject": 4230.0
+        },
+        {
+          "day": "11.08",
+          "reject": 3441.0
+        }
+      ],
+      "trend30_sum": 63458.0,
+      "trend30_days": 30,
+      "customers": [
+        {
+          "customer": "腾创未来",
+          "reject": 10576.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "仙霸",
+          "reject": 7081.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "藏容",
+          "reject": 1214.0,
+          "sales": "jodyjiang"
+        },
+        {
+          "customer": "蚁团美妆2025",
+          "reject": 1156.0,
+          "sales": "carinajlli"
+        },
+        {
+          "customer": "抖嘉",
+          "reject": 749.0,
+          "sales": "jodyjiang"
+        },
+        {
+          "customer": "琪亿源小店",
+          "reject": 746.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "八方",
+          "reject": 657.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "BABI",
+          "reject": 492.0,
+          "sales": "graceyytang"
+        }
+      ]
+    },
+    {
+      "tag": "恶心不适",
+      "l1": "平台体验",
+      "l2": "体验设计审核规范",
+      "reject": 27517.0,
+      "daily_avg": 3931.0,
+      "trend": [
+        {
+          "day": "10.10",
+          "reject": 884.0
+        },
+        {
+          "day": "10.11",
+          "reject": 1227.0
+        },
+        {
+          "day": "10.12",
+          "reject": 1287.0
+        },
+        {
+          "day": "10.13",
+          "reject": 1242.0
+        },
+        {
+          "day": "10.14",
+          "reject": 2261.0
+        },
+        {
+          "day": "10.15",
+          "reject": 4289.0
+        },
+        {
+          "day": "10.16",
+          "reject": 2772.0
+        },
+        {
+          "day": "10.17",
+          "reject": 1843.0
+        },
+        {
+          "day": "10.18",
+          "reject": 2899.0
+        },
+        {
+          "day": "10.19",
+          "reject": 4056.0
+        },
+        {
+          "day": "10.20",
+          "reject": 3251.0
+        },
+        {
+          "day": "10.21",
+          "reject": 2532.0
+        },
+        {
+          "day": "10.22",
+          "reject": 1783.0
+        },
+        {
+          "day": "10.23",
+          "reject": 1663.0
+        },
+        {
+          "day": "10.24",
+          "reject": 1485.0
+        },
+        {
+          "day": "10.25",
+          "reject": 1130.0
+        },
+        {
+          "day": "10.26",
+          "reject": 1454.0
+        },
+        {
+          "day": "10.27",
+          "reject": 2011.0
+        },
+        {
+          "day": "10.28",
+          "reject": 2453.0
+        },
+        {
+          "day": "10.29",
+          "reject": 3123.0
+        },
+        {
+          "day": "10.30",
+          "reject": 3816.0
+        },
+        {
+          "day": "10.31",
+          "reject": 2643.0
+        },
+        {
+          "day": "11.01",
+          "reject": 1802.0
+        },
+        {
+          "day": "11.02",
+          "reject": 3592.0
+        },
+        {
+          "day": "11.03",
+          "reject": 4423.0
+        },
+        {
+          "day": "11.04",
+          "reject": 3984.0
+        },
+        {
+          "day": "11.05",
+          "reject": 3752.0
+        },
+        {
+          "day": "11.06",
+          "reject": 4785.0
+        },
+        {
+          "day": "11.07",
+          "reject": 3798.0
+        },
+        {
+          "day": "11.08",
+          "reject": 3183.0
+        }
+      ],
+      "trend30_sum": 79423.0,
+      "trend30_days": 30,
+      "customers": [
+        {
+          "customer": "迪丽诗顿",
+          "reject": 3860.0,
+          "sales": "justinybliu"
+        },
+        {
+          "customer": "韩束",
+          "reject": 2742.0,
+          "sales": "joannzhang"
+        },
+        {
+          "customer": "造物者",
+          "reject": 2462.0,
+          "sales": "graceyytang"
+        },
+        {
+          "customer": "自然堂",
+          "reject": 2055.0,
+          "sales": "zoeyshuang"
+        },
+        {
+          "customer": "C咖",
+          "reject": 1788.0,
+          "sales": "zoeyshuang"
+        },
+        {
+          "customer": "军献25",
+          "reject": 1623.0,
+          "sales": "yuexinzhang"
+        },
+        {
+          "customer": "厦门美肤莱科技有限公司",
+          "reject": 1414.0,
+          "sales": "justinybliu"
+        },
+        {
+          "customer": "羽素",
+          "reject": 1133.0,
+          "sales": "graceyytang"
+        }
+      ]
+    },
+    {
+      "tag": "营销对象与广告创意类目/品牌/属性不一致",
+      "l1": "内容一致性要求",
+      "l2": "广告一致性",
+      "reject": 23353.0,
+      "daily_avg": 3336.1428571428573,
+      "trend": [
+        {
+          "day": "10.10",
+          "reject": 325.0
+        },
+        {
+          "day": "10.11",
+          "reject": 404.0
+        },
+        {
+          "day": "10.12",
+          "reject": 210.0
+        },
+        {
+          "day": "10.13",
+          "reject": 145.0
+        },
+        {
+          "day": "10.14",
+          "reject": 314.0
+        },
+        {
+          "day": "10.15",
+          "reject": 365.0
+        },
+        {
+          "day": "10.16",
+          "reject": 290.0
+        },
+        {
+          "day": "10.17",
+          "reject": 242.0
+        },
+        {
+          "day": "10.18",
+          "reject": 47.0
+        },
+        {
+          "day": "10.19",
+          "reject": 431.0
+        },
+        {
+          "day": "10.20",
+          "reject": 1619.0
+        },
+        {
+          "day": "10.21",
+          "reject": 632.0
+        },
+        {
+          "day": "10.22",
+          "reject": 373.0
+        },
+        {
+          "day": "10.23",
+          "reject": 440.0
+        },
+        {
+          "day": "10.24",
+          "reject": 1542.0
+        },
+        {
+          "day": "10.25",
+          "reject": 237.0
+        },
+        {
+          "day": "10.26",
+          "reject": 409.0
+        },
+        {
+          "day": "10.27",
+          "reject": 300.0
+        },
+        {
+          "day": "10.28",
+          "reject": 516.0
+        },
+        {
+          "day": "10.29",
+          "reject": 976.0
+        },
+        {
+          "day": "10.30",
+          "reject": 995.0
+        },
+        {
+          "day": "10.31",
+          "reject": 3604.0
+        },
+        {
+          "day": "11.01",
+          "reject": 12741.0
+        },
+        {
+          "day": "11.02",
+          "reject": 1818.0
+        },
+        {
+          "day": "11.03",
+          "reject": 5014.0
+        },
+        {
+          "day": "11.04",
+          "reject": 3752.0
+        },
+        {
+          "day": "11.05",
+          "reject": 9570.0
+        },
+        {
+          "day": "11.06",
+          "reject": 1049.0
+        },
+        {
+          "day": "11.07",
+          "reject": 531.0
+        },
+        {
+          "day": "11.08",
+          "reject": 1619.0
+        }
+      ],
+      "trend30_sum": 50510.0,
+      "trend30_days": 30,
+      "customers": [
+        {
+          "customer": "腾创未来",
+          "reject": 19879.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "揭阳市乐知宁百货有限公司",
+          "reject": 894.0,
+          "sales": "carinajlli"
+        },
+        {
+          "customer": "深圳卓境",
+          "reject": 658.0,
+          "sales": "zhuowei"
+        },
+        {
+          "customer": "宥承",
+          "reject": 412.0,
+          "sales": "jodyjiang"
+        },
+        {
+          "customer": "广州浩荣商贸有限公司",
+          "reject": 264.0,
+          "sales": "carinajlli"
+        },
+        {
+          "customer": "揭阳市初汀妍贸易有限公司",
+          "reject": 207.0,
+          "sales": "xupeihuang"
+        },
+        {
+          "customer": "蚁团美妆2025",
+          "reject": 206.0,
+          "sales": "carinajlli"
+        },
+        {
+          "customer": "聚曜传媒",
+          "reject": 182.0,
+          "sales": "maxzzheng"
+        }
+      ]
+    },
+    {
+      "tag": "效果对比-视频号",
+      "l1": "虚假夸大",
+      "l2": "虚构产品功效",
+      "reject": 19118.0,
+      "daily_avg": 2731.1428571428573,
+      "trend": [
+        {
+          "day": "10.10",
+          "reject": 947.0
+        },
+        {
+          "day": "10.11",
+          "reject": 1060.0
+        },
+        {
+          "day": "10.12",
+          "reject": 1155.0
+        },
+        {
+          "day": "10.13",
+          "reject": 1148.0
+        },
+        {
+          "day": "10.14",
+          "reject": 1184.0
+        },
+        {
+          "day": "10.15",
+          "reject": 1975.0
+        },
+        {
+          "day": "10.16",
+          "reject": 3085.0
+        },
+        {
+          "day": "10.17",
+          "reject": 3307.0
+        },
+        {
+          "day": "10.18",
+          "reject": 1506.0
+        },
+        {
+          "day": "10.19",
+          "reject": 2924.0
+        },
+        {
+          "day": "10.20",
+          "reject": 3488.0
+        },
+        {
+          "day": "10.21",
+          "reject": 3359.0
+        },
+        {
+          "day": "10.22",
+          "reject": 2807.0
+        },
+        {
+          "day": "10.23",
+          "reject": 1925.0
+        },
+        {
+          "day": "10.24",
+          "reject": 2064.0
+        },
+        {
+          "day": "10.25",
+          "reject": 1158.0
+        },
+        {
+          "day": "10.26",
+          "reject": 1495.0
+        },
+        {
+          "day": "10.27",
+          "reject": 2305.0
+        },
+        {
+          "day": "10.28",
+          "reject": 2748.0
+        },
+        {
+          "day": "10.29",
+          "reject": 3229.0
+        },
+        {
+          "day": "10.30",
+          "reject": 3689.0
+        },
+        {
+          "day": "10.31",
+          "reject": 2507.0
+        },
+        {
+          "day": "11.01",
+          "reject": 1965.0
+        },
+        {
+          "day": "11.02",
+          "reject": 3050.0
+        },
+        {
+          "day": "11.03",
+          "reject": 2231.0
+        },
+        {
+          "day": "11.04",
+          "reject": 2938.0
+        },
+        {
+          "day": "11.05",
+          "reject": 3124.0
+        },
+        {
+          "day": "11.06",
+          "reject": 2958.0
+        },
+        {
+          "day": "11.07",
+          "reject": 2542.0
+        },
+        {
+          "day": "11.08",
+          "reject": 2275.0
+        }
+      ],
+      "trend30_sum": 70148.0,
+      "trend30_days": 30,
+      "customers": [
+        {
+          "customer": "腾创未来",
+          "reject": 2654.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "抖嘉",
+          "reject": 2268.0,
+          "sales": "jodyjiang"
+        },
+        {
+          "customer": "八方",
+          "reject": 1801.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "美溪",
+          "reject": 1647.0,
+          "sales": "jodyjiang"
+        },
+        {
+          "customer": "慕可",
+          "reject": 1098.0,
+          "sales": "joannzhang"
+        },
+        {
+          "customer": "仙霸",
+          "reject": 966.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "自然堂",
+          "reject": 872.0,
+          "sales": "zoeyshuang"
+        },
+        {
+          "customer": "倾颜",
+          "reject": 698.0,
+          "sales": "jiinnchen"
+        }
+      ]
+    },
+    {
+      "tag": "虚假功效或收益保障承诺",
+      "l1": "虚假夸大",
+      "l2": "虚构产品功效",
+      "reject": 15920.0,
+      "daily_avg": 2274.285714285714,
+      "trend": [
+        {
+          "day": "10.10",
+          "reject": 51161.0
+        },
+        {
+          "day": "10.11",
+          "reject": 32718.0
+        },
+        {
+          "day": "10.12",
+          "reject": 46944.0
+        },
+        {
+          "day": "10.13",
+          "reject": 54235.0
+        },
+        {
+          "day": "10.14",
+          "reject": 68650.0
+        },
+        {
+          "day": "10.15",
+          "reject": 55520.0
+        },
+        {
+          "day": "10.16",
+          "reject": 45925.0
+        },
+        {
+          "day": "10.17",
+          "reject": 43920.0
+        },
+        {
+          "day": "10.18",
+          "reject": 36124.0
+        },
+        {
+          "day": "10.19",
+          "reject": 33530.0
+        },
+        {
+          "day": "10.20",
+          "reject": 33930.0
+        },
+        {
+          "day": "10.21",
+          "reject": 35564.0
+        },
+        {
+          "day": "10.22",
+          "reject": 7515.0
+        },
+        {
+          "day": "10.23",
+          "reject": 7538.0
+        },
+        {
+          "day": "10.24",
+          "reject": 7155.0
+        },
+        {
+          "day": "10.25",
+          "reject": 4333.0
+        },
+        {
+          "day": "10.26",
+          "reject": 3679.0
+        },
+        {
+          "day": "10.27",
+          "reject": 4901.0
+        },
+        {
+          "day": "10.28",
+          "reject": 5716.0
+        },
+        {
+          "day": "10.29",
+          "reject": 5766.0
+        },
+        {
+          "day": "10.30",
+          "reject": 5511.0
+        },
+        {
+          "day": "10.31",
+          "reject": 4915.0
+        },
+        {
+          "day": "11.01",
+          "reject": 3226.0
+        },
+        {
+          "day": "11.02",
+          "reject": 2985.0
+        },
+        {
+          "day": "11.03",
+          "reject": 2536.0
+        },
+        {
+          "day": "11.04",
+          "reject": 2811.0
+        },
+        {
+          "day": "11.05",
+          "reject": 2789.0
+        },
+        {
+          "day": "11.06",
+          "reject": 1832.0
+        },
+        {
+          "day": "11.07",
+          "reject": 1762.0
+        },
+        {
+          "day": "11.08",
+          "reject": 1205.0
+        }
+      ],
+      "trend30_sum": 614396.0,
+      "trend30_days": 30,
+      "customers": [
+        {
+          "customer": "腾创未来",
+          "reject": 2449.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "仙霸",
+          "reject": 1527.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "美溪",
+          "reject": 948.0,
+          "sales": "jodyjiang"
+        },
+        {
+          "customer": "百雀羚护肤",
+          "reject": 638.0,
+          "sales": "amiewang"
+        },
+        {
+          "customer": "BUV",
+          "reject": 591.0,
+          "sales": "graceyytang"
+        },
+        {
+          "customer": "荆门市东宝区枫蒂百货店",
+          "reject": 544.0,
+          "sales": "zhuowei"
+        },
+        {
+          "customer": "韩束",
+          "reject": 523.0,
+          "sales": "joannzhang"
+        },
+        {
+          "customer": "郑州烛舍 1",
+          "reject": 509.0,
+          "sales": "yilinjiang"
+        }
+      ]
+    },
+    {
+      "tag": "概述性数据引用",
+      "l1": "虚假夸大",
+      "l2": "虚构产品功效",
+      "reject": 15827.0,
+      "daily_avg": 2261.0,
+      "trend": [
+        {
+          "day": "10.10",
+          "reject": 6746.0
+        },
+        {
+          "day": "10.11",
+          "reject": 1731.0
+        },
+        {
+          "day": "10.12",
+          "reject": 1525.0
+        },
+        {
+          "day": "10.13",
+          "reject": 2169.0
+        },
+        {
+          "day": "10.14",
+          "reject": 10932.0
+        },
+        {
+          "day": "10.15",
+          "reject": 6601.0
+        },
+        {
+          "day": "10.16",
+          "reject": 1833.0
+        },
+        {
+          "day": "10.17",
+          "reject": 1314.0
+        },
+        {
+          "day": "10.18",
+          "reject": 902.0
+        },
+        {
+          "day": "10.19",
+          "reject": 1339.0
+        },
+        {
+          "day": "10.20",
+          "reject": 1243.0
+        },
+        {
+          "day": "10.21",
+          "reject": 1580.0
+        },
+        {
+          "day": "10.22",
+          "reject": 1871.0
+        },
+        {
+          "day": "10.23",
+          "reject": 2131.0
+        },
+        {
+          "day": "10.24",
+          "reject": 1977.0
+        },
+        {
+          "day": "10.25",
+          "reject": 1557.0
+        },
+        {
+          "day": "10.26",
+          "reject": 1595.0
+        },
+        {
+          "day": "10.27",
+          "reject": 2298.0
+        },
+        {
+          "day": "10.28",
+          "reject": 2507.0
+        },
+        {
+          "day": "10.29",
+          "reject": 2407.0
+        },
+        {
+          "day": "10.30",
+          "reject": 2624.0
+        },
+        {
+          "day": "10.31",
+          "reject": 2113.0
+        },
+        {
+          "day": "11.01",
+          "reject": 2062.0
+        },
+        {
+          "day": "11.02",
+          "reject": 1959.0
+        },
+        {
+          "day": "11.03",
+          "reject": 2272.0
+        },
+        {
+          "day": "11.04",
+          "reject": 3074.0
+        },
+        {
+          "day": "11.05",
+          "reject": 2293.0
+        },
+        {
+          "day": "11.06",
+          "reject": 2257.0
+        },
+        {
+          "day": "11.07",
+          "reject": 2162.0
+        },
+        {
+          "day": "11.08",
+          "reject": 1810.0
+        }
+      ],
+      "trend30_sum": 76884.0,
+      "trend30_days": 30,
+      "customers": [
+        {
+          "customer": "纯朴",
+          "reject": 1712.0,
+          "sales": "graceyytang"
+        },
+        {
+          "customer": "畅移",
+          "reject": 984.0,
+          "sales": "zoeyshuang"
+        },
+        {
+          "customer": "腾创未来",
+          "reject": 858.0,
+          "sales": "maxzzheng"
+        },
+        {
+          "customer": "倾颜",
+          "reject": 723.0,
+          "sales": "jiinnchen"
+        },
+        {
+          "customer": "广州市滨港智能科技有限公司",
+          "reject": 716.0,
+          "sales": "seanpan"
+        },
+        {
+          "customer": "藏容",
+          "reject": 591.0,
+          "sales": "jodyjiang"
+        },
+        {
+          "customer": "环球",
+          "reject": 545.0,
+          "sales": "yilinjiang"
+        },
+        {
+          "customer": "星禾",
+          "reject": 447.0,
+          "sales": "amiewang"
+        }
+      ]
+    }
+  ]
+}

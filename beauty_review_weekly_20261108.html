@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>本土美妆 · 视频素材审核分析周报</title>
+<script src="vendor/echarts.min.js"></script>
+<style>
+:root{--pink-900:#7a2f4a;--pink-700:#b43a63;--pink-600:#d94f7c;--pink-500:#e8537f;
+--pink-400:#f487a8;--pink-300:#f9b7cb;--pink-200:#fbd9e4;--pink-100:#fdeef3;
+--cream:#fffaf8;--ink:#4a2c38;--ink-soft:#826471;--line:#f3dce4;--green:#5aa08a}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif;
+ color:var(--ink);background:linear-gradient(160deg,#fff5f8 0%,#fff9f6 42%,#fff4f7 100%);
+ min-height:100vh;line-height:1.7;-webkit-font-smoothing:antialiased}
+.glow{position:fixed;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0}
+.glow.a{width:460px;height:460px;background:rgba(244,135,168,.28);top:-160px;right:-120px}
+.glow.b{width:380px;height:380px;background:rgba(251,217,228,.42);bottom:-140px;left:-120px}
+.wrap{position:relative;z-index:1;max-width:1240px;margin:0 auto;padding:38px 26px 70px}
+.hero{position:relative;overflow:hidden;border-radius:28px;padding:40px 44px;
+ background:linear-gradient(118deg,#f7a8c0 0%,#e8537f 48%,#c9386b 100%);color:#fff;
+ box-shadow:0 18px 46px rgba(201,56,107,.26)}
+.hero:before{content:"";position:absolute;width:340px;height:340px;border-radius:50%;
+ background:rgba(255,255,255,.13);top:-190px;right:40px}
+.hero:after{content:"";position:absolute;width:220px;height:220px;border-radius:50%;
+ background:rgba(255,255,255,.10);bottom:-150px;right:230px}
+.hero .eyebrow{font-size:13px;letter-spacing:3px;opacity:.9;font-weight:600}
+.hero h1{font-size:34px;font-weight:800;letter-spacing:1px;margin:10px 0 12px}
+.hero p{font-size:14px;opacity:.94;max-width:880px}
+.hero .chips{margin-top:20px;display:flex;gap:10px;flex-wrap:wrap}
+.chip{background:rgba(255,255,255,.20);border:1px solid rgba(255,255,255,.35);
+ padding:6px 14px;border-radius:999px;font-size:12.5px;font-weight:600}
+.section-title{display:flex;align-items:center;gap:12px;margin:44px 0 18px}
+.section-title .no{background:linear-gradient(135deg,var(--pink-500),var(--pink-700));color:#fff;
+ width:34px;height:34px;border-radius:12px;display:flex;align-items:center;justify-content:center;
+ font-weight:800;font-size:15px;box-shadow:0 6px 14px rgba(217,79,124,.28)}
+.section-title h2{font-size:22px;font-weight:800;color:var(--pink-900)}
+.section-title .sub{font-size:13px;color:var(--ink-soft);margin-left:auto}
+.kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.kpi{background:rgba(255,255,255,.92);border:1px solid #fff;border-radius:20px;padding:22px 22px 18px;
+ box-shadow:0 10px 28px rgba(184,90,124,.10);position:relative;overflow:hidden}
+.kpi:before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;
+ background:linear-gradient(var(--pink-300),var(--pink-600))}
+.kpi.video{background:linear-gradient(160deg,#fff0f5,#fffafb);border-color:#fbd9e4}
+.kpi.video:before{background:linear-gradient(var(--pink-600),var(--pink-900))}
+.kpi .label{font-size:13px;color:var(--ink-soft);font-weight:600;min-height:38px;display:flex;align-items:flex-start}
+.kpi .value{font-size:30px;font-weight:800;color:var(--pink-700);margin:6px 0 2px;letter-spacing:-.5px}
+.kpi.video .value{color:var(--pink-900)}
+.kpi .unit{font-size:13px;font-weight:600;color:var(--ink-soft);margin-left:4px}
+.kpi .wow{font-size:12.5px;color:var(--ink-soft)}
+.kpi .wow b{color:var(--pink-600);font-weight:700}
+.card{background:rgba(255,255,255,.94);border:1px solid #fff;border-radius:22px;padding:24px 26px;
+ box-shadow:0 10px 30px rgba(184,90,124,.09);margin-bottom:18px}
+.card h3{font-size:16px;color:var(--pink-900);font-weight:800;margin-bottom:6px}
+.card .desc{font-size:12.5px;color:var(--ink-soft);margin-bottom:8px;line-height:1.8}
+.axis-hint{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 10px}
+.axis-hint span{font-size:11.5px;font-weight:700;border-radius:8px;padding:4px 10px;
+ background:var(--pink-100);color:var(--pink-700);border:1px solid var(--pink-200)}
+.axis-hint span.alt{background:#fbf4ea;color:#a8763c;border-color:#f0e0c8}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.chart{width:100%;height:330px}
+.chart.main{height:390px}
+.note{font-size:12px;color:var(--ink-soft);background:#fff6f9;border-left:3px solid var(--pink-300);
+ padding:10px 14px;border-radius:0 10px 10px 0;margin-top:12px;line-height:1.9}
+.badge{display:inline-block;background:var(--pink-100);color:var(--pink-700);border:1px solid var(--pink-200);
+ border-radius:8px;padding:2px 9px;font-size:11.5px;font-weight:700;margin-right:6px}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:linear-gradient(90deg,var(--pink-100),#fff6f9);color:var(--pink-900);
+ font-weight:700;text-align:right;padding:11px 12px;white-space:nowrap;border-bottom:2px solid var(--pink-200)}
+thead th:first-child,thead th.l{text-align:left}
+tbody td{padding:10px 12px;text-align:right;border-bottom:1px solid var(--line);color:var(--ink)}
+tbody td:first-child,tbody td.l{text-align:left;font-weight:600}
+tbody tr:hover{background:#fff7fa}
+.up{color:var(--pink-600);font-weight:800}
+.rule{background:rgba(255,255,255,.95);border:1px solid #fff;border-radius:24px;margin-bottom:22px;
+ box-shadow:0 12px 34px rgba(184,90,124,.11);overflow:hidden}
+.rule-head{display:flex;align-items:flex-start;gap:16px;padding:24px 28px;
+ background:linear-gradient(105deg,#fff0f5 0%,#fffaf9 70%);border-bottom:1px solid var(--line)}
+.rank{flex:none;width:52px;height:52px;border-radius:18px;display:flex;align-items:center;justify-content:center;
+ background:linear-gradient(135deg,var(--pink-500),var(--pink-700));color:#fff;font-size:18px;font-weight:800;
+ box-shadow:0 8px 18px rgba(217,79,124,.3)}
+.rule-head .main{flex:1}
+.rule-head h3{font-size:19px;color:var(--pink-900);font-weight:800;margin-bottom:6px}
+.rule-head .lv{font-size:12px;color:var(--ink-soft)}
+.rule-head .num{text-align:right;flex:none}
+.rule-head .num .v{font-size:25px;font-weight:800;color:var(--pink-600)}
+.rule-head .num .s{font-size:12px;color:var(--ink-soft)}
+.rule-body{padding:22px 28px 26px}
+.rule-body h4{font-size:14px;color:var(--pink-900);font-weight:800;margin:18px 0 8px;
+ display:flex;align-items:center;gap:8px}
+.rule-body h4:before{content:"";width:6px;height:16px;border-radius:4px;background:var(--pink-400)}
+.rule-body p{font-size:13.5px;line-height:1.85}
+.trendnote{font-size:11.5px;color:var(--ink-soft);margin:-2px 0 8px}
+.act{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:9px 18px}
+.act li{font-size:13px;background:#fff7fa;border:1px solid var(--pink-100);
+ border-radius:12px;padding:9px 13px 9px 32px;position:relative}
+.act li:before{content:"✓";position:absolute;left:12px;top:9px;color:var(--pink-600);font-weight:800}
+.risk{margin-top:14px;font-size:12.5px;color:var(--pink-900);background:linear-gradient(90deg,#fff0f5,#fffaf9);
+ border-radius:12px;padding:10px 14px;border:1px dashed var(--pink-200)}
+.mini{width:100%;height:180px}
+.case-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:6px}
+.case-frame{border-radius:18px;padding:14px;border:1px solid var(--line);background:#fffafc}
+.case-frame.bad{background:linear-gradient(160deg,#fff5f7,#fffaf9);border-color:#f7c9d8}
+.case-frame.good{background:linear-gradient(160deg,#f5fbf7,#fffdfa);border-color:#cfe8dc}
+.case-head{font-size:13px;font-weight:800;color:var(--pink-900);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.case-frame.good .case-head{color:#3f7f69}
+.cdot{width:9px;height:9px;border-radius:50%;background:var(--pink-500)}
+.case-frame.good .cdot{background:var(--green)}
+.case-img{display:flex;justify-content:center;max-height:330px}
+.case-img svg{max-height:330px;max-width:230px}
+.case-note{font-size:12.5px;font-weight:700;text-align:center;margin-top:10px;padding:7px;border-radius:10px}
+.case-note.bad{color:#c9386b;background:#ffeaf0}
+.case-note.good{color:#3f7f69;background:#eaf6ee}
+.case-tip{font-size:11.5px;color:var(--ink-soft);margin-top:10px;line-height:1.7}
+.rtx{font-size:12.5px;color:var(--pink-700);font-weight:700;font-family:"SFMono-Regular",Consolas,monospace}
+.gains{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:14px}
+.gain{border-radius:18px;padding:18px 20px;border:1px solid var(--pink-200);
+ background:linear-gradient(150deg,#fff4f8,#fffdfd);position:relative;overflow:hidden}
+.gain.g2{background:linear-gradient(150deg,#fff8ef,#fffdfa);border-color:#f0dcc0}
+.gain:after{content:"";position:absolute;width:140px;height:140px;border-radius:50%;
+ right:-52px;top:-62px;background:rgba(232,83,127,.07)}
+.gain.g2:after{background:rgba(201,151,79,.09)}
+.ghead{display:flex;align-items:center;gap:10px;margin-bottom:9px}
+.gno{width:27px;height:27px;border-radius:50%;background:var(--pink-500);color:#fff;
+ font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center;flex:none}
+.gain.g2 .gno{background:#c9974f}
+.gtime{font-size:14.5px;font-weight:800;color:var(--pink-900)}
+.gtag{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;
+ background:#ffe1ec;color:var(--pink-700)}
+.gain.g2 .gtag{background:#f6e8d0;color:#9a7132}
+.gact{font-size:12.5px;line-height:1.85;min-height:48px}
+.gact b{color:var(--pink-700)}
+.gain.g2 .gact b{color:#9a7132}
+.gnum{font-size:28px;font-weight:800;color:var(--pink-900);letter-spacing:-.6px;margin-top:10px}
+.garrow{color:var(--pink-400);margin:0 7px;font-size:22px}
+.gain.g2 .gnum{color:#8d6327}
+.gbadge{display:inline-block;background:var(--pink-600);color:#fff;font-weight:800;
+ font-size:15px;padding:4px 13px;border-radius:10px;margin-top:4px}
+.gain.g2 .gbadge{background:#c9974f}
+.gsub{font-size:11.5px;color:var(--ink-soft);line-height:1.85;margin-top:11px}
+.gsub b{color:var(--pink-700)}
+.gain.g2 .gsub b{color:#9a7132}
+.gfoot{font-size:11.5px;color:var(--ink-soft);margin-top:13px;line-height:1.8}
+.gfoot b{color:var(--pink-700)}
+.footnote{font-size:11.5px;color:var(--ink-soft);line-height:1.7;margin:14px 2px 0}
+.foot{text-align:center;font-size:12px;color:var(--ink-soft);margin-top:40px;line-height:2}
+@media(max-width:900px){.kpi-grid,.grid2,.gains,.act,.case-grid{grid-template-columns:1fr}.wrap{padding:20px 14px 50px}.hero{padding:28px 24px}.hero h1{font-size:26px}.chart.main{height:340px}}
+
+/* ---- GitHub 仓库外壳（公开版新增，不影响报告正文样式） ---- */
+.gh-bar{position:relative;z-index:5;background:#24292f;color:#f0f6fc;
+ font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}
+.gh-inner{max-width:1240px;margin:0 auto;padding:0 26px;min-height:58px;
+ display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap}
+.gh-brand{display:flex;align-items:center;gap:9px;color:#f0f6fc;text-decoration:none;
+ font-size:14px;min-width:0}
+.gh-brand svg{flex:none;fill:#f0f6fc}
+.gh-brand .owner{color:#9198a1;font-weight:400}
+.gh-brand .slash{color:#9198a1}
+.gh-brand strong{font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.gh-public{font-size:11px;font-weight:600;color:#9198a1;border:1px solid #3d444d;
+ border-radius:999px;padding:1px 8px;margin-left:4px;flex:none}
+.gh-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.gh-pill{font-size:11px;font-weight:600;color:#c9d1d9;background:#30363d;
+ border:1px solid #3d444d;border-radius:999px;padding:3px 10px}
+.gh-star{font-size:12px;font-weight:700;color:#f0f6fc;text-decoration:none;
+ background:#21262d;border:1px solid #3d444d;border-radius:6px;padding:5px 11px}
+.gh-star:hover{background:#30363d}
+.gh-foot{margin-top:34px;padding:20px 24px;border:1px solid #e6cfd9;border-radius:18px;
+ background:rgba(255,255,255,.82);font-size:12.5px;line-height:1.9;color:#826471}
+.gh-foot-row{display:flex;gap:10px 26px;flex-wrap:wrap;align-items:center}
+.gh-foot a{color:#b43a63;text-decoration:none;font-weight:700}
+.gh-foot a:hover{text-decoration:underline}
+.gh-foot code{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+ background:#fff0f5;border:1px solid #f3dce4;border-radius:5px;padding:1px 6px;font-size:11.5px}
+.gh-foot-note{margin-top:9px;font-size:11.5px;color:#9b8291}
+@media(max-width:900px){.gh-inner{padding:10px 14px}.gh-meta{display:none}}
+</style>
+</head>
+<body>
+<header class="gh-bar">
+  <div class="gh-inner">
+    <a class="gh-brand" href="https://github.com/mmorningmao/report" target="_blank" rel="noopener">
+      <svg viewBox="0 0 16 16" width="22" height="22" aria-hidden="true"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0016 8c0-4.42-3.58-8-8-8z"></path></svg>
+      <span class="owner">mmorningmao</span><span class="slash">/</span><strong>report</strong>
+      <span class="gh-public">Public</span>
+    </a>
+    <div class="gh-meta">
+      <span class="gh-pill">HTML</span><span class="gh-pill">ECharts 5</span><span class="gh-pill">MIT</span>
+      <a class="gh-star" href="https://github.com/mmorningmao/report" target="_blank" rel="noopener">★ Star</a>
+    </div>
+  </div>
+</header>
+<div class="glow a"></div><div class="glow b"></div>
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">BEAUTY REVIEW INSIGHT · 审核分析</div>
+    <h1>本土美妆 · 视频素材审核分析周报</h1>
+    <p>近双周（W44 + W45）初审大盘四指标与全域通拆分，YTD 视频元素逐月与近双周 14 天组合图；Top10 可整改拒绝标签逐条拆解规则、整改建议、案例与高命中客户。</p>
+    <div class="chips">
+      <span class="chip">复盘周期：2026-10-26 ~ 2026-11-08（W44 + W45，近双周 14 天）</span>
+      <span class="chip">模块1：近双周 14 天</span>
+      <span class="chip">图a / 图b：YTD 逐月 · 近双周按天</span>
+      <span class="chip">Top10 标签 · 近 30 天按日</span>
+    </div>
+  </div>
+
+  <div class="section-title"><span class="no">1</span><h2>初审大盘 · 近双周四指标</h2>
+    <span class="sub">近双周 10/26 ~ 11/08｜环比前双周</span></div>
+  <div class="kpi-grid"><div class="kpi"><div class="label">近双周初审总量</div><div class="value">13,684.8<span class="unit">万</span></div><div class="wow">较前双周 <b>+21.40%</b></div></div><div class="kpi"><div class="label">近双周初审通过率</div><div class="value">98.60<span class="unit">%</span></div><div class="wow">较前双周 <b>+0.65pp</b></div></div><div class="kpi video"><div class="label">近双周初审视频元素总量</div><div class="value">2,040.5<span class="unit">万</span></div><div class="wow">较前双周 <b>+24.03%</b></div></div><div class="kpi video"><div class="label">近双周初审视频元素通过率</div><div class="value">93.09<span class="unit">%</span></div><div class="wow">较前双周 <b>+2.11pp</b></div></div></div>
+
+  <div class="card" style="margin-top:18px">
+    <h3>是否区分全域通 · 绝对值表</h3>
+    <div class="desc">近双周 14 天 · 按账户K框拆分</div>
+    <div style="overflow-x:auto"><table>
+      <thead><tr><th class="l">数据源</th><th>初审总量</th><th>初审通过率</th>
+        <th>初审视频元素总量</th><th>初审视频元素通过率</th><th>视频量占比</th></tr></thead>
+      <tbody><tr><td class="l">ADQ 侧常规 K 框（k1/k3 等）</td><td>10,597.0 万</td><td>98.62%</td><td>1,786.9 万</td><td><b>93.72%</b></td><td>87.57%</td></tr><tr><td class="l">全域通</td><td>3,087.8 万</td><td>98.52%</td><td>253.6 万</td><td><b>88.64%</b></td><td>12.43%</td></tr><tr style="background:#fff6f9"><td class="l">合计（不区分）</td><td>13,684.8 万</td><td>98.60%</td><td>2,040.5 万</td><td><b>93.09%</b></td><td>100.00%</td></tr></tbody></table></div>
+    <div class="note">视频元素通过率 <b>ADQ 侧 93.72%</b> vs <b>全域通 88.64%</b>（差 <b>5.08pp</b>），全量仅差 0.10pp；全域通占视频审核量 12.43%。</div>
+  </div>
+
+  <div class="grid2" style="margin-top:18px">
+    <div class="card">
+      <h3>图 a · YTD 视频元素逐月</h3>
+      <div class="desc">2026/01 ~ 11｜柱：视频元素总量（左轴·万）　线：ADQ 侧 / 全域通通过率（右轴·%）</div>
+      <div id="chart_ytd_video" class="chart"></div>
+    </div>
+    <div class="card">
+      <h3>图 b · 近双周四指标组合</h3>
+      <div class="desc">14 天按天｜双柱：初审总量 / 视频元素总量　双线：初审通过率 / 视频元素通过率</div>
+      <div id="chart_days14" class="chart"></div>
+    </div>
+  </div>
+
+  <div class="card" style="margin-top:18px">
+    <h3>关键动作 → 收益｜YTD 两个拐点</h3>
+    <div class="desc">视频元素通过率的两级抬升均来自审核尺度放宽；阶段通过率按审核量加权，①② 对应图 a 竖线</div>
+    <div class="gains">
+      <div class="gain g1">
+        <div class="ghead"><span class="gno">①</span><span class="gtime">4 月下旬</span><span class="gtag">规则放宽</span></div>
+        <div class="gact">放宽 <b>「开篇无关联」</b>（最重要）、「具体时间 / 用量 + 功效描述」等 <b>10 余条</b>规则突破，5 月起完整生效</div>
+        <div class="gnum">74.5% <span class="garrow">→</span> 86.1%</div>
+        <div class="gbadge">+11.6pp</div>
+        <div class="gsub">70%+ → 80%+　|　4→5 月单月 +6.49pp<br>按阶段月均审核量折算：约每月少驳回 <b>230 万</b>条视频元素</div>
+      </div>
+      <div class="gain g2">
+        <div class="ghead"><span class="gno">②</span><span class="gtime">9 月下旬</span><span class="gtag">尺度放宽</span></div>
+        <div class="gact">放宽 <b>「同一人 / 多人效果对比」</b>尺度，10 月起完整生效；关联当前 Top10 中的「效果对比-视频号」</div>
+        <div class="gnum">86.1% <span class="garrow">→</span> 91.5%</div>
+        <div class="gbadge">+5.5pp</div>
+        <div class="gsub">80%+ → 90%+　|　9→10 月单月 +3.38pp<br>按 10 月审核量折算：约每月少驳回 <b>188 万</b>条视频元素</div>
+      </div>
+    </div>
+    <div class="gfoot">两次累计抬升 <b>+17.1pp</b>（74.5% → 91.5%）；折算按放宽后阶段审核量估算，11 月截至 11/08 为不完整月。</div>
+  </div>
+
+  <div class="footnote">口径：本土美妆 · 初审原生指标；视频元素通过率分子分母均为视频元素，双周通过率按日量加权。全域通按账户K框近似拆分（非严格投放端）；11 月截至 11/08 为不完整月。</div>
+
+  <div class="section-title"><span class="no">2</span><h2>Top10 可整改拒绝标签 · 规则拆解</h2>
+    <span class="sub">本土美妆 × 审核元素=视频｜本周 W45</span></div>
+
+  <div class="card">
+    <h3>Top10 标签概览</h3>
+    <div class="desc">按本周初审机审拒绝量降序取前 10，已剔除机审标签 / 黑词等客户不可控标签</div>
+    <div id="chart_top" class="chart" style="height:320px"></div>
+    <div class="note">Top10 合计 <b>649,875</b> 次拒绝，占本周视频元素机审拒绝量的 <b>69.4%</b>。</div>
+  </div>
+
+  
+  <div class="rule">
+    <div class="rule-head">
+      <div class="rank">TOP1</div>
+      <div class="main"><h3>侵权他人名义及形象</h3>
+        <div class="lv"><span class="badge">审核一级：违规侵权</span>
+          <span class="badge">审核二级：人物名义形象侵权</span></div></div>
+      <div class="num"><div class="v">203,866</div>
+        <div class="s">本周机审拒绝量｜日均 29,124</div></div>
+    </div>
+    <div class="rule-body">
+      <h4>近 30 天拒绝量趋势</h4>
+      <div class="trendnote">近 30 天累计 827,116 次</div>
+      <div id="chart_rule_0" class="mini"></div>
+      <h4>案例对比 · 负面 vs 正面</h4>
+      
+  <div class="case-grid">
+    <div class="case-frame bad">
+      <div class="case-head"><span class="cdot"></span>负面案例 · 示意帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="负面案例示意帧"><defs>
+      <linearGradient id="gr0bbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffe9f0"/>
+        <stop offset="1" stop-color="#fff6f0"/></linearGradient>
+      <linearGradient id="gr0bbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr0bcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr0bsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#f7c9d8" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr0bbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#f7dbe5"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fff0f4" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="88" y="96" width="104" height="22" rx="11" fill="#e8537f"/><text x="140" y="111" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" >明星同款 · 未授权</text><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#e8537f" stroke-width="1.4" stroke-dasharray="5 4"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#e8537f" font-weight="800" text-anchor="middle" >明星同款 · 未授权</text><g filter="url(#gr0bsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr0bbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr0bcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#e8537f" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#fbe3ec"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#7a2f4a" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >某某明星同款｜亲测有效</text><circle cx="240" cy="60" r="17" fill="#e8537f"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" fill="#ffffff" font-weight="800" text-anchor="middle" >✕</text></svg></div>
+      <div class="case-note bad">✕ 违规点：未授权明星肖像 + 名义背书</div>
+    </div>
+    <div class="case-frame good">
+      <div class="case-head"><span class="cdot"></span>正面案例 · 示范帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正面案例示意帧"><defs>
+      <linearGradient id="gr0gbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff3f7"/>
+        <stop offset="1" stop-color="#fdf1f6"/></linearGradient>
+      <linearGradient id="gr0gbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr0gcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr0gsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#cfe8dc" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr0gbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#dceee3"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fdeef3" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="92" y="96" width="96" height="22" rx="11" fill="#5aa08a"/><text x="140" y="111" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#ffffff" font-weight="700" text-anchor="middle" >品牌自有模特</text><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#5aa08a" stroke-width="1.4" stroke-dasharray="0"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#5aa08a" font-weight="800" text-anchor="middle" >品牌自有模特</text><g filter="url(#gr0gsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr0gbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr0gcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#d96a94" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#dff0e6"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#3f7f69" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >品牌自研配方 · 日常温和护理</text><circle cx="240" cy="60" r="17" fill="#5aa08a"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#ffffff" font-weight="800" text-anchor="middle" >✓</text></svg></div>
+      <div class="case-note good">✓ 合规点：自有模特出镜，无第三方名义</div>
+    </div>
+  </div>
+      <h4>规则解读</h4><p>视频素材中出现未经授权的真人形象、姓名或名义背书：达人/明星肖像与种草切片、影视综艺录屏、'某某推荐/同款/亲测'话术、白大褂或专家形象、AI 换脸高相似人物等，命中「人物名义形象侵权」机审策略。美妆行业以达人种草、素人对比、明星同款类视频最高发。</p>
+      <h4>整改建议</h4><ul class="act"><li>素材中出现的真人须具备肖像授权与合作协议（达人授权书、代言协议、肖像许可），并留存可追溯凭证</li><li>删除未授权的明星海报、影视/综艺/直播切片，以及'XX 推荐''XX 同款''皮肤科医生建议'等名义与身份暗示话术</li><li>改用品牌自有模特、原创拍摄或虚拟形象；AI 生成人物需规避与真实公众人物高相似度</li><li>确已获授权的，走授权报备/白名单通道，并在画面中规范标注合作关系</li></ul>
+      <div class="risk">📌 本周拒绝量第一、近 8 周持续高位，属结构性素材问题，建议按客户批量治理。</div>
+      <h4>高命中名单 · 本周</h4>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th class="l">客户简称</th><th>本周审核拒绝量</th>
+          <th class="l">对应销售</th></tr></thead>
+        <tbody><tr><td class="l">荆门市东宝区枫蒂百货店</td><td>17,371</td><td class="l"><span class="rtx">zhuowei</span></td></tr><tr><td class="l">BUV</td><td>14,431</td><td class="l"><span class="rtx">graceyytang</span></td></tr><tr><td class="l">抖嘉</td><td>14,316</td><td class="l"><span class="rtx">jodyjiang</span></td></tr><tr><td class="l">蚁团美妆2025</td><td>10,979</td><td class="l"><span class="rtx">carinajlli</span></td></tr><tr><td class="l">腾创未来</td><td>9,883</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">纯朴</td><td>9,601</td><td class="l"><span class="rtx">graceyytang</span></td></tr><tr><td class="l">卡姿兰</td><td>7,123</td><td class="l"><span class="rtx">amiewang</span></td></tr><tr><td class="l">珂语</td><td>5,724</td><td class="l"><span class="rtx">yuexinzhang</span></td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div class="rule">
+    <div class="rule-head">
+      <div class="rank">TOP2</div>
+      <div class="main"><h3>产品效果承诺</h3>
+        <div class="lv"><span class="badge">审核一级：虚假夸大</span>
+          <span class="badge">审核二级：虚构产品功效</span></div></div>
+      <div class="num"><div class="v">181,862</div>
+        <div class="s">本周机审拒绝量｜日均 25,980</div></div>
+    </div>
+    <div class="rule-body">
+      <h4>近 30 天拒绝量趋势</h4>
+      <div class="trendnote">近 30 天累计 349,504 次　·　该标签为期内新增数据，之前为断点</div>
+      <div id="chart_rule_1" class="mini"></div>
+      <h4>案例对比 · 负面 vs 正面</h4>
+      
+  <div class="case-grid">
+    <div class="case-frame bad">
+      <div class="case-head"><span class="cdot"></span>负面案例 · 示意帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="负面案例示意帧"><defs>
+      <linearGradient id="gr1bbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffe9f0"/>
+        <stop offset="1" stop-color="#fff6f0"/></linearGradient>
+      <linearGradient id="gr1bbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr1bcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr1bsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#f7c9d8" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr1bbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#f7dbe5"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fff0f4" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#e8537f" stroke-width="1.4" stroke-dasharray="5 4"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#e8537f" font-weight="800" text-anchor="middle" >立竿见影 · 100%</text><g filter="url(#gr1bsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr1bbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr1bcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#e8537f" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#fbe3ec"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#7a2f4a" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >7天美白｜一抹淡纹｜永久去斑</text><circle cx="240" cy="60" r="17" fill="#e8537f"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" fill="#ffffff" font-weight="800" text-anchor="middle" >✕</text></svg></div>
+      <div class="case-note bad">✕ 违规点：绝对化功效 + 结果承诺</div>
+    </div>
+    <div class="case-frame good">
+      <div class="case-head"><span class="cdot"></span>正面案例 · 示范帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正面案例示意帧"><defs>
+      <linearGradient id="gr1gbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff3f7"/>
+        <stop offset="1" stop-color="#fdf1f6"/></linearGradient>
+      <linearGradient id="gr1gbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr1gcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr1gsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#cfe8dc" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr1gbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#dceee3"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fdeef3" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#5aa08a" stroke-width="1.4" stroke-dasharray="0"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#5aa08a" font-weight="800" text-anchor="middle" >温和表述 · 无承诺</text><g filter="url(#gr1gsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr1gbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr1gcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#d96a94" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#dff0e6"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#3f7f69" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >温和滋润，帮助改善肌肤干燥感</text><circle cx="240" cy="60" r="17" fill="#5aa08a"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#ffffff" font-weight="800" text-anchor="middle" >✓</text></svg></div>
+      <div class="case-note good">✓ 合规点：与备案功效一致，无承诺</div>
+    </div>
+  </div>
+      <h4>规则解读</h4><p>宣称或暗示产品具备未经证实、超备案范围或绝对化的功效，如'7 天美白''一抹淡纹''祛斑根治''逆龄抗衰''医美级'，以及使用前后强对比暗示确定效果，命中「虚假夸大-虚构产品功效」。</p>
+      <h4>整改建议</h4><ul class="act"><li>删除'根治/永久/100%/彻底/立竿见影/N 天见效'等绝对化与结果承诺类表述</li><li>功效表述与产品备案信息、功效评价报告严格一致；特殊化妆品须持特证并规范标注批准文号</li><li>禁用医疗化措辞（治疗、消炎、抗菌、修复受损细胞、药用等），化妆品不得宣称医疗作用</li><li>弱化对比演示，改用'帮助改善/辅助'等温和表述，并补充'效果因人而异'</li></ul>
+      <div class="risk">📌 拒绝量高度集中于头部客户，单点对齐功效话术库收益最大。</div>
+      <h4>高命中名单 · 本周</h4>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th class="l">客户简称</th><th>本周审核拒绝量</th>
+          <th class="l">对应销售</th></tr></thead>
+        <tbody><tr><td class="l">腾创未来</td><td>59,168</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">百雀羚护肤</td><td>13,383</td><td class="l"><span class="rtx">amiewang</span></td></tr><tr><td class="l">自然堂</td><td>11,014</td><td class="l"><span class="rtx">zoeyshuang</span></td></tr><tr><td class="l">倾颜</td><td>9,349</td><td class="l"><span class="rtx">jiinnchen</span></td></tr><tr><td class="l">仙霸</td><td>7,631</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">慕可</td><td>7,500</td><td class="l"><span class="rtx">joannzhang</span></td></tr><tr><td class="l">谷雨</td><td>6,030</td><td class="l"><span class="rtx">joannzhang</span></td></tr><tr><td class="l">美溪</td><td>4,983</td><td class="l"><span class="rtx">jodyjiang</span></td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div class="rule">
+    <div class="rule-head">
+      <div class="rank">TOP3</div>
+      <div class="main"><h3>广告风险警示语/要素缺失-视频号</h3>
+        <div class="lv"><span class="badge">审核一级：业务警示语规范</span>
+          <span class="badge">审核二级：警示语使用规范</span></div></div>
+      <div class="num"><div class="v">90,543</div>
+        <div class="s">本周机审拒绝量｜日均 12,935</div></div>
+    </div>
+    <div class="rule-body">
+      <h4>近 30 天拒绝量趋势</h4>
+      <div class="trendnote">近 30 天累计 422,355 次</div>
+      <div id="chart_rule_2" class="mini"></div>
+      <h4>案例对比 · 负面 vs 正面</h4>
+      
+  <div class="case-grid">
+    <div class="case-frame bad">
+      <div class="case-head"><span class="cdot"></span>负面案例 · 示意帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="负面案例示意帧"><defs>
+      <linearGradient id="gr2bbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffe9f0"/>
+        <stop offset="1" stop-color="#fff6f0"/></linearGradient>
+      <linearGradient id="gr2bbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr2bcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr2bsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#f7c9d8" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr2bbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#f7dbe5"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fff0f4" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#e8537f" stroke-width="1.4" stroke-dasharray="5 4"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#e8537f" font-weight="800" text-anchor="middle" >警示语缺失</text><g filter="url(#gr2bsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr2bbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr2bcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#e8537f" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="none" stroke="#e8537f" stroke-width="1.6" stroke-dasharray="5 4"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#c9386b" font-weight="700" text-anchor="middle" >⚠ 风险警示语缺失</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >效果立竿见影！</text><circle cx="240" cy="60" r="17" fill="#e8537f"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" fill="#ffffff" font-weight="800" text-anchor="middle" >✕</text></svg></div>
+      <div class="case-note bad">✕ 违规点：画面缺失风险警示语要素</div>
+    </div>
+    <div class="case-frame good">
+      <div class="case-head"><span class="cdot"></span>正面案例 · 示范帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正面案例示意帧"><defs>
+      <linearGradient id="gr2gbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff3f7"/>
+        <stop offset="1" stop-color="#fdf1f6"/></linearGradient>
+      <linearGradient id="gr2gbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr2gcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr2gsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#cfe8dc" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr2gbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#dceee3"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fdeef3" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#5aa08a" stroke-width="1.4" stroke-dasharray="0"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#5aa08a" font-weight="800" text-anchor="middle" >警示语常驻安全区</text><g filter="url(#gr2gsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr2gbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr2gcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#d96a94" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#dff0e6"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#3f7f69" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >效果因人而异｜请按说明使用</text><circle cx="240" cy="60" r="17" fill="#5aa08a"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#ffffff" font-weight="800" text-anchor="middle" >✓</text></svg></div>
+      <div class="case-note good">✓ 合规点：安全区常驻、字号清晰可辨</div>
+    </div>
+  </div>
+      <h4>规则解读</h4><p>视频号链路素材缺少必要风险提示要素，或警示语的字号、位置、展示时长、对比度不达标：如功效演示未标注'效果因人而异'、特殊用途化妆品未展示批准文号、警示语仅在末帧闪现或与背景同色。</p>
+      <h4>整改建议</h4><ul class="act"><li>在画面固定安全区（建议下方 1/5 区域）添加清晰可读的警示语，保证规定时长或全程展示</li><li>功效演示类视频补充'效果因人而异''仅为个体展示'；特殊用途化妆品补充批准文号与资质信息</li><li>口播与字幕同步，避免仅末帧闪现、半透明或与背景同色导致不可辨识</li><li>上线前用警示语要素自查清单逐条校验（含 OCR 检查），批量素材按模板统一加挂</li></ul>
+      <div class="risk">📌 可通过素材模板一次性修复，是本周性价比最高的速赢项。</div>
+      <h4>高命中名单 · 本周</h4>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th class="l">客户简称</th><th>本周审核拒绝量</th>
+          <th class="l">对应销售</th></tr></thead>
+        <tbody><tr><td class="l">荆门市东宝区枫蒂百货店</td><td>12,786</td><td class="l"><span class="rtx">zhuowei</span></td></tr><tr><td class="l">Diary言之有物</td><td>3,495</td><td class="l"><span class="rtx">zoeyshuang</span></td></tr><tr><td class="l">纯朴</td><td>2,637</td><td class="l"><span class="rtx">graceyytang</span></td></tr><tr><td class="l">杭州余杭颂汀电子商务商行(个体工商户)</td><td>2,558</td><td class="l"><span class="rtx">zhuowei</span></td></tr><tr><td class="l">百雀羚护肤</td><td>2,438</td><td class="l"><span class="rtx">amiewang</span></td></tr><tr><td class="l">藏容</td><td>2,012</td><td class="l"><span class="rtx">jodyjiang</span></td></tr><tr><td class="l">蚁团美妆2025</td><td>1,580</td><td class="l"><span class="rtx">carinajlli</span></td></tr><tr><td class="l">必扬</td><td>1,575</td><td class="l"><span class="rtx">zoeyshuang</span></td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div class="rule">
+    <div class="rule-head">
+      <div class="rank">TOP4</div>
+      <div class="main"><h3>虚假活动规则</h3>
+        <div class="lv"><span class="badge">审核一级：虚假夸大</span>
+          <span class="badge">审核二级：虚假营销活动</span></div></div>
+      <div class="num"><div class="v">43,324</div>
+        <div class="s">本周机审拒绝量｜日均 6,189</div></div>
+    </div>
+    <div class="rule-body">
+      <h4>近 30 天拒绝量趋势</h4>
+      <div class="trendnote">近 30 天累计 137,517 次</div>
+      <div id="chart_rule_3" class="mini"></div>
+      <h4>案例对比 · 负面 vs 正面</h4>
+      
+  <div class="case-grid">
+    <div class="case-frame bad">
+      <div class="case-head"><span class="cdot"></span>负面案例 · 示意帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="负面案例示意帧"><defs>
+      <linearGradient id="gr3bbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffe9f0"/>
+        <stop offset="1" stop-color="#fff6f0"/></linearGradient>
+      <linearGradient id="gr3bbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr3bcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr3bsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#f7c9d8" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr3bbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#f7dbe5"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fff0f4" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#e8537f" stroke-width="1.4" stroke-dasharray="5 4"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#e8537f" font-weight="800" text-anchor="middle" >立竿见影 · 100%</text><g filter="url(#gr3bsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr3bbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr3bcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#e8537f" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#fbe3ec"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#7a2f4a" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >全场0元领｜活动长期有效</text><circle cx="240" cy="60" r="17" fill="#e8537f"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" fill="#ffffff" font-weight="800" text-anchor="middle" >✕</text></svg></div>
+      <div class="case-note bad">✕ 违规点：活动规则不实、要素缺失</div>
+    </div>
+    <div class="case-frame good">
+      <div class="case-head"><span class="cdot"></span>正面案例 · 示范帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正面案例示意帧"><defs>
+      <linearGradient id="gr3gbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff3f7"/>
+        <stop offset="1" stop-color="#fdf1f6"/></linearGradient>
+      <linearGradient id="gr3gbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr3gcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr3gsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#cfe8dc" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr3gbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#dceee3"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fdeef3" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#5aa08a" stroke-width="1.4" stroke-dasharray="0"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#5aa08a" font-weight="800" text-anchor="middle" >温和表述 · 无承诺</text><g filter="url(#gr3gsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr3gbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr3gcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#d96a94" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#dff0e6"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#3f7f69" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >活动时间10.26-11.01｜规则见落地页</text><circle cx="240" cy="60" r="17" fill="#5aa08a"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#ffffff" font-weight="800" text-anchor="middle" >✓</text></svg></div>
+      <div class="case-note good">✓ 合规点：时间门槛清晰、与落地页一致</div>
+    </div>
+  </div>
+      <h4>规则解读</h4><p>活动信息与实际不符或要素缺失：'全场 0 元领''活动长期有效''限量 100 份'等无法兑现或无时间、门槛、范围说明的规则表述，命中「虚假营销活动」。</p>
+      <h4>整改建议</h4><ul class="act"><li>素材中的活动时间、门槛、赠品数量必须与落地页/活动备案完全一致</li><li>避免'长期有效''随时可领''0 元免费'等绝对化或无限期表述</li><li>限量、限时类活动需标明具体数量与起止时间，并可追溯</li><li>活动结束及时下线对应素材，避免过期信息继续投放</li></ul>
+      <div class="risk">📌 多为批量素材复用导致，建议按活动批次做一次全量清理。</div>
+      <h4>高命中名单 · 本周</h4>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th class="l">客户简称</th><th>本周审核拒绝量</th>
+          <th class="l">对应销售</th></tr></thead>
+        <tbody><tr><td class="l">韩束</td><td>4,502</td><td class="l"><span class="rtx">joannzhang</span></td></tr><tr><td class="l">广州捷允科技有限公司</td><td>3,425</td><td class="l"><span class="rtx">carinajlli</span></td></tr><tr><td class="l">蚁团美妆2025</td><td>3,109</td><td class="l"><span class="rtx">carinajlli</span></td></tr><tr><td class="l">广州祝荣百货有限公司</td><td>2,887</td><td class="l"><span class="rtx">carinajlli</span></td></tr><tr><td class="l">自然堂</td><td>2,823</td><td class="l"><span class="rtx">zoeyshuang</span></td></tr><tr><td class="l">倾颜</td><td>2,231</td><td class="l"><span class="rtx">jiinnchen</span></td></tr><tr><td class="l">广州佰沅科技有限公司</td><td>2,216</td><td class="l"><span class="rtx">carinajlli</span></td></tr><tr><td class="l">百雀羚护肤</td><td>1,608</td><td class="l"><span class="rtx">amiewang</span></td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div class="rule">
+    <div class="rule-head">
+      <div class="rank">TOP5</div>
+      <div class="main"><h3>违背正向婚恋价值观</h3>
+        <div class="lv"><span class="badge">审核一级：价值观导向</span>
+          <span class="badge">审核二级：负向价值观</span></div></div>
+      <div class="num"><div class="v">28,545</div>
+        <div class="s">本周机审拒绝量｜日均 4,078</div></div>
+    </div>
+    <div class="rule-body">
+      <h4>近 30 天拒绝量趋势</h4>
+      <div class="trendnote">近 30 天累计 63,458 次</div>
+      <div id="chart_rule_4" class="mini"></div>
+      <h4>案例对比 · 负面 vs 正面</h4>
+      
+  <div class="case-grid">
+    <div class="case-frame bad">
+      <div class="case-head"><span class="cdot"></span>负面案例 · 示意帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="负面案例示意帧"><defs>
+      <linearGradient id="gr4bbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffe9f0"/>
+        <stop offset="1" stop-color="#fff6f0"/></linearGradient>
+      <linearGradient id="gr4bbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr4bcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr4bsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#f7c9d8" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr4bbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#f7dbe5"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fff0f4" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#e8537f" stroke-width="1.4" stroke-dasharray="5 4"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#e8537f" font-weight="800" text-anchor="middle" >立竿见影 · 100%</text><g filter="url(#gr4bsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr4bbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr4bcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#e8537f" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#fbe3ec"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#7a2f4a" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >不化妆就没人爱｜颜值决定婚姻</text><circle cx="240" cy="60" r="17" fill="#e8537f"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" fill="#ffffff" font-weight="800" text-anchor="middle" >✕</text></svg></div>
+      <div class="case-note bad">✕ 违规点：容貌焦虑 + 负向婚恋价值观</div>
+    </div>
+    <div class="case-frame good">
+      <div class="case-head"><span class="cdot"></span>正面案例 · 示范帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正面案例示意帧"><defs>
+      <linearGradient id="gr4gbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff3f7"/>
+        <stop offset="1" stop-color="#fdf1f6"/></linearGradient>
+      <linearGradient id="gr4gbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr4gcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr4gsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#cfe8dc" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr4gbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#dceee3"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fdeef3" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#5aa08a" stroke-width="1.4" stroke-dasharray="0"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#5aa08a" font-weight="800" text-anchor="middle" >温和表述 · 无承诺</text><g filter="url(#gr4gsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr4gbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr4gcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#d96a94" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#dff0e6"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#3f7f69" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >取悦自己，从容护肤</text><circle cx="240" cy="60" r="17" fill="#5aa08a"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#ffffff" font-weight="800" text-anchor="middle" >✓</text></svg></div>
+      <div class="case-note good">✓ 合规点：平视表达，无焦虑暗示</div>
+    </div>
+  </div>
+      <h4>规则解读</h4><p>以容貌焦虑、婚恋贬损、性别对立等方式制造情绪压力，如'不化妆就没人爱''素颜被分手''颜值决定婚姻'，命中「价值观导向-负向价值观」。</p>
+      <h4>整改建议</h4><ul class="act"><li>删除制造容貌焦虑、婚恋贬损、性别对立的台词与字幕</li><li>不用'没人爱/被抛弃/嫁不出去'等以亲密关系评判个人价值的表述</li><li>改用'取悦自己''日常从容护理'等正向、平视的表达</li><li>情景剧类脚本送审前做价值观自查，避免靠冲突性台词博眼球</li></ul>
+      <div class="risk">📌 多来自剧情类口播脚本，建议把台词模板纳入送审前检查。</div>
+      <h4>高命中名单 · 本周</h4>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th class="l">客户简称</th><th>本周审核拒绝量</th>
+          <th class="l">对应销售</th></tr></thead>
+        <tbody><tr><td class="l">腾创未来</td><td>10,576</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">仙霸</td><td>7,081</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">藏容</td><td>1,214</td><td class="l"><span class="rtx">jodyjiang</span></td></tr><tr><td class="l">蚁团美妆2025</td><td>1,156</td><td class="l"><span class="rtx">carinajlli</span></td></tr><tr><td class="l">抖嘉</td><td>749</td><td class="l"><span class="rtx">jodyjiang</span></td></tr><tr><td class="l">琪亿源小店</td><td>746</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">八方</td><td>657</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">BABI</td><td>492</td><td class="l"><span class="rtx">graceyytang</span></td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div class="rule">
+    <div class="rule-head">
+      <div class="rank">TOP6</div>
+      <div class="main"><h3>恶心不适</h3>
+        <div class="lv"><span class="badge">审核一级：平台体验</span>
+          <span class="badge">审核二级：体验设计审核规范</span></div></div>
+      <div class="num"><div class="v">27,517</div>
+        <div class="s">本周机审拒绝量｜日均 3,931</div></div>
+    </div>
+    <div class="rule-body">
+      <h4>近 30 天拒绝量趋势</h4>
+      <div class="trendnote">近 30 天累计 79,423 次</div>
+      <div id="chart_rule_5" class="mini"></div>
+      <h4>案例对比 · 负面 vs 正面</h4>
+      
+  <div class="case-grid">
+    <div class="case-frame bad">
+      <div class="case-head"><span class="cdot"></span>负面案例 · 示意帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="负面案例示意帧"><defs>
+      <linearGradient id="gr5bbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffe9f0"/>
+        <stop offset="1" stop-color="#fff6f0"/></linearGradient>
+      <linearGradient id="gr5bbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr5bcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr5bsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#f7c9d8" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr5bbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#f7dbe5"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fff0f4" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="28" y="202" width="224" height="42" rx="9" fill="#f0d9dd" opacity="0.9"/><circle cx="60" cy="220" r="5" fill="#b9768a" opacity="0.65"/><circle cx="90" cy="230" r="4" fill="#b9768a" opacity="0.65"/><circle cx="120" cy="216" r="6" fill="#b9768a" opacity="0.65"/><circle cx="160" cy="228" r="5" fill="#b9768a" opacity="0.65"/><circle cx="196" cy="218" r="4" fill="#b9768a" opacity="0.65"/><circle cx="224" cy="230" r="5" fill="#b9768a" opacity="0.65"/><text x="140" y="240" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#e8537f" font-weight="700" text-anchor="middle" >瑕疵特写 · 长时间放大</text><g filter="url(#gr5bsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr5bbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr5bcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#e8537f" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#fbe3ec"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#7a2f4a" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >黑头痘痘挤压特写 · 长时间放大</text><circle cx="240" cy="60" r="17" fill="#e8537f"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" fill="#ffffff" font-weight="800" text-anchor="middle" >✕</text></svg></div>
+      <div class="case-note bad">✕ 违规点：强刺激特写，观感不适</div>
+    </div>
+    <div class="case-frame good">
+      <div class="case-head"><span class="cdot"></span>正面案例 · 示范帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正面案例示意帧"><defs>
+      <linearGradient id="gr5gbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff3f7"/>
+        <stop offset="1" stop-color="#fdf1f6"/></linearGradient>
+      <linearGradient id="gr5gbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr5gcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr5gsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#cfe8dc" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr5gbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#dceee3"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fdeef3" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#5aa08a" stroke-width="1.4" stroke-dasharray="0"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#5aa08a" font-weight="800" text-anchor="middle" >柔光舒适画面</text><g filter="url(#gr5gsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr5gbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr5gcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#d96a94" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#dff0e6"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#3f7f69" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >质地与手法展示，画面舒适</text><circle cx="240" cy="60" r="17" fill="#5aa08a"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#ffffff" font-weight="800" text-anchor="middle" >✓</text></svg></div>
+      <div class="case-note good">✓ 合规点：柔光场景、无不适画面</div>
+    </div>
+  </div>
+      <h4>规则解读</h4><p>画面出现易引发生理不适的内容：黑头/痘痘挤压特写、皮肤病变放大、过度油腻或脏污质感、密集恐惧式画面等，命中「平台体验-体验设计审核规范」。</p>
+      <h4>整改建议</h4><ul class="act"><li>删除挤压、病变、创面等特写镜头，避免长时间放大皮肤瑕疵</li><li>改用产品质地、上手试用、包装与场景化镜头替代问题肌理画面</li><li>必须展示问题肌理时采用抽象示意或插画，控制时长与画面占比</li><li>整体色调与转场保持舒适，避免强刺激音效与抖动</li></ul>
+      <div class="risk">📌 属于剪辑层面的一次性整改，替换素材模板即可明显降量。</div>
+      <h4>高命中名单 · 本周</h4>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th class="l">客户简称</th><th>本周审核拒绝量</th>
+          <th class="l">对应销售</th></tr></thead>
+        <tbody><tr><td class="l">迪丽诗顿</td><td>3,860</td><td class="l"><span class="rtx">justinybliu</span></td></tr><tr><td class="l">韩束</td><td>2,742</td><td class="l"><span class="rtx">joannzhang</span></td></tr><tr><td class="l">造物者</td><td>2,462</td><td class="l"><span class="rtx">graceyytang</span></td></tr><tr><td class="l">自然堂</td><td>2,055</td><td class="l"><span class="rtx">zoeyshuang</span></td></tr><tr><td class="l">C咖</td><td>1,788</td><td class="l"><span class="rtx">zoeyshuang</span></td></tr><tr><td class="l">军献25</td><td>1,623</td><td class="l"><span class="rtx">yuexinzhang</span></td></tr><tr><td class="l">厦门美肤莱科技有限公司</td><td>1,414</td><td class="l"><span class="rtx">justinybliu</span></td></tr><tr><td class="l">羽素</td><td>1,133</td><td class="l"><span class="rtx">graceyytang</span></td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div class="rule">
+    <div class="rule-head">
+      <div class="rank">TOP7</div>
+      <div class="main"><h3>营销对象与广告创意类目/品牌/属性不一致</h3>
+        <div class="lv"><span class="badge">审核一级：内容一致性要求</span>
+          <span class="badge">审核二级：广告一致性</span></div></div>
+      <div class="num"><div class="v">23,353</div>
+        <div class="s">本周机审拒绝量｜日均 3,336</div></div>
+    </div>
+    <div class="rule-body">
+      <h4>近 30 天拒绝量趋势</h4>
+      <div class="trendnote">近 30 天累计 50,510 次</div>
+      <div id="chart_rule_6" class="mini"></div>
+      <h4>案例对比 · 负面 vs 正面</h4>
+      
+  <div class="case-grid">
+    <div class="case-frame bad">
+      <div class="case-head"><span class="cdot"></span>负面案例 · 示意帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="负面案例示意帧"><defs>
+      <linearGradient id="gr6bbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffe9f0"/>
+        <stop offset="1" stop-color="#fff6f0"/></linearGradient>
+      <linearGradient id="gr6bbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr6bcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr6bsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#f7c9d8" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr6bbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#f7dbe5"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fff0f4" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#e8537f" stroke-width="1.4" stroke-dasharray="5 4"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#e8537f" font-weight="800" text-anchor="middle" >A品牌 ≠ B品类</text><g filter="url(#gr6bsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr6bbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr6bcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#e8537f" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#fbe3ec"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#7a2f4a" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >画面展示A品牌｜实际售卖B品类</text><circle cx="240" cy="60" r="17" fill="#e8537f"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" fill="#ffffff" font-weight="800" text-anchor="middle" >✕</text></svg></div>
+      <div class="case-note bad">✕ 违规点：营销对象与画面品牌/类目不符</div>
+    </div>
+    <div class="case-frame good">
+      <div class="case-head"><span class="cdot"></span>正面案例 · 示范帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正面案例示意帧"><defs>
+      <linearGradient id="gr6gbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff3f7"/>
+        <stop offset="1" stop-color="#fdf1f6"/></linearGradient>
+      <linearGradient id="gr6gbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr6gcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr6gsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#cfe8dc" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr6gbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#dceee3"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fdeef3" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#5aa08a" stroke-width="1.4" stroke-dasharray="0"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#5aa08a" font-weight="800" text-anchor="middle" >品牌与商品一致</text><g filter="url(#gr6gsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr6gbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr6gcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#d96a94" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#dff0e6"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#3f7f69" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >画面产品与落地页商品一致</text><circle cx="240" cy="60" r="17" fill="#5aa08a"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#ffffff" font-weight="800" text-anchor="middle" >✓</text></svg></div>
+      <div class="case-note good">✓ 合规点：品牌、品名、属性三方对齐</div>
+    </div>
+  </div>
+      <h4>规则解读</h4><p>视频画面展示的商品、品牌、类目或功效属性与落地页/推广对象不一致，如画面为 A 品牌精华却售卖 B 类目产品、借用他人包装或'挂羊头卖狗肉'式引流，命中「内容一致性要求-广告一致性」。</p>
+      <h4>整改建议</h4><ul class="act"><li>画面中出现的产品包装、品牌 LOGO、品名须与推广商品及落地页完全一致</li><li>借势素材（空镜、通用美妆画面）不得让受众误认为是所售商品本身</li><li>多 SKU 混剪时，字幕与口播明确指向当前推广的具体商品</li><li>上线前做'画面-口播-落地页'三方一致性核对</li></ul>
+      <div class="risk">📌 常见于跨品类投放客户，建议按客户主体核查商品绑定关系。</div>
+      <h4>高命中名单 · 本周</h4>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th class="l">客户简称</th><th>本周审核拒绝量</th>
+          <th class="l">对应销售</th></tr></thead>
+        <tbody><tr><td class="l">腾创未来</td><td>19,879</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">揭阳市乐知宁百货有限公司</td><td>894</td><td class="l"><span class="rtx">carinajlli</span></td></tr><tr><td class="l">深圳卓境</td><td>658</td><td class="l"><span class="rtx">zhuowei</span></td></tr><tr><td class="l">宥承</td><td>412</td><td class="l"><span class="rtx">jodyjiang</span></td></tr><tr><td class="l">广州浩荣商贸有限公司</td><td>264</td><td class="l"><span class="rtx">carinajlli</span></td></tr><tr><td class="l">揭阳市初汀妍贸易有限公司</td><td>207</td><td class="l"><span class="rtx">xupeihuang</span></td></tr><tr><td class="l">蚁团美妆2025</td><td>206</td><td class="l"><span class="rtx">carinajlli</span></td></tr><tr><td class="l">聚曜传媒</td><td>182</td><td class="l"><span class="rtx">maxzzheng</span></td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div class="rule">
+    <div class="rule-head">
+      <div class="rank">TOP8</div>
+      <div class="main"><h3>效果对比-视频号</h3>
+        <div class="lv"><span class="badge">审核一级：虚假夸大</span>
+          <span class="badge">审核二级：虚构产品功效</span></div></div>
+      <div class="num"><div class="v">19,118</div>
+        <div class="s">本周机审拒绝量｜日均 2,731</div></div>
+    </div>
+    <div class="rule-body">
+      <h4>近 30 天拒绝量趋势</h4>
+      <div class="trendnote">近 30 天累计 70,148 次</div>
+      <div id="chart_rule_7" class="mini"></div>
+      <h4>案例对比 · 负面 vs 正面</h4>
+      
+  <div class="case-grid">
+    <div class="case-frame bad">
+      <div class="case-head"><span class="cdot"></span>负面案例 · 示意帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="负面案例示意帧"><defs>
+      <linearGradient id="gr7bbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffe9f0"/>
+        <stop offset="1" stop-color="#fff6f0"/></linearGradient>
+      <linearGradient id="gr7bbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr7bcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr7bsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#f7c9d8" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr7bbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#f7dbe5"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fff0f4" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="28" y="202" width="106" height="42" rx="9" fill="#f3d2d8"/><rect x="146" y="202" width="106" height="42" rx="9" fill="#fbe0e8"/><text x="81" y="227" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7a2f4a" font-weight="700" text-anchor="middle" >使用前</text><text x="199" y="227" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11" fill="#7a2f4a" font-weight="700" text-anchor="middle" >使用后</text><text x="140" y="227" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#e8537f" font-weight="800" text-anchor="middle" >VS</text><g filter="url(#gr7bsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr7bbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr7bcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#e8537f" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#fbe3ec"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#7a2f4a" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >使用前 / 使用后 · 7天对比</text><circle cx="240" cy="60" r="17" fill="#e8537f"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" fill="#ffffff" font-weight="800" text-anchor="middle" >✕</text></svg></div>
+      <div class="case-note bad">✕ 违规点：前后效果对比暗示确定功效</div>
+    </div>
+    <div class="case-frame good">
+      <div class="case-head"><span class="cdot"></span>正面案例 · 示范帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正面案例示意帧"><defs>
+      <linearGradient id="gr7gbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff3f7"/>
+        <stop offset="1" stop-color="#fdf1f6"/></linearGradient>
+      <linearGradient id="gr7gbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr7gcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr7gsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#cfe8dc" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr7gbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#dceee3"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fdeef3" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#5aa08a" stroke-width="1.4" stroke-dasharray="0"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#5aa08a" font-weight="800" text-anchor="middle" >单一质地展示</text><g filter="url(#gr7gsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr7gbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr7gcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#d96a94" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#dff0e6"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#3f7f69" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >质地展示 · 不做效果对比</text><circle cx="240" cy="60" r="17" fill="#5aa08a"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#ffffff" font-weight="800" text-anchor="middle" >✓</text></svg></div>
+      <div class="case-note good">✓ 合规点：客观呈现质地与手法</div>
+    </div>
+  </div>
+      <h4>规则解读</h4><p>视频号链路中使用使用前/使用后分屏、局部特写对照、时间轴进度条等方式暗示确定性功效，即使标注'效果因人而异'仍可能因强对比被判定为功效夸大。</p>
+      <h4>整改建议</h4><ul class="act"><li>删除前后对比分屏、局部放大对照、'Day1/Day7'时间轴等演示结构</li><li>改为产品质地、成分、使用手法的客观展示，不呈现人体效果对照</li><li>如需展示体验，保持同一光线、角度、时长，且不做暗示性结论</li><li>功效表述回到备案口径，并补充'效果因人而异'</li></ul>
+      <div class="risk">📌 与警示语规则常叠加命中，建议在视频号模板中同时去掉对比结构、加挂警示语。</div>
+      <h4>高命中名单 · 本周</h4>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th class="l">客户简称</th><th>本周审核拒绝量</th>
+          <th class="l">对应销售</th></tr></thead>
+        <tbody><tr><td class="l">腾创未来</td><td>2,654</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">抖嘉</td><td>2,268</td><td class="l"><span class="rtx">jodyjiang</span></td></tr><tr><td class="l">八方</td><td>1,801</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">美溪</td><td>1,647</td><td class="l"><span class="rtx">jodyjiang</span></td></tr><tr><td class="l">慕可</td><td>1,098</td><td class="l"><span class="rtx">joannzhang</span></td></tr><tr><td class="l">仙霸</td><td>966</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">自然堂</td><td>872</td><td class="l"><span class="rtx">zoeyshuang</span></td></tr><tr><td class="l">倾颜</td><td>698</td><td class="l"><span class="rtx">jiinnchen</span></td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div class="rule">
+    <div class="rule-head">
+      <div class="rank">TOP9</div>
+      <div class="main"><h3>虚假功效或收益保障承诺</h3>
+        <div class="lv"><span class="badge">审核一级：虚假夸大</span>
+          <span class="badge">审核二级：虚构产品功效</span></div></div>
+      <div class="num"><div class="v">15,920</div>
+        <div class="s">本周机审拒绝量｜日均 2,274</div></div>
+    </div>
+    <div class="rule-body">
+      <h4>近 30 天拒绝量趋势</h4>
+      <div class="trendnote">近 30 天累计 614,396 次</div>
+      <div id="chart_rule_8" class="mini"></div>
+      <h4>案例对比 · 负面 vs 正面</h4>
+      
+  <div class="case-grid">
+    <div class="case-frame bad">
+      <div class="case-head"><span class="cdot"></span>负面案例 · 示意帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="负面案例示意帧"><defs>
+      <linearGradient id="gr8bbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffe9f0"/>
+        <stop offset="1" stop-color="#fff6f0"/></linearGradient>
+      <linearGradient id="gr8bbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr8bcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr8bsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#f7c9d8" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr8bbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#f7dbe5"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fff0f4" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#e8537f" stroke-width="1.4" stroke-dasharray="5 4"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#e8537f" font-weight="800" text-anchor="middle" >立竿见影 · 100%</text><g filter="url(#gr8bsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr8bbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr8bcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#e8537f" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#fbe3ec"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#7a2f4a" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >无效全额退款｜保证变白</text><circle cx="240" cy="60" r="17" fill="#e8537f"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" fill="#ffffff" font-weight="800" text-anchor="middle" >✕</text></svg></div>
+      <div class="case-note bad">✕ 违规点：功效结果保障 + 收益承诺</div>
+    </div>
+    <div class="case-frame good">
+      <div class="case-head"><span class="cdot"></span>正面案例 · 示范帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正面案例示意帧"><defs>
+      <linearGradient id="gr8gbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff3f7"/>
+        <stop offset="1" stop-color="#fdf1f6"/></linearGradient>
+      <linearGradient id="gr8gbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr8gcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr8gsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#cfe8dc" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr8gbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#dceee3"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fdeef3" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#5aa08a" stroke-width="1.4" stroke-dasharray="0"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#5aa08a" font-weight="800" text-anchor="middle" >温和表述 · 无承诺</text><g filter="url(#gr8gsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr8gbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr8gcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#d96a94" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#dff0e6"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#3f7f69" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >产品体验因人而异，详见商品页</text><circle cx="240" cy="60" r="17" fill="#5aa08a"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#ffffff" font-weight="800" text-anchor="middle" >✓</text></svg></div>
+      <div class="case-note good">✓ 合规点：不做结果兜底，口径中性</div>
+    </div>
+  </div>
+      <h4>规则解读</h4><p>以保证性话术承诺功效或收益，如'无效全额退款''保证变白''签约祛斑''不达标赔付'，或把个体体验包装成普遍结果，属于「虚假夸大」中的结果保障类违规。</p>
+      <h4>整改建议</h4><ul class="act"><li>删除'保证/承诺/无效退款/签约达成/不达标赔付'等结果保障表述</li><li>促销与售后规则以落地页公示为准，素材中不做功效兜底承诺</li><li>个体体验须标注'仅为个人使用感受'，不得暗示普遍适用</li><li>涉及退款/赔付的营销活动需与资质、活动备案口径一致</li></ul>
+      <div class="risk">📌 与产品效果承诺同源，建议合并进同一套功效话术禁用词表。</div>
+      <h4>高命中名单 · 本周</h4>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th class="l">客户简称</th><th>本周审核拒绝量</th>
+          <th class="l">对应销售</th></tr></thead>
+        <tbody><tr><td class="l">腾创未来</td><td>2,449</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">仙霸</td><td>1,527</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">美溪</td><td>948</td><td class="l"><span class="rtx">jodyjiang</span></td></tr><tr><td class="l">百雀羚护肤</td><td>638</td><td class="l"><span class="rtx">amiewang</span></td></tr><tr><td class="l">BUV</td><td>591</td><td class="l"><span class="rtx">graceyytang</span></td></tr><tr><td class="l">荆门市东宝区枫蒂百货店</td><td>544</td><td class="l"><span class="rtx">zhuowei</span></td></tr><tr><td class="l">韩束</td><td>523</td><td class="l"><span class="rtx">joannzhang</span></td></tr><tr><td class="l">郑州烛舍 1</td><td>509</td><td class="l"><span class="rtx">yilinjiang</span></td></tr></tbody></table></div>
+    </div>
+  </div>
+  <div class="rule">
+    <div class="rule-head">
+      <div class="rank">TOP10</div>
+      <div class="main"><h3>概述性数据引用</h3>
+        <div class="lv"><span class="badge">审核一级：虚假夸大</span>
+          <span class="badge">审核二级：虚构产品功效</span></div></div>
+      <div class="num"><div class="v">15,827</div>
+        <div class="s">本周机审拒绝量｜日均 2,261</div></div>
+    </div>
+    <div class="rule-body">
+      <h4>近 30 天拒绝量趋势</h4>
+      <div class="trendnote">近 30 天累计 76,884 次</div>
+      <div id="chart_rule_9" class="mini"></div>
+      <h4>案例对比 · 负面 vs 正面</h4>
+      
+  <div class="case-grid">
+    <div class="case-frame bad">
+      <div class="case-head"><span class="cdot"></span>负面案例 · 示意帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="负面案例示意帧"><defs>
+      <linearGradient id="gr9bbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#ffe9f0"/>
+        <stop offset="1" stop-color="#fff6f0"/></linearGradient>
+      <linearGradient id="gr9bbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr9bcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr9bsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#f7c9d8" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr9bbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#f7dbe5"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fff0f4" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#e8537f" stroke-width="1.4" stroke-dasharray="5 4"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#e8537f" font-weight="800" text-anchor="middle" >90% 用户认为有效</text><g filter="url(#gr9bsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr9bbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr9bcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#e8537f" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#fbe3ec"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#7a2f4a" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >90%用户认为有效｜销量第一</text><circle cx="240" cy="60" r="17" fill="#e8537f"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="16" fill="#ffffff" font-weight="800" text-anchor="middle" >✕</text></svg></div>
+      <div class="case-note bad">✕ 违规点：无出处的概述性数据引用</div>
+    </div>
+    <div class="case-frame good">
+      <div class="case-head"><span class="cdot"></span>正面案例 · 示范帧</div>
+      <div class="case-img"><svg viewBox="0 0 280 480" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="正面案例示意帧"><defs>
+      <linearGradient id="gr9gbg" x1="0" y1="0" x2="1" y2="1">
+        <stop offset="0" stop-color="#fff3f7"/>
+        <stop offset="1" stop-color="#fdf1f6"/></linearGradient>
+      <linearGradient id="gr9gbot" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="#f9b7cb"/><stop offset="1" stop-color="#e8537f"/></linearGradient>
+      <linearGradient id="gr9gcap" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0" stop-color="#d4a373"/><stop offset="1" stop-color="#b98b5a"/></linearGradient>
+      <filter id="gr9gsh"><feDropShadow dx="0" dy="6" stdDeviation="8" flood-color="#c9386b" flood-opacity="0.18"/></filter>
+    </defs><rect x="8" y="8" width="264" height="464" rx="30" fill="#ffffff" stroke="#cfe8dc" stroke-width="2"/><rect x="16" y="16" width="248" height="448" rx="24" fill="url(#gr9gbg)"/><text x="30" y="38" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10" fill="#826471" font-weight="700" text-anchor="start" >9:41</text><circle cx="238" cy="34" r="3" fill="#826471"/><circle cx="247" cy="34" r="3" fill="#826471"/><rect x="30" y="48" width="34" height="16" rx="5" fill="#dceee3"/><text x="47" y="59.5" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#826471" font-weight="600" text-anchor="middle" >广告</text><circle cx="210" cy="130" r="86" fill="#ffffff" opacity="0.42"/><circle cx="70" cy="300" r="72" fill="#fdeef3" opacity="0.75"/><circle cx="140" cy="132" r="30" fill="#f6c9d8"/><path d="M104 196 Q140 158 176 196 L184 232 L96 232 Z" fill="#f6c9d8"/><rect x="30" y="202" width="220" height="42" rx="10" fill="#ffffff" opacity="0.88" stroke="#5aa08a" stroke-width="1.4" stroke-dasharray="0"/><text x="140" y="228" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="13" fill="#5aa08a" font-weight="800" text-anchor="middle" >回归备案口径</text><g filter="url(#gr9gsh)"><rect x="106" y="252" width="68" height="104" rx="14" fill="url(#gr9gbot)"/><rect x="126" y="236" width="28" height="20" rx="5" fill="url(#gr9gcap)"/><rect x="120" y="286" width="40" height="30" rx="6" fill="#ffffff" opacity="0.82"/><text x="140" y="305" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="9" fill="#d96a94" font-weight="800" text-anchor="middle" >BEAUTY</text></g><rect x="28" y="366" width="224" height="26" rx="7" fill="#dff0e6"/><text x="140" y="383" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="10.5" fill="#3f7f69" font-weight="700" text-anchor="middle" >效果因人而异 · 请按说明使用</text><rect x="22" y="402" width="236" height="42" rx="10" fill="#3b2230" opacity="0.88"/><text x="140" y="427" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="11.5" fill="#ffffff" font-weight="700" text-anchor="middle" >依据备案功效描述，不引用笼统数据</text><circle cx="240" cy="60" r="17" fill="#5aa08a"/><text x="240" y="66" font-family="-apple-system, PingFang SC, Microsoft YaHei, sans-serif" font-size="15" fill="#ffffff" font-weight="800" text-anchor="middle" >✓</text></svg></div>
+      <div class="case-note good">✓ 合规点：口径回归备案，无数据背书</div>
+    </div>
+  </div>
+      <h4>规则解读</h4><p>无明确出处地引用笼统数据支撑功效或地位，如'90% 用户认为有效''销量第一''十万人验证''复购率 99%'，缺少检测报告、统计口径与来源说明，命中「虚假夸大-虚构产品功效」。</p>
+      <h4>整改建议</h4><ul class="act"><li>删除无出处的比例、排名、人数类概述数据</li><li>确需引用的，标注检测机构、样本量、统计周期与报告编号，并保证可追溯</li><li>'第一/首选/销量领先'等排名类表述需有权威第三方依据且注明时间与范围</li><li>功效结论回到备案与功效评价报告口径，不用营销数据替代功效证据</li></ul>
+      <div class="risk">📌 量级不大但易与功效承诺叠加，建议并入功效话术禁用词表统一治理。</div>
+      <h4>高命中名单 · 本周</h4>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th class="l">客户简称</th><th>本周审核拒绝量</th>
+          <th class="l">对应销售</th></tr></thead>
+        <tbody><tr><td class="l">纯朴</td><td>1,712</td><td class="l"><span class="rtx">graceyytang</span></td></tr><tr><td class="l">畅移</td><td>984</td><td class="l"><span class="rtx">zoeyshuang</span></td></tr><tr><td class="l">腾创未来</td><td>858</td><td class="l"><span class="rtx">maxzzheng</span></td></tr><tr><td class="l">倾颜</td><td>723</td><td class="l"><span class="rtx">jiinnchen</span></td></tr><tr><td class="l">广州市滨港智能科技有限公司</td><td>716</td><td class="l"><span class="rtx">seanpan</span></td></tr><tr><td class="l">藏容</td><td>591</td><td class="l"><span class="rtx">jodyjiang</span></td></tr><tr><td class="l">环球</td><td>545</td><td class="l"><span class="rtx">yilinjiang</span></td></tr><tr><td class="l">星禾</td><td>447</td><td class="l"><span class="rtx">amiewang</span></td></tr></tbody></table></div>
+    </div>
+  </div>
+
+  <div class="card"><h3>口径与数据说明</h3>
+    <div class="note" style="border-left-color:var(--pink-500)">
+      1）本土美妆 × 视频元素，本周 W45 初审机审拒绝量；标签趋势为近 30 天按日。<br>
+      2）Top10 已剔除机审标签 / 黑词等客户不可控标签（共 <b>17</b> 类，见下表）；销售按客户级统一、仅保留首位 RTX。<br>
+      3）案例帧为矢量示意（非真实素材截图）；规则解读与整改建议按标签语义与美妆合规经验整理。
+    </div>
+    <div style="overflow-x:auto;margin-top:14px"><table>
+      <thead><tr><th class="l">已剔除标签（客户不可控）</th><th class="l">审核一级标签</th><th>本周机审拒绝量</th></tr></thead>
+      <tbody><tr><td class="l">机审-敏感词自动拒绝（违规侵权）</td><td class="l">违规侵权</td><td>37,225</td></tr><tr><td class="l">AI类素材-腾讯新闻</td><td class="l">机审标签</td><td>35,179</td></tr><tr><td class="l">搜索黑词</td><td class="l">机审标签</td><td>20,745</td></tr><tr><td class="l">机审-敏感词自动拒绝(平台禁投）</td><td class="l">准入要求</td><td>9,156</td></tr><tr><td class="l">机审-敏感词自动拒绝(政治敏感）</td><td class="l">政治敏感</td><td>4,496</td></tr><tr><td class="l">机审-敏感词自动拒绝（代言人规范）</td><td class="l">代言人规范</td><td>1,831</td></tr><tr><td class="l">机审-自动拒绝220530</td><td class="l">机审标签</td><td>1,578</td></tr><tr><td class="l">机审-敏感词自动拒绝(色情低俗）</td><td class="l">涉黄</td><td>1,029</td></tr><tr><td class="l">能力重试失败</td><td class="l">机审标签</td><td>929</td></tr><tr><td class="l">机审-灰色节日</td><td class="l">机审标签</td><td>117</td></tr><tr><td class="l">机审-共享充电宝租赁业务</td><td class="l">机审标签</td><td>53</td></tr><tr><td class="l">痔疮类素材-腾讯新闻</td><td class="l">机审标签</td><td>39</td></tr></tbody></table></div>
+  </div>
+
+  <div class="foot">本土美妆 · 视频素材审核分析周报　|　2026-10-26 ~ 2026-11-08（W44 + W45，近双周 14 天）　|　生成 2026-11-09 11:22</div>
+  <div class="gh-foot">
+    <div class="gh-foot-row">
+      <span>📦 仓库：<code>report</code></span>
+      <span>📄 <a href="docs/DATA-NOTES.md">数据口径说明</a> · <a href="data/report-data.json">原始数据 JSON</a> · <a href="https://github.com/mmorningmao/report" target="_blank" rel="noopener">README</a></span>
+      <span>⚖️ MIT License</span>
+    </div>
+    <div class="gh-foot-note">本页为该报告的公开托管版本，正文内容与数据保持原样；所有图表依赖已本地化，可离线查看。仓库地址中的 mmorningmao 请替换为自己的 GitHub 账号 / 组织名。</div>
+  </div>
+</div>
+<script>
+const DATA = {"days14": [{"day": "10.26", "all_total": 7702736.0, "all_pass": 98.93493688476406, "video_total": 1136944.0, "video_pass": 94.543442772907}, {"day": "10.27", "all_total": 10943829.0, "all_pass": 98.83036366887676, "video_total": 1634948.0, "video_pass": 94.09504155483845}, {"day": "10.28", "all_total": 10881164.0, "all_pass": 98.59904694019868, "video_total": 1659074.0, "video_pass": 93.60866362802382}, {"day": "10.29", "all_total": 10347531.0, "all_pass": 98.56917558401128, "video_total": 1489881.0, "video_pass": 92.444631483991}, {"day": "10.30", "all_total": 10287087.0, "all_pass": 98.47933627857915, "video_total": 1478931.0, "video_pass": 92.39599413360057}, {"day": "10.31", "all_total": 8671328.0, "all_pass": 98.58147448695286, "video_total": 1172297.0, "video_pass": 92.30254790381618}, {"day": "11.01", "all_total": 7708753.0, "all_pass": 98.47631646778667, "video_total": 1068704.0, "video_pass": 91.47696649399649}, {"day": "11.02", "all_total": 9099310.0, "all_pass": 98.5411091610243, "video_total": 1319781.0, "video_pass": 92.52322923272877}, {"day": "11.03", "all_total": 11529763.0, "all_pass": 98.56406415292318, "video_total": 1769597.0, "video_pass": 93.68421171600087}, {"day": "11.04", "all_total": 11340166.0, "all_pass": 98.74100608403792, "video_total": 1635269.0, "video_pass": 93.72843244750558}, {"day": "11.05", "all_total": 10133364.0, "all_pass": 98.59839239960196, "video_total": 1631840.0, "video_pass": 93.3856873222865}, {"day": "11.06", "all_total": 11006631.0, "all_pass": 98.491645627077, "video_total": 1715795.0, "video_pass": 92.90777744427513}, {"day": "11.07", "all_total": 9404855.0, "all_pass": 98.45631857163136, "video_total": 1462131.0, "video_pass": 92.65325747145776}, {"day": "11.08", "all_total": 7791980.0, "all_pass": 98.5366620550874, "video_total": 1229687.0, "video_pass": 92.80776327634594}], "months_video": [{"month": "01月", "video_total": 14105404.0, "video_pass": 71.42968042602679, "adq_video_pass": 69.72064476826014, "qyt_video_pass": 75.2065878728959}, {"month": "02月", "video_total": 10016741.0, "video_pass": 70.73703912280452, "adq_video_pass": 69.36363059030232, "qyt_video_pass": 74.03239917763348}, {"month": "03月", "video_total": 14747736.0, "video_pass": 75.95347516391668, "adq_video_pass": 76.21721152127397, "qyt_video_pass": 75.3133088063903}, {"month": "04月", "video_total": 16593264.0, "video_pass": 77.99086424467181, "adq_video_pass": 78.44512339367947, "qyt_video_pass": 76.47559582475859}, {"month": "05月", "video_total": 18319411.0, "video_pass": 84.48284718324186, "adq_video_pass": 85.28660968931564, "qyt_video_pass": 81.95649636964652}, {"month": "06月", "video_total": 15779576.0, "video_pass": 86.09658459771036, "adq_video_pass": 86.6391506163633, "qyt_video_pass": 82.36924396654481}, {"month": "07月", "video_total": 17842262.0, "video_pass": 86.5425975697476, "adq_video_pass": 86.63834492281063, "qyt_video_pass": 85.76463987750174}, {"month": "08月", "video_total": 24040351.0, "video_pass": 85.3732252079015, "adq_video_pass": 85.32604127353099, "qyt_video_pass": 85.66686757956842}, {"month": "09月", "video_total": 23269569.0, "video_pass": 87.67026583087981, "adq_video_pass": 88.28064730241955, "qyt_video_pass": 84.82125829542086}, {"month": "10月", "video_total": 34442725.0, "video_pass": 91.0476682666659, "adq_video_pass": 91.6778682997858, "qyt_video_pass": 86.98763752529239}, {"month": "11月", "video_total": 11832804.0, "video_pass": 92.98925258966514, "adq_video_pass": 93.56047947582219, "qyt_video_pass": 88.66417525007732}], "rules": [{"tag": "侵权他人名义及形象", "l1": "违规侵权", "l2": "人物名义形象侵权", "reject": 203866.0, "daily_avg": 29123.714285714286, "trend": [{"day": "10.10", "reject": 22819.0}, {"day": "10.11", "reject": 17029.0}, {"day": "10.12", "reject": 20219.0}, {"day": "10.13", "reject": 36766.0}, {"day": "10.14", "reject": 33030.0}, {"day": "10.15", "reject": 32972.0}, {"day": "10.16", "reject": 26515.0}, {"day": "10.17", "reject": 23913.0}, {"day": "10.18", "reject": 19418.0}, {"day": "10.19", "reject": 22306.0}, {"day": "10.20", "reject": 26148.0}, {"day": "10.21", "reject": 25972.0}, {"day": "10.22", "reject": 29652.0}, {"day": "10.23", "reject": 29387.0}, {"day": "10.24", "reject": 27683.0}, {"day": "10.25", "reject": 16704.0}, {"day": "10.26", "reject": 23213.0}, {"day": "10.27", "reject": 29591.0}, {"day": "10.28", "reject": 33917.0}, {"day": "10.29", "reject": 47562.0}, {"day": "10.30", "reject": 30402.0}, {"day": "10.31", "reject": 23725.0}, {"day": "11.01", "reject": 24307.0}, {"day": "11.02", "reject": 29258.0}, {"day": "11.03", "reject": 30469.0}, {"day": "11.04", "reject": 26940.0}, {"day": "11.05", "reject": 27655.0}, {"day": "11.06", "reject": 30046.0}, {"day": "11.07", "reject": 33707.0}, {"day": "11.08", "reject": 25791.0}], "trend30_sum": 827116.0, "trend30_days": 30, "customers": [{"customer": "荆门市东宝区枫蒂百货店", "reject": 17371.0, "sales": "zhuowei"}, {"customer": "BUV", "reject": 14431.0, "sales": "graceyytang"}, {"customer": "抖嘉", "reject": 14316.0, "sales": "jodyjiang"}, {"customer": "蚁团美妆2025", "reject": 10979.0, "sales": "carinajlli"}, {"customer": "腾创未来", "reject": 9883.0, "sales": "maxzzheng"}, {"customer": "纯朴", "reject": 9601.0, "sales": "graceyytang"}, {"customer": "卡姿兰", "reject": 7123.0, "sales": "amiewang"}, {"customer": "珂语", "reject": 5724.0, "sales": "yuexinzhang"}]}, {"tag": "产品效果承诺", "l1": "虚假夸大", "l2": "虚构产品功效", "reject": 181862.0, "daily_avg": 25980.285714285714, "trend": [{"day": "10.10", "reject": null}, {"day": "10.11", "reject": null}, {"day": "10.12", "reject": null}, {"day": "10.13", "reject": null}, {"day": "10.14", "reject": 40.0}, {"day": "10.15", "reject": 379.0}, {"day": "10.16", "reject": 1065.0}, {"day": "10.17", "reject": 1275.0}, {"day": "10.18", "reject": 1088.0}, {"day": "10.19", "reject": 1627.0}, {"day": "10.20", "reject": 1639.0}, {"day": "10.21", "reject": 3447.0}, {"day": "10.22", "reject": 7621.0}, {"day": "10.23", "reject": 7470.0}, {"day": "10.24", "reject": 10574.0}, {"day": "10.25", "reject": 5561.0}, {"day": "10.26", "reject": 6764.0}, {"day": "10.27", "reject": 17546.0}, {"day": "10.28", "reject": 19543.0}, {"day": "10.29", "reject": 20827.0}, {"day": "10.30", "reject": 24589.0}, {"day": "10.31", "reject": 20032.0}, {"day": "11.01", "reject": 16555.0}, {"day": "11.02", "reject": 25854.0}, {"day": "11.03", "reject": 22872.0}, {"day": "11.04", "reject": 21848.0}, {"day": "11.05", "reject": 21339.0}, {"day": "11.06", "reject": 32906.0}, {"day": "11.07", "reject": 28939.0}, {"day": "11.08", "reject": 28104.0}], "trend30_sum": 349504.0, "trend30_days": 26, "customers": [{"customer": "腾创未来", "reject": 59168.0, "sales": "maxzzheng"}, {"customer": "百雀羚护肤", "reject": 13383.0, "sales": "amiewang"}, {"customer": "自然堂", "reject": 11014.0, "sales": "zoeyshuang"}, {"customer": "倾颜", "reject": 9349.0, "sales": "jiinnchen"}, {"customer": "仙霸", "reject": 7631.0, "sales": "maxzzheng"}, {"customer": "慕可", "reject": 7500.0, "sales": "joannzhang"}, {"customer": "谷雨", "reject": 6030.0, "sales": "joannzhang"}, {"customer": "美溪", "reject": 4983.0, "sales": "jodyjiang"}]}, {"tag": "广告风险警示语/要素缺失-视频号", "l1": "业务警示语规范", "l2": "警示语使用规范", "reject": 90543.0, "daily_avg": 12934.714285714286, "trend": [{"day": "10.10", "reject": 13004.0}, {"day": "10.11", "reject": 12719.0}, {"day": "10.12", "reject": 12529.0}, {"day": "10.13", "reject": 22643.0}, {"day": "10.14", "reject": 17556.0}, {"day": "10.15", "reject": 16783.0}, {"day": "10.16", "reject": 16781.0}, {"day": "10.17", "reject": 13614.0}, {"day": "10.18", "reject": 12190.0}, {"day": "10.19", "reject": 9391.0}, {"day": "10.20", "reject": 10692.0}, {"day": "10.21", "reject": 13511.0}, {"day": "10.22", "reject": 14161.0}, {"day": "10.23", "reject": 14414.0}, {"day": "10.24", "reject": 14897.0}, {"day": "10.25", "reject": 9868.0}, {"day": "10.26", "reject": 9506.0}, {"day": "10.27", "reject": 13989.0}, {"day": "10.28", "reject": 18516.0}, {"day": "10.29", "reject": 17702.0}, {"day": "10.30", "reject": 17842.0}, {"day": "10.31", "reject": 14025.0}, {"day": "11.01", "reject": 15479.0}, {"day": "11.02", "reject": 14495.0}, {"day": "11.03", "reject": 14436.0}, {"day": "11.04", "reject": 11752.0}, {"day": "11.05", "reject": 10087.0}, {"day": "11.06", "reject": 14097.0}, {"day": "11.07", "reject": 14697.0}, {"day": "11.08", "reject": 10979.0}], "trend30_sum": 422355.0, "trend30_days": 30, "customers": [{"customer": "荆门市东宝区枫蒂百货店", "reject": 12786.0, "sales": "zhuowei"}, {"customer": "Diary言之有物", "reject": 3495.0, "sales": "zoeyshuang"}, {"customer": "纯朴", "reject": 2637.0, "sales": "graceyytang"}, {"customer": "杭州余杭颂汀电子商务商行(个体工商户)", "reject": 2558.0, "sales": "zhuowei"}, {"customer": "百雀羚护肤", "reject": 2438.0, "sales": "amiewang"}, {"customer": "藏容", "reject": 2012.0, "sales": "jodyjiang"}, {"customer": "蚁团美妆2025", "reject": 1580.0, "sales": "carinajlli"}, {"customer": "必扬", "reject": 1575.0, "sales": "zoeyshuang"}]}, {"tag": "虚假活动规则", "l1": "虚假夸大", "l2": "虚假营销活动", "reject": 43324.0, "daily_avg": 6189.142857142857, "trend": [{"day": "10.10", "reject": 3078.0}, {"day": "10.11", "reject": 1707.0}, {"day": "10.12", "reject": 3306.0}, {"day": "10.13", "reject": 3457.0}, {"day": "10.14", "reject": 4524.0}, {"day": "10.15", "reject": 5597.0}, {"day": "10.16", "reject": 7155.0}, {"day": "10.17", "reject": 5903.0}, {"day": "10.18", "reject": 2536.0}, {"day": "10.19", "reject": 3825.0}, {"day": "10.20", "reject": 3194.0}, {"day": "10.21", "reject": 3076.0}, {"day": "10.22", "reject": 3576.0}, {"day": "10.23", "reject": 4139.0}, {"day": "10.24", "reject": 5139.0}, {"day": "10.25", "reject": 2661.0}, {"day": "10.26", "reject": 3051.0}, {"day": "10.27", "reject": 6268.0}, {"day": "10.28", "reject": 4144.0}, {"day": "10.29", "reject": 4946.0}, {"day": "10.30", "reject": 5458.0}, {"day": "10.31", "reject": 4594.0}, {"day": "11.01", "reject": 2859.0}, {"day": "11.02", "reject": 4128.0}, {"day": "11.03", "reject": 7309.0}, {"day": "11.04", "reject": 5150.0}, {"day": "11.05", "reject": 6333.0}, {"day": "11.06", "reject": 10745.0}, {"day": "11.07", "reject": 5829.0}, {"day": "11.08", "reject": 3830.0}], "trend30_sum": 137517.0, "trend30_days": 30, "customers": [{"customer": "韩束", "reject": 4502.0, "sales": "joannzhang"}, {"customer": "广州捷允科技有限公司", "reject": 3425.0, "sales": "carinajlli"}, {"customer": "蚁团美妆2025", "reject": 3109.0, "sales": "carinajlli"}, {"customer": "广州祝荣百货有限公司", "reject": 2887.0, "sales": "carinajlli"}, {"customer": "自然堂", "reject": 2823.0, "sales": "zoeyshuang"}, {"customer": "倾颜", "reject": 2231.0, "sales": "jiinnchen"}, {"customer": "广州佰沅科技有限公司", "reject": 2216.0, "sales": "carinajlli"}, {"customer": "百雀羚护肤", "reject": 1608.0, "sales": "amiewang"}]}, {"tag": "违背正向婚恋价值观", "l1": "价值观导向", "l2": "负向价值观", "reject": 28545.0, "daily_avg": 4077.8571428571427, "trend": [{"day": "10.10", "reject": 500.0}, {"day": "10.11", "reject": 368.0}, {"day": "10.12", "reject": 398.0}, {"day": "10.13", "reject": 970.0}, {"day": "10.14", "reject": 628.0}, {"day": "10.15", "reject": 1056.0}, {"day": "10.16", "reject": 1378.0}, {"day": "10.17", "reject": 1288.0}, {"day": "10.18", "reject": 496.0}, {"day": "10.19", "reject": 1093.0}, {"day": "10.20", "reject": 1481.0}, {"day": "10.21", "reject": 1805.0}, {"day": "10.22", "reject": 1593.0}, {"day": "10.23", "reject": 1313.0}, {"day": "10.24", "reject": 1299.0}, {"day": "10.25", "reject": 966.0}, {"day": "10.26", "reject": 874.0}, {"day": "10.27", "reject": 2060.0}, {"day": "10.28", "reject": 2491.0}, {"day": "10.29", "reject": 2285.0}, {"day": "10.30", "reject": 4311.0}, {"day": "10.31", "reject": 2946.0}, {"day": "11.01", "reject": 3314.0}, {"day": "11.02", "reject": 3076.0}, {"day": "11.03", "reject": 4443.0}, {"day": "11.04", "reject": 3980.0}, {"day": "11.05", "reject": 3569.0}, {"day": "11.06", "reject": 5806.0}, {"day": "11.07", "reject": 4230.0}, {"day": "11.08", "reject": 3441.0}], "trend30_sum": 63458.0, "trend30_days": 30, "customers": [{"customer": "腾创未来", "reject": 10576.0, "sales": "maxzzheng"}, {"customer": "仙霸", "reject": 7081.0, "sales": "maxzzheng"}, {"customer": "藏容", "reject": 1214.0, "sales": "jodyjiang"}, {"customer": "蚁团美妆2025", "reject": 1156.0, "sales": "carinajlli"}, {"customer": "抖嘉", "reject": 749.0, "sales": "jodyjiang"}, {"customer": "琪亿源小店", "reject": 746.0, "sales": "maxzzheng"}, {"customer": "八方", "reject": 657.0, "sales": "maxzzheng"}, {"customer": "BABI", "reject": 492.0, "sales": "graceyytang"}]}, {"tag": "恶心不适", "l1": "平台体验", "l2": "体验设计审核规范", "reject": 27517.0, "daily_avg": 3931.0, "trend": [{"day": "10.10", "reject": 884.0}, {"day": "10.11", "reject": 1227.0}, {"day": "10.12", "reject": 1287.0}, {"day": "10.13", "reject": 1242.0}, {"day": "10.14", "reject": 2261.0}, {"day": "10.15", "reject": 4289.0}, {"day": "10.16", "reject": 2772.0}, {"day": "10.17", "reject": 1843.0}, {"day": "10.18", "reject": 2899.0}, {"day": "10.19", "reject": 4056.0}, {"day": "10.20", "reject": 3251.0}, {"day": "10.21", "reject": 2532.0}, {"day": "10.22", "reject": 1783.0}, {"day": "10.23", "reject": 1663.0}, {"day": "10.24", "reject": 1485.0}, {"day": "10.25", "reject": 1130.0}, {"day": "10.26", "reject": 1454.0}, {"day": "10.27", "reject": 2011.0}, {"day": "10.28", "reject": 2453.0}, {"day": "10.29", "reject": 3123.0}, {"day": "10.30", "reject": 3816.0}, {"day": "10.31", "reject": 2643.0}, {"day": "11.01", "reject": 1802.0}, {"day": "11.02", "reject": 3592.0}, {"day": "11.03", "reject": 4423.0}, {"day": "11.04", "reject": 3984.0}, {"day": "11.05", "reject": 3752.0}, {"day": "11.06", "reject": 4785.0}, {"day": "11.07", "reject": 3798.0}, {"day": "11.08", "reject": 3183.0}], "trend30_sum": 79423.0, "trend30_days": 30, "customers": [{"customer": "迪丽诗顿", "reject": 3860.0, "sales": "justinybliu"}, {"customer": "韩束", "reject": 2742.0, "sales": "joannzhang"}, {"customer": "造物者", "reject": 2462.0, "sales": "graceyytang"}, {"customer": "自然堂", "reject": 2055.0, "sales": "zoeyshuang"}, {"customer": "C咖", "reject": 1788.0, "sales": "zoeyshuang"}, {"customer": "军献25", "reject": 1623.0, "sales": "yuexinzhang"}, {"customer": "厦门美肤莱科技有限公司", "reject": 1414.0, "sales": "justinybliu"}, {"customer": "羽素", "reject": 1133.0, "sales": "graceyytang"}]}, {"tag": "营销对象与广告创意类目/品牌/属性不一致", "l1": "内容一致性要求", "l2": "广告一致性", "reject": 23353.0, "daily_avg": 3336.1428571428573, "trend": [{"day": "10.10", "reject": 325.0}, {"day": "10.11", "reject": 404.0}, {"day": "10.12", "reject": 210.0}, {"day": "10.13", "reject": 145.0}, {"day": "10.14", "reject": 314.0}, {"day": "10.15", "reject": 365.0}, {"day": "10.16", "reject": 290.0}, {"day": "10.17", "reject": 242.0}, {"day": "10.18", "reject": 47.0}, {"day": "10.19", "reject": 431.0}, {"day": "10.20", "reject": 1619.0}, {"day": "10.21", "reject": 632.0}, {"day": "10.22", "reject": 373.0}, {"day": "10.23", "reject": 440.0}, {"day": "10.24", "reject": 1542.0}, {"day": "10.25", "reject": 237.0}, {"day": "10.26", "reject": 409.0}, {"day": "10.27", "reject": 300.0}, {"day": "10.28", "reject": 516.0}, {"day": "10.29", "reject": 976.0}, {"day": "10.30", "reject": 995.0}, {"day": "10.31", "reject": 3604.0}, {"day": "11.01", "reject": 12741.0}, {"day": "11.02", "reject": 1818.0}, {"day": "11.03", "reject": 5014.0}, {"day": "11.04", "reject": 3752.0}, {"day": "11.05", "reject": 9570.0}, {"day": "11.06", "reject": 1049.0}, {"day": "11.07", "reject": 531.0}, {"day": "11.08", "reject": 1619.0}], "trend30_sum": 50510.0, "trend30_days": 30, "customers": [{"customer": "腾创未来", "reject": 19879.0, "sales": "maxzzheng"}, {"customer": "揭阳市乐知宁百货有限公司", "reject": 894.0, "sales": "carinajlli"}, {"customer": "深圳卓境", "reject": 658.0, "sales": "zhuowei"}, {"customer": "宥承", "reject": 412.0, "sales": "jodyjiang"}, {"customer": "广州浩荣商贸有限公司", "reject": 264.0, "sales": "carinajlli"}, {"customer": "揭阳市初汀妍贸易有限公司", "reject": 207.0, "sales": "xupeihuang"}, {"customer": "蚁团美妆2025", "reject": 206.0, "sales": "carinajlli"}, {"customer": "聚曜传媒", "reject": 182.0, "sales": "maxzzheng"}]}, {"tag": "效果对比-视频号", "l1": "虚假夸大", "l2": "虚构产品功效", "reject": 19118.0, "daily_avg": 2731.1428571428573, "trend": [{"day": "10.10", "reject": 947.0}, {"day": "10.11", "reject": 1060.0}, {"day": "10.12", "reject": 1155.0}, {"day": "10.13", "reject": 1148.0}, {"day": "10.14", "reject": 1184.0}, {"day": "10.15", "reject": 1975.0}, {"day": "10.16", "reject": 3085.0}, {"day": "10.17", "reject": 3307.0}, {"day": "10.18", "reject": 1506.0}, {"day": "10.19", "reject": 2924.0}, {"day": "10.20", "reject": 3488.0}, {"day": "10.21", "reject": 3359.0}, {"day": "10.22", "reject": 2807.0}, {"day": "10.23", "reject": 1925.0}, {"day": "10.24", "reject": 2064.0}, {"day": "10.25", "reject": 1158.0}, {"day": "10.26", "reject": 1495.0}, {"day": "10.27", "reject": 2305.0}, {"day": "10.28", "reject": 2748.0}, {"day": "10.29", "reject": 3229.0}, {"day": "10.30", "reject": 3689.0}, {"day": "10.31", "reject": 2507.0}, {"day": "11.01", "reject": 1965.0}, {"day": "11.02", "reject": 3050.0}, {"day": "11.03", "reject": 2231.0}, {"day": "11.04", "reject": 2938.0}, {"day": "11.05", "reject": 3124.0}, {"day": "11.06", "reject": 2958.0}, {"day": "11.07", "reject": 2542.0}, {"day": "11.08", "reject": 2275.0}], "trend30_sum": 70148.0, "trend30_days": 30, "customers": [{"customer": "腾创未来", "reject": 2654.0, "sales": "maxzzheng"}, {"customer": "抖嘉", "reject": 2268.0, "sales": "jodyjiang"}, {"customer": "八方", "reject": 1801.0, "sales": "maxzzheng"}, {"customer": "美溪", "reject": 1647.0, "sales": "jodyjiang"}, {"customer": "慕可", "reject": 1098.0, "sales": "joannzhang"}, {"customer": "仙霸", "reject": 966.0, "sales": "maxzzheng"}, {"customer": "自然堂", "reject": 872.0, "sales": "zoeyshuang"}, {"customer": "倾颜", "reject": 698.0, "sales": "jiinnchen"}]}, {"tag": "虚假功效或收益保障承诺", "l1": "虚假夸大", "l2": "虚构产品功效", "reject": 15920.0, "daily_avg": 2274.285714285714, "trend": [{"day": "10.10", "reject": 51161.0}, {"day": "10.11", "reject": 32718.0}, {"day": "10.12", "reject": 46944.0}, {"day": "10.13", "reject": 54235.0}, {"day": "10.14", "reject": 68650.0}, {"day": "10.15", "reject": 55520.0}, {"day": "10.16", "reject": 45925.0}, {"day": "10.17", "reject": 43920.0}, {"day": "10.18", "reject": 36124.0}, {"day": "10.19", "reject": 33530.0}, {"day": "10.20", "reject": 33930.0}, {"day": "10.21", "reject": 35564.0}, {"day": "10.22", "reject": 7515.0}, {"day": "10.23", "reject": 7538.0}, {"day": "10.24", "reject": 7155.0}, {"day": "10.25", "reject": 4333.0}, {"day": "10.26", "reject": 3679.0}, {"day": "10.27", "reject": 4901.0}, {"day": "10.28", "reject": 5716.0}, {"day": "10.29", "reject": 5766.0}, {"day": "10.30", "reject": 5511.0}, {"day": "10.31", "reject": 4915.0}, {"day": "11.01", "reject": 3226.0}, {"day": "11.02", "reject": 2985.0}, {"day": "11.03", "reject": 2536.0}, {"day": "11.04", "reject": 2811.0}, {"day": "11.05", "reject": 2789.0}, {"day": "11.06", "reject": 1832.0}, {"day": "11.07", "reject": 1762.0}, {"day": "11.08", "reject": 1205.0}], "trend30_sum": 614396.0, "trend30_days": 30, "customers": [{"customer": "腾创未来", "reject": 2449.0, "sales": "maxzzheng"}, {"customer": "仙霸", "reject": 1527.0, "sales": "maxzzheng"}, {"customer": "美溪", "reject": 948.0, "sales": "jodyjiang"}, {"customer": "百雀羚护肤", "reject": 638.0, "sales": "amiewang"}, {"customer": "BUV", "reject": 591.0, "sales": "graceyytang"}, {"customer": "荆门市东宝区枫蒂百货店", "reject": 544.0, "sales": "zhuowei"}, {"customer": "韩束", "reject": 523.0, "sales": "joannzhang"}, {"customer": "郑州烛舍 1", "reject": 509.0, "sales": "yilinjiang"}]}, {"tag": "概述性数据引用", "l1": "虚假夸大", "l2": "虚构产品功效", "reject": 15827.0, "daily_avg": 2261.0, "trend": [{"day": "10.10", "reject": 6746.0}, {"day": "10.11", "reject": 1731.0}, {"day": "10.12", "reject": 1525.0}, {"day": "10.13", "reject": 2169.0}, {"day": "10.14", "reject": 10932.0}, {"day": "10.15", "reject": 6601.0}, {"day": "10.16", "reject": 1833.0}, {"day": "10.17", "reject": 1314.0}, {"day": "10.18", "reject": 902.0}, {"day": "10.19", "reject": 1339.0}, {"day": "10.20", "reject": 1243.0}, {"day": "10.21", "reject": 1580.0}, {"day": "10.22", "reject": 1871.0}, {"day": "10.23", "reject": 2131.0}, {"day": "10.24", "reject": 1977.0}, {"day": "10.25", "reject": 1557.0}, {"day": "10.26", "reject": 1595.0}, {"day": "10.27", "reject": 2298.0}, {"day": "10.28", "reject": 2507.0}, {"day": "10.29", "reject": 2407.0}, {"day": "10.30", "reject": 2624.0}, {"day": "10.31", "reject": 2113.0}, {"day": "11.01", "reject": 2062.0}, {"day": "11.02", "reject": 1959.0}, {"day": "11.03", "reject": 2272.0}, {"day": "11.04", "reject": 3074.0}, {"day": "11.05", "reject": 2293.0}, {"day": "11.06", "reject": 2257.0}, {"day": "11.07", "reject": 2162.0}, {"day": "11.08", "reject": 1810.0}], "trend30_sum": 76884.0, "trend30_days": 30, "customers": [{"customer": "纯朴", "reject": 1712.0, "sales": "graceyytang"}, {"customer": "畅移", "reject": 984.0, "sales": "zoeyshuang"}, {"customer": "腾创未来", "reject": 858.0, "sales": "maxzzheng"}, {"customer": "倾颜", "reject": 723.0, "sales": "jiinnchen"}, {"customer": "广州市滨港智能科技有限公司", "reject": 716.0, "sales": "seanpan"}, {"customer": "藏容", "reject": 591.0, "sales": "jodyjiang"}, {"customer": "环球", "reject": 545.0, "sales": "yilinjiang"}, {"customer": "星禾", "reject": 447.0, "sales": "amiewang"}]}]};
+const C={pink:'#e8537f',pinkDeep:'#a8265b',pinkLight:'#f9b7cb',gold:'#c9974f',ink:'#4a2c38',soft:'#826471',line:'#f3dce4'};
+const num=n=>Math.round(n).toLocaleString('zh-CN');
+const wan=n=>(n/10000).toFixed(1)+'万';
+const axisLine={lineStyle:{color:C.line}}, labelStyle={color:C.soft,fontSize:10.5};
+function mk(id,opt){const el=document.getElementById(id);if(!el)return;const c=echarts.init(el);c.setOption(opt);window.addEventListener('resize',()=>c.resize());}
+const tipFmt=ps=>ps[0].axisValue+'<br/>'+ps.filter(s=>s.value!==null&&s.value!==undefined&&s.value!=='-')
+  .map(s=>s.marker+s.seriesName+'：<b>'+(s.seriesName.indexOf('率')>=0?Number(s.value).toFixed(2)+'%':wan(s.value))+'</b>').join('<br/>');
+const legend=(data)=>({data:data,top:4,left:'center',itemGap:9,itemWidth:12,itemHeight:8,
+  textStyle:{color:C.soft,fontSize:11}});
+
+// 图 a：YTD 视频元素逐月 —— 绝对值柱 + ADQ/全域通两条通过率曲线 + 两个拐点竖线
+(function(){
+  const m=DATA.months_video;
+  mk('chart_ytd_video',{
+    color:[C.pink,C.pinkDeep,C.gold],
+    tooltip:{trigger:'axis',backgroundColor:'#fff',borderColor:C.line,textStyle:{color:C.ink,fontSize:11.5},formatter:tipFmt},
+    legend:legend(['视频元素总量','ADQ 侧通过率','全域通通过率']),
+    grid:{left:56,right:46,top:46,bottom:30},
+    xAxis:{type:'category',data:m.map(x=>x.month),axisLine:axisLine,axisTick:{show:false},
+      axisLabel:{...labelStyle,fontSize:10.5}},
+    yAxis:[
+      {type:'value',min:0,axisLabel:{...labelStyle,formatter:v=>(v/10000).toFixed(0)+'万'},
+       splitLine:{lineStyle:{color:C.line}}},
+      {type:'value',min:60,max:100,interval:10,axisLabel:{...labelStyle,formatter:v=>v.toFixed(0)+'%'},
+       splitLine:{show:false}}],
+    series:[
+      {name:'视频元素总量',type:'bar',data:m.map(x=>x.video_total),barWidth:'46%',
+       itemStyle:{borderRadius:[4,4,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,
+         [{offset:0,color:'#f9b7cb'},{offset:1,color:'#e8537f'}])}},
+      {name:'ADQ 侧通过率',type:'line',yAxisIndex:1,data:m.map(x=>x.adq_video_pass),smooth:true,
+       symbol:'circle',symbolSize:6,lineStyle:{width:2.8,color:C.pinkDeep},itemStyle:{color:C.pinkDeep},
+       markLine:{silent:true,symbol:'none',
+         lineStyle:{type:'dashed',color:'#e2a9bd',width:1.6},
+         label:{show:true,position:'insideEndTop',formatter:p=>p.name,color:'#a8265b',
+           fontSize:13,fontWeight:800,backgroundColor:'rgba(255,255,255,.9)',
+           padding:[3,7],borderRadius:8},
+         data:[{"xAxis": "05月", "name": "①"}, {"xAxis": "10月", "name": "②"}]}},
+      {name:'全域通通过率',type:'line',yAxisIndex:1,data:m.map(x=>x.qyt_video_pass),smooth:true,
+       symbol:'circle',symbolSize:6,lineStyle:{width:2.8,color:C.gold},itemStyle:{color:C.gold}}]
+  });
+})();
+
+// 图 b：近双周 14 天四指标组合
+(function(){
+  const d=DATA.days14;
+  mk('chart_days14',{
+    color:[C.pinkLight,C.pink,C.gold,C.pinkDeep],
+    tooltip:{trigger:'axis',backgroundColor:'#fff',borderColor:C.line,textStyle:{color:C.ink,fontSize:11.5},formatter:tipFmt},
+    legend:legend(['初审总量','视频元素总量','初审通过率','视频元素通过率']),
+    grid:{left:56,right:46,top:46,bottom:30},
+    xAxis:{type:'category',data:d.map(x=>x.day),axisLine:axisLine,axisTick:{show:false},
+      axisLabel:{...labelStyle,fontSize:10.5,interval:1}},
+    yAxis:[
+      {type:'value',min:0,axisLabel:{...labelStyle,formatter:v=>(v/10000).toFixed(0)+'万'},
+       splitLine:{lineStyle:{color:C.line}}},
+      {type:'value',min:88,max:100,interval:2,axisLabel:{...labelStyle,formatter:v=>v.toFixed(0)+'%'},
+       splitLine:{show:false}}],
+    series:[
+      {name:'初审总量',type:'bar',data:d.map(x=>x.all_total),barGap:'10%',barWidth:'30%',
+       itemStyle:{borderRadius:[3,3,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,
+         [{offset:0,color:'#fde3ec'},{offset:1,color:'#f9b7cb'}])}},
+      {name:'视频元素总量',type:'bar',data:d.map(x=>x.video_total),barWidth:'30%',
+       itemStyle:{borderRadius:[3,3,0,0],color:new echarts.graphic.LinearGradient(0,0,0,1,
+         [{offset:0,color:'#f487a8'},{offset:1,color:'#c9386b'}])}},
+      {name:'初审通过率',type:'line',yAxisIndex:1,data:d.map(x=>x.all_pass),smooth:true,
+       symbol:'emptyCircle',symbolSize:5,lineStyle:{width:2,type:'dashed',color:C.gold},itemStyle:{color:C.gold}},
+      {name:'视频元素通过率',type:'line',yAxisIndex:1,data:d.map(x=>x.video_pass),smooth:true,
+       symbol:'circle',symbolSize:6,lineStyle:{width:2.8,color:C.pinkDeep},itemStyle:{color:C.pinkDeep}}]
+  });
+})();
+
+// Top10 标签
+const tags=DATA.rules.slice().reverse();
+mk('chart_top',{
+  tooltip:{trigger:'axis',axisPointer:{type:'shadow'},backgroundColor:'#fff',borderColor:C.line,
+    textStyle:{color:C.ink,fontSize:12},
+    formatter:p=>p[0].name+'<br/>本周机审拒绝量：<b>'+num(p[0].value)+'</b>'},
+  grid:{left:240,right:100,top:12,bottom:26},
+  xAxis:{type:'value',axisLabel:{...labelStyle,formatter:v=>(v/10000).toFixed(0)+'万'},
+    splitLine:{lineStyle:{color:C.line}},axisLine:{show:false}},
+  yAxis:{type:'category',data:tags.map(r=>r.tag),axisLine:axisLine,axisTick:{show:false},
+    axisLabel:{color:C.ink,fontSize:11.5,fontWeight:600,
+      formatter:v=>v.length>17?v.slice(0,16)+'…':v}},
+  series:[{type:'bar',data:tags.map((r,i)=>({value:r.reject,
+      itemStyle:{color:i>=tags.length-3?C.pinkDeep:C.pinkLight,borderRadius:[0,8,8,0]}})),
+    barWidth:17,
+    label:{show:true,position:'right',color:C.pinkDeep,fontWeight:700,fontSize:11.5,
+      formatter:p=>num(p.value)}}]
+});
+
+// 每个规则的近 30 天按日变化（30 个点）
+DATA.rules.forEach((r,i)=>{
+  const t=r.trend||[];
+  mk('chart_rule_'+i,{
+    tooltip:{trigger:'axis',backgroundColor:'#fff',borderColor:C.line,textStyle:{color:C.ink,fontSize:12},
+      formatter:p=>{const v=p[0].value;return p[0].axisValue+'<br/>机审拒绝量：<b>'+
+        (v===null||v===undefined||v==='-'?'当日无数据':num(v))+'</b>';}},
+    grid:{left:64,right:26,top:20,bottom:30},
+    xAxis:{type:'category',data:t.map(x=>x.day),boundaryGap:false,
+      axisLine:axisLine,axisTick:{show:false},
+      axisLabel:{...labelStyle,interval:2}},
+    yAxis:{type:'value',axisLabel:{...labelStyle,formatter:v=>v>=10000?(v/10000).toFixed(1)+'万':num(v)},
+      splitLine:{lineStyle:{color:C.line}}},
+    series:[{type:'line',data:t.map(x=>x.reject),smooth:true,symbol:'circle',symbolSize:4,
+      connectNulls:false,lineStyle:{width:2.6,color:C.pink},itemStyle:{color:C.pink},
+      areaStyle:{color:new echarts.graphic.LinearGradient(0,0,0,1,
+        [{offset:0,color:'rgba(233,83,127,.24)'},{offset:1,color:'rgba(233,83,127,0)'}])}}]
+  });
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Editors / IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Python (local preview server / tooling)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Node (not required by this project, kept for contributors)
+node_modules/
+npm-debug.log*
+
+# Local preview / build scratch
+*.local.html
+dist/
+.tmp/
+
+# Logs
+*.log
