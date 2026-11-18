@@ -1,0 +1,335 @@
+<!DOCTYPE html><html lang="zh"><head><script>(function(){window.__idata_artifact_error__=[];function _record(t){t=String(t==null?'unknown error':t).slice(0,5000);window.__idata_artifact_error__.push(t);try{window.parent&&window.parent.postMessage({type:'artifact-error',message:t.slice(0,500)},'*');}catch(_e){}}window.addEventListener('error',function(ev){var parts=[];if(ev.error&&(ev.error.stack||ev.error.message)){parts.push(String(ev.error.stack||ev.error.message));}else{parts.push(ev.message||'Unknown error');}if(ev.filename){parts.push('\n(at '+ev.filename+':'+(ev.lineno||'?')+':'+(ev.colno||'?')+')');}_record(parts.join('\n'));},true);window.addEventListener('unhandledrejection',function(ev){var r=ev.reason;_record((r&&(r.stack||r.message))||r||'Unhandled Promise rejection');});})();</script><meta charset="utf-8"><title>【咸鱼】直播间复盘报告 · 2026.11.01-11.15</title>
+<style>* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:-apple-system,"PingFang SC","Microsoft YaHei","Helvetica Neue",sans-serif; background:linear-gradient(180deg,#f4f6fb 0%,#eef2f9 100%); color:#1e293b; line-height:1.65; font-size:14px; padding:22px 14px 60px; }
+.container { max-width:1180px; margin:0 auto; }
+
+/* ===== 顶部文档标题栏（V6 渐变横幅） ===== */
+.doc-header { background:linear-gradient(135deg,#0f2a5c 0%,#1e5aa8 58%,#2f9ec4 100%); border-radius:16px; padding:30px 34px 24px; color:#fff; box-shadow:0 10px 30px rgba(15,42,92,.25); position:relative; overflow:hidden; }
+.doc-header::after { content:""; position:absolute; left:34px; right:34px; bottom:0; height:3px; background:linear-gradient(90deg,#d9a400 0%,#f0c75e 30%,rgba(217,164,0,0) 100%); border-radius:3px 3px 0 0; }
+.doc-kicker { font-size:12px; letter-spacing:3px; color:#cfe3f5; text-transform:uppercase; margin-bottom:8px; }
+.doc-title { font-size:30px; font-weight:800; letter-spacing:1px; line-height:1.3; text-shadow:0 2px 6px rgba(0,0,0,.18); }
+.doc-sub { margin-top:16px; display:flex; flex-wrap:wrap; gap:10px; }
+.hbadge { display:inline-flex; align-items:center; gap:6px; background:rgba(255,255,255,.13); border:1px solid rgba(255,255,255,.22); color:#eef5ff; border-radius:999px; padding:4px 13px; font-size:12.5px; white-space:nowrap; }
+.hbadge.gold { background:rgba(217,164,0,.24); border-color:rgba(255,214,97,.55); color:#fff2c9; font-weight:700; }
+
+/* ===== Banner 报告总览（V6 暖金） ===== */
+.banner { background:linear-gradient(135deg,#fff8e6 0%,#fff3d1 100%); border:1px solid #f0dfae; border-left:4px solid #d9a400; border-radius:14px; padding:20px 22px 16px; margin:22px 0 26px; box-shadow:0 4px 16px rgba(217,164,0,.10); }
+.banner .b-head { font-size:18px; font-weight:800; color:#7a5a00; margin-bottom:6px; }
+.banner .b-sec { margin:12px 0; }
+.banner .b-label { display:inline-block; min-width:132px; font-weight:700; color:#7a5a00; }
+.banner .b-sub { font-weight:700; color:#3b3a12; margin:6px 0 3px; }
+.banner .b-list { margin:4px 0 4px 4px; }
+.banner .b-item { margin:5px 0; padding-left:22px; position:relative; }
+.banner .b-item::before { content:"▸"; position:absolute; left:4px; color:#c99a00; font-weight:700; }
+.banner b.hl { color:#9a6b00; }
+.banner .tag2 { display:inline-block; font-size:11px; font-weight:800; border-radius:4px; padding:1px 7px; margin-right:4px; vertical-align:1px; }
+
+/* ===== H2 / H3 / H4 章节标题 ===== */
+h2 { font-size:20px; font-weight:800; color:#123a6d; margin:38px 0 16px; padding:2px 0 8px 13px; border-left:5px solid #1e5aa8; background:linear-gradient(90deg,#e3ecf9,transparent); border-radius:0 8px 8px 0; }
+h2 .h2-emoji { margin-right:6px; }
+h3 { font-size:16px; color:#14438c; margin:20px 0 10px; padding-bottom:6px; border-bottom:1px solid #dbe2ee; display:flex; align-items:center; gap:8px; }
+h3 .h3-txt { flex:1; }
+h4 { font-size:14.5px; color:#14438c; margin:16px 0 8px; padding:6px 12px; background:linear-gradient(90deg,#eaf1fb,#f6f9fe); border-left:4px solid #2f9ec4; border-radius:4px; font-weight:700; }
+
+/* ===== Card / KPI ===== */
+.card { background:#fff; border-radius:14px; padding:18px 20px 16px; margin:14px 0 20px; box-shadow:0 4px 14px rgba(15,42,92,.08); border:1px solid #eef1f7; }
+.kpi-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:12px; margin:14px 0 18px; }
+.kpi-card { background:#fff; border-radius:14px; box-shadow:0 4px 14px rgba(15,42,92,.08); padding:13px 12px 11px; border-top:none; position:relative; overflow:hidden; transition:transform .18s ease, box-shadow .18s ease; border:1px solid #eef1f7; }
+.kpi-card:hover { transform:translateY(-3px); box-shadow:0 8px 20px rgba(15,42,92,.14); }
+.kpi-card::before { content:""; position:absolute; left:0; top:0; bottom:0; width:3px; }
+.kpi-card.ac-0::before{background:#14438c;} .kpi-card.ac-1::before{background:#0ea5e9;} .kpi-card.ac-2::before{background:#7c3aed;} .kpi-card.ac-3::before{background:#ea580c;} .kpi-card.ac-4::before{background:#0e9f6e;} .kpi-card.ac-5::before{background:#e11d86;}
+.kpi-card .k-label { font-size:11.5px; color:#94a3b8; font-weight:600; letter-spacing:.5px; }
+.kpi-card .k-value { font-size:26px; font-weight:800; color:#14438c; margin:5px 0 3px; line-height:1.15; font-variant-numeric:tabular-nums; }
+.kpi-card .k-trend { display:flex; justify-content:flex-end; font-size:12px; }
+
+/* ===== 表格 ===== */
+.table-wrap { overflow-x:auto; border:1px solid #e6ebf5; border-radius:10px; margin:10px 0; }
+/* 列宽预算（实测）：容器 1178px + 12.8px 字号 + 12px 内边距 → 安全上限 11 列（≈1150px）。
+   12 列起必溢出（13 列 1236px、14 列 1444px、14 列长表头 1507px），PDF 截图会裁掉右侧列。
+   处理优先级：① 按语义拆表；② 加 class="tbl-dense"（约省 30%，14 列可压到 ~1000px）；③ 缩短表头文案把单位挪到 note。 */
+.tbl-dense { font-size:11.2px; }
+.tbl-dense thead th { padding:6px 6px; }
+.tbl-dense tbody td, .tbl-dense tbody th { padding:6px 6px; }
+/* 长文本表（To-Do / 建议 / 口径说明）必须允许换行，否则 nowrap 会把表撑爆 */
+.todo-tbl tbody td { white-space:normal; word-break:break-word; line-height:1.55; }
+table { width:100%; border-collapse:separate; border-spacing:0; font-size:12.8px; }
+thead th { background:linear-gradient(180deg,#14438c,#1e5aa8); color:#fff; font-weight:600; border:none; padding:9px 12px; white-space:nowrap; text-align:center; position:sticky; top:0; z-index:1; }
+thead th:first-child { border-radius:10px 0 0 0; }
+thead th:last-child { border-radius:0 10px 0 0; }
+tbody td, tbody th { border-bottom:1px solid #eef2f8; padding:8px 12px; white-space:nowrap; text-align:right; font-variant-numeric:tabular-nums; }
+tbody tr:last-child td, tbody tr:last-child th { border-bottom:none; }
+tbody tr:nth-child(even) { background:#f7f9fd; }
+tbody tr:hover { background:#eef4ff; }
+tbody td.l, thead th.l, tbody th.l { text-align:left; }
+tr.summary td, tr.summary th { background:#e7f0fb !important; font-weight:700; color:#0f2a5c; }
+tr.bench td, tr.bench th { background:#fff4e4 !important; color:#7a4d12; }
+tbody tr.summary:hover, tbody tr.bench:hover { filter:brightness(1.02); }
+.num-strong { font-weight:800; color:#14438c; }
+.up { color:#0e9f6e; font-weight:700; }
+.down { color:#dc2626; font-weight:700; }
+.flat { color:#64748b; }
+/* 客户列 vs 标杆列（列底色，1.1 列式对比表：第2-4列=客户、第5-6列=标杆） */
+table.cmp-col thead th:nth-child(2),
+table.cmp-col thead th:nth-child(3),
+table.cmp-col thead th:nth-child(4) { background:linear-gradient(180deg,#1a63b8,#2f7fd0); }
+table.cmp-col thead th:nth-child(5),
+table.cmp-col thead th:nth-child(6) { background:linear-gradient(180deg,#b57310,#d9992f); }
+table.cmp-col tbody td:nth-child(2),
+table.cmp-col tbody td:nth-child(3),
+table.cmp-col tbody td:nth-child(4) { background:rgba(218,234,255,.55); }
+table.cmp-col tbody td:nth-child(5),
+table.cmp-col tbody td:nth-child(6) { background:rgba(255,236,204,.62); }
+table.cmp-col tbody tr:nth-child(even) td:nth-child(2),
+table.cmp-col tbody tr:nth-child(even) td:nth-child(3),
+table.cmp-col tbody tr:nth-child(even) td:nth-child(4) { background:rgba(203,225,255,.72); }
+table.cmp-col tbody tr:nth-child(even) td:nth-child(5),
+table.cmp-col tbody tr:nth-child(even) td:nth-child(6) { background:rgba(255,226,180,.78); }
+table.cmp-col tbody tr:hover td:nth-child(2),
+table.cmp-col tbody tr:hover td:nth-child(3),
+table.cmp-col tbody tr:hover td:nth-child(4) { background:rgba(186,215,255,.90); }
+table.cmp-col tbody tr:hover td:nth-child(5),
+table.cmp-col tbody tr:hover td:nth-child(6) { background:rgba(255,214,150,.95); }
+
+/* ===== 三段式结论框（V6） ===== */
+.conclusion { background:linear-gradient(135deg,#f0f6ff 0%,#e8f1ff 100%); border-left:4px solid #2f7fd0; border-radius:12px; padding:15px 18px 13px; margin:14px 0 16px; font-size:13.3px; color:#24334a; }
+.conclusion hr { border:none; border-top:1px dashed #b8cdea; margin:9px 0; }
+.ctag { display:inline-block; font-weight:800; font-size:12px; border-radius:4px; padding:1px 9px; margin-right:8px; }
+.ctag.c-blue { background:#14438c; color:#fff; }
+.ctag.c-orange { background:#dc7a1f; color:#fff; }
+.ctag.c-green { background:#0e9f6e; color:#fff; }
+.citem { margin:7px 0; line-height:1.75; }
+.conclusion b.k { color:#123a6d; }
+.conclusion .hl-blue { color:#14438c; font-weight:800; }
+.conclusion .hl-orange { color:#c2570c; font-weight:800; }
+.conclusion .hl-green { color:#0e7a55; font-weight:800; }
+
+/* ===== Tag / Note / Legend ===== */
+.tag { display:inline-block; font-size:11.5px; border-radius:5px; padding:1px 8px; margin-left:4px; white-space:nowrap; }
+.tag-warn { background:#fee2e2; color:#b91c1c; border:1px solid #fecaca; font-weight:700; }
+.tag-ok { background:#d9f5e9; color:#0b7a54; border:1px solid #b6e6d2; font-weight:700; }
+.tag-info { background:#dbeafe; color:#1d4ed8; border:1px solid #bfdbfe; font-weight:600; }
+.note { font-size:11.8px; color:#7c8aa0; margin:6px 0 2px; }
+.note::before { content:"ⓘ "; color:#94a3b8; }
+.legend { font-size:12px; color:#52688c; margin:6px 0 8px; background:#f4f8ff; border:1px dashed #c8d8f0; border-radius:6px; padding:6px 10px; }
+.sep-hr { border:none; border-top:1px solid #e6ebf5; margin:12px 0; }
+
+/* ===== 页脚 ===== */
+.doc-footer { margin-top:34px; text-align:center; color:#8a94a6; font-size:12px; background:linear-gradient(180deg,#f0f2f7,#e4e8f0); border-radius:10px; padding:12px 10px; }
+
+@media (max-width: 980px){ .kpi-grid{grid-template-columns:repeat(3,1fr);} .doc-title{font-size:24px;} }
+@media (max-width: 640px){ .kpi-grid{grid-template-columns:repeat(2,1fr);} }</style></head><body><div class="container">
+<div class="doc-header">
+<div class="doc-kicker">TENCENT ADS · 竞价复盘 · 视频号推广（直播链路）</div>
+<div class="doc-title">【咸鱼】直播间复盘报告</div>
+<div class="doc-sub">
+<span class="hbadge">复盘窗口 2026.11.01–11.15（MTD）</span>
+<span class="hbadge">对比窗口 2026.10.17–10.31（环比）</span>
+<span class="hbadge">客户 3 主体 / 3 直播间</span>
+<span class="hbadge">标杆 同客单价水位大盘（17 家）</span>
+<span class="hbadge gold">考核ROI = 实际达成 1.00</span>
+</div></div>
+<div class="banner"><div class="b-head">报告总览 · 摘要</div>
+<div class="b-sec"><span class="b-label">核心数据</span>本期（1101-1115）咸鱼直播 3 主体合计日均消耗 <b class="hl">6.89 万元</b>，
+下单ROI <b class="hl">1.00</b>（恰达考核线），点击率 2.73%，下单成本 52 元，
+客单价 52 元，竞价CPM 78.67 元（高于同水位大盘 76.91 元，出价竞争力与拿量优势明显）；
+对标同客单价水位大盘（客单价 41.8~62.6 元·17 家），体量约为大盘日均的局部占比，ROI 与大盘（1.27）基本持平。</div>
+<div class="b-sub">核心瓶颈</div>
+<div class="b-list">
+<div class="b-item"><span class="tag2 tag-warn">亏损</span><b class="hl">丽瑟商贸</b> 下单ROI 仅 <b class="hl">0.671</b>（ROI&lt;1，投产倒挂），消耗占比 15% 却拖累整体回报，出价 90 元远超期望上限 52.24 元。</div>
+<div class="b-item"><span class="tag2 tag-warn">规模收缩</span>整体日均消耗较环比期（15.8 万）降至 6.9 万（<b class="hl">-56%</b>），候柑科技由 6.2 万骤降至 0.2 万，九宫堂等主体本期停投。</div>
+<div class="b-item"><span class="tag2 tag-warn">集中度</span>酷戒商贸单主体占整体消耗 <b class="hl">82%</b>，单点依赖风险高，需并行拓展直播间。</div>
+</div>
+<div class="b-sub">达到标杆日耗的关键动作（逐条）</div>
+<div class="b-list">
+<div class="b-item">① <b class="hl">保住酷戒基本盘</b>：维持阳阳-直击抗皱大眼袋DYZ 的智投覆盖（已 89%），补齐素材同质化与重复度治理。</div>
+<div class="b-item">② <b class="hl">修复丽瑟投产</b>：下调出价至期望上限 52.24 元附近（降约 40%），同步提升 CTR×CTCVR 补偿 eCPM，目标 ROI 拉回 1.0+。</div>
+<div class="b-item">③ <b class="hl">重启候柑/复苏盘子</b>：候柑 CPM 高达 215 元、ROI 1.07 实际可行，需降低出价抢量并拉长单场时长。</div>
+<div class="b-item">④ <b class="hl">拓量防单点</b>：酷戒/丽瑟/候柑并行+拉长直播时长+版位分散，目标整体日耗回到 10 万+。</div>
+</div>
+<div class="b-sub">核心策略（P0→P1→P2）</div>
+<div class="b-list">
+<div class="b-item"><b class="hl">P0</b>：丽瑟出价降至期望上限并修复 ROI；酷戒/候柑降重复+扩素材基建。</div>
+<div class="b-item"><b class="hl">P1</b>：潜客优投/ROI 广告结构扩量；候柑重启放量；商品表达多绑商品 ID 拆 4+M 重复。</div>
+<div class="b-item"><b class="hl">P2</b>：稳定退款率/差评率；持续监控 CPM 抢量优势与素材质量。</div>
+</div></div>
+<h2><span class="h2-emoji">📈</span>Part 0 · 消耗趋势（复盘期 vs 环比窗口）</h2>
+<h3><span class="h3-txt">0.1 分日消耗走势（ADQ 直播链路）</span></h3>
+<div style="display:flex;gap:14px;flex-wrap:wrap;"><div class="table-wrap" style="flex:1;min-width:300px;padding:8px;"><svg width="560" height="214" viewBox="0 0 560 214"><text x="28" y="14" font-size="11" fill="#14438c" font-weight="bold">复盘期 1101-1115</text><rect x="28" y="36" width="23" height="150" fill="#1e5aa8" rx="2"/><text x="39" y="200" font-size="9" fill="#64748b" text-anchor="middle">01</text><rect x="62" y="58" width="23" height="128" fill="#1e5aa8" rx="2"/><text x="73" y="200" font-size="9" fill="#64748b" text-anchor="middle">02</text><rect x="95" y="85" width="23" height="101" fill="#1e5aa8" rx="2"/><text x="107" y="200" font-size="9" fill="#64748b" text-anchor="middle">03</text><rect x="129" y="138" width="23" height="48" fill="#1e5aa8" rx="2"/><text x="140" y="200" font-size="9" fill="#64748b" text-anchor="middle">04</text><rect x="162" y="66" width="23" height="120" fill="#1e5aa8" rx="2"/><text x="174" y="200" font-size="9" fill="#64748b" text-anchor="middle">05</text><rect x="196" y="28" width="23" height="158" fill="#1e5aa8" rx="2"/><text x="207" y="200" font-size="9" fill="#64748b" text-anchor="middle">06</text><rect x="230" y="184" width="23" height="2" fill="#1e5aa8" rx="2"/><text x="241" y="200" font-size="9" fill="#64748b" text-anchor="middle">07</text><rect x="263" y="32" width="23" height="154" fill="#1e5aa8" rx="2"/><text x="275" y="200" font-size="9" fill="#64748b" text-anchor="middle">08</text><rect x="297" y="148" width="23" height="38" fill="#1e5aa8" rx="2"/><text x="308" y="200" font-size="9" fill="#64748b" text-anchor="middle">09</text><rect x="330" y="122" width="23" height="64" fill="#1e5aa8" rx="2"/><text x="342" y="200" font-size="9" fill="#64748b" text-anchor="middle">10</text><rect x="364" y="167" width="23" height="19" fill="#1e5aa8" rx="2"/><text x="375" y="200" font-size="9" fill="#64748b" text-anchor="middle">11</text><rect x="398" y="137" width="23" height="49" fill="#1e5aa8" rx="2"/><text x="409" y="200" font-size="9" fill="#64748b" text-anchor="middle">12</text><rect x="431" y="152" width="23" height="34" fill="#1e5aa8" rx="2"/><text x="443" y="200" font-size="9" fill="#64748b" text-anchor="middle">13</text><rect x="465" y="139" width="23" height="47" fill="#1e5aa8" rx="2"/><text x="476" y="200" font-size="9" fill="#64748b" text-anchor="middle">14</text><rect x="498" y="135" width="23" height="51" fill="#1e5aa8" rx="2"/><text x="510" y="200" font-size="9" fill="#64748b" text-anchor="middle">15</text>
+<line x1="28" y1="186" x2="532" y2="186" stroke="#cbd5e1"/>
+<text x="382" y="14" font-size="10" fill="#0e9f6e">日均上限 14.01 万 · 日均 6.89 万</text>
+<text x="280" y="212" font-size="9" fill="#94a3b8" text-anchor="middle">日期（日号，复盘期=11月01-15 / 环比期=10月17-31按序）</text></svg></div><div class="table-wrap" style="flex:1;min-width:300px;padding:8px;"><svg width="560" height="214" viewBox="0 0 560 214"><text x="28" y="14" font-size="11" fill="#14438c" font-weight="bold">环比期 1017-1031</text><rect x="28" y="85" width="23" height="101" fill="#f0c75e" rx="2"/><text x="39" y="200" font-size="9" fill="#64748b" text-anchor="middle">01</text><rect x="62" y="147" width="23" height="39" fill="#f0c75e" rx="2"/><text x="73" y="200" font-size="9" fill="#64748b" text-anchor="middle">02</text><rect x="95" y="146" width="23" height="40" fill="#f0c75e" rx="2"/><text x="107" y="200" font-size="9" fill="#64748b" text-anchor="middle">03</text><rect x="129" y="133" width="23" height="53" fill="#f0c75e" rx="2"/><text x="140" y="200" font-size="9" fill="#64748b" text-anchor="middle">04</text><rect x="162" y="129" width="23" height="57" fill="#f0c75e" rx="2"/><text x="174" y="200" font-size="9" fill="#64748b" text-anchor="middle">05</text><rect x="196" y="108" width="23" height="78" fill="#f0c75e" rx="2"/><text x="207" y="200" font-size="9" fill="#64748b" text-anchor="middle">06</text><rect x="230" y="164" width="23" height="22" fill="#f0c75e" rx="2"/><text x="241" y="200" font-size="9" fill="#64748b" text-anchor="middle">07</text><rect x="263" y="93" width="23" height="93" fill="#f0c75e" rx="2"/><text x="275" y="200" font-size="9" fill="#64748b" text-anchor="middle">08</text><rect x="297" y="61" width="23" height="125" fill="#f0c75e" rx="2"/><text x="308" y="200" font-size="9" fill="#64748b" text-anchor="middle">09</text><rect x="330" y="98" width="23" height="88" fill="#f0c75e" rx="2"/><text x="342" y="200" font-size="9" fill="#64748b" text-anchor="middle">10</text><rect x="364" y="130" width="23" height="56" fill="#f0c75e" rx="2"/><text x="375" y="200" font-size="9" fill="#64748b" text-anchor="middle">11</text><rect x="398" y="28" width="23" height="158" fill="#f0c75e" rx="2"/><text x="409" y="200" font-size="9" fill="#64748b" text-anchor="middle">12</text><rect x="431" y="71" width="23" height="115" fill="#f0c75e" rx="2"/><text x="443" y="200" font-size="9" fill="#64748b" text-anchor="middle">13</text><rect x="465" y="93" width="23" height="93" fill="#f0c75e" rx="2"/><text x="476" y="200" font-size="9" fill="#64748b" text-anchor="middle">14</text><rect x="498" y="186" width="23" height="0" fill="#f0c75e" rx="2"/><text x="510" y="200" font-size="9" fill="#64748b" text-anchor="middle">15</text>
+<line x1="28" y1="186" x2="532" y2="186" stroke="#cbd5e1"/>
+<text x="382" y="14" font-size="10" fill="#0e9f6e">日均上限 33.59 万 · 日均 15.84 万</text>
+<text x="280" y="212" font-size="9" fill="#94a3b8" text-anchor="middle">日期（日号，复盘期=11月01-15 / 环比期=10月17-31按序）</text></svg></div></div>
+<div class="note">注：仅 ADQ 直播链路有消耗，小店直购与全域通直播本期均为 0，未进图例；分日口径为绝对日消耗（非日均），合计/天数=整体日均校验通过。</div>
+<h3><span class="h3-txt">0.2 日均消耗与结构（本期 vs 环比）</span></h3>
+<div class="table-wrap" style="padding:8px;"><svg width="520" height="180" viewBox="0 0 520 180"><rect x="120" y="109" width="60" height="61" fill="#1e5aa8" rx="3"/><text x="150" y="105" font-size="11" fill="#1e293b" text-anchor="middle">6.89万</text><rect x="300" y="30" width="60" height="140" fill="#f0c75e" rx="3"/><text x="330" y="26" font-size="11" fill="#1e293b" text-anchor="middle">15.84万</text><text x="150" y="20" font-size="11" fill="#14438c" font-weight="bold">复盘期 ADQ直播</text><text x="330" y="20" font-size="11" fill="#b57310" font-weight="bold">环比期 ADQ直播</text><line x1="40" y1="170" x2="480" y2="170" stroke="#cbd5e1"/></svg></div>
+<div class="note">结构：本期 100% 为 ADQ 直播（小店直购 0、全域通 0）；环比期亦为 ADQ 直播独大。整体日均消耗环比 -56.51%。</div>
+<h2><span class="h2-emoji">🎯</span>Part 1 · 整体概览</h2>
+<h3><span class="h3-txt">1.1 核心 KPI</span></h3>
+<div class="kpi-grid">
+<div class="kpi-card ac-0"><div class="k-label">日均消耗(万)</div><div class="k-value">6.89</div><div class="k-trend"><span class="down">-57% ▼</span></div></div>
+<div class="kpi-card ac-0"><div class="k-label">下单ROI</div><div class="k-value">1.00</div><div class="k-trend"><span class="up">+0% ▲</span></div></div>
+<div class="kpi-card ac-0"><div class="k-label">点击率</div><div class="k-value">2.73%</div><div class="k-trend"><span class="up">+4% ▲</span></div></div>
+<div class="kpi-card ac-0"><div class="k-label">下单成本(元)</div><div class="k-value">52</div><div class="k-trend"><span class="down">-5% ▼</span></div></div>
+<div class="kpi-card ac-0"><div class="k-label">下单单价(元)</div><div class="k-value">52</div><div class="k-trend"><span class="down">-5% ▼</span></div></div>
+<div class="kpi-card ac-0"><div class="k-label">竞价CPM(元)</div><div class="k-value">78.67</div><div class="k-trend"><span class="down">-22% ▼</span></div></div>
+</div>
+<h3><span class="h3-txt">1.2 分链路核心指标</span></h3>
+<div class="note">本期仅 ADQ 直播链路有消耗；小店直购、全域通（直播/直购）均为 0，按规则整章不展示。下表仅列 ADQ 直播。</div>
+<div class="table-wrap"><table class="tbl-dense"><thead><tr><th class='l'>指标</th><th>ADQ直播</th></tr></thead><tbody>
+<tr><td class='l'>日均消耗(万)</td><td>6.89</td></tr>
+<tr><td class='l'>消耗占比</td><td>100%</td></tr>
+<tr><td class='l'>下单ROI</td><td>1.00</td></tr>
+<tr><td class='l'>下单成本(元)</td><td>52</td></tr>
+<tr><td class='l'>客单价(元)</td><td>52</td></tr>
+<tr><td class='l'>竞价CPM(元)</td><td>78.67</td></tr>
+<tr><td class='l'>点击率</td><td>2.73%</td></tr>
+<tr><td class='l'>下单率</td><td>5.51%</td></tr>
+<tr><td class='l'>CTCVR</td><td>15.06‱</td></tr>
+<tr><td class='l'>目标出价(元)</td><td>48</td></tr>
+<tr><td class='l'>ROI出价</td><td>1.11</td></tr>
+<tr><td class='l'>计价率</td><td>1.11</td></tr>
+</tbody></table></div>
+<div class="note">注：ADQ 直播即视频号推广（直播链路），is_qyt=false；其余链路均为 0 消耗，不单列。</div>
+<h3><span class="h3-txt">1.3 对标 · 同客单价水位大盘</span></h3>
+<div class="note">同客单价水位大盘：客单价 41.8~62.6 元 · 17 家（剔除本账户，含行业筛选），与 ADQ 直播纯口径一致。</div>
+<div class="table-wrap"><table class="tbl-dense cmp-col"><thead><tr><th class='l'>指标</th><th>客户</th><th>大盘</th><th>达成率</th></tr></thead><tbody>
+<tr><td class='l'>日均消耗(万)</td><td>6.89</td><td>29.48</td><td>23.37%</td></tr>
+<tr class='bench'><td class='l'>竞价CPM(元)</td><td>78.67</td><td>76.91</td><td>102.28%</td></tr>
+<tr><td class='l'>点击率</td><td>2.73%</td><td>2.26%</td><td>120.67%</td></tr>
+<tr><td class='l'>下单率</td><td>5.51%</td><td>8.52%</td><td>64.72%</td></tr>
+<tr><td class='l'>CTCVR</td><td>15.06‱</td><td>19.26‱</td><td>78.21%</td></tr>
+<tr><td class='l'>下单ROI</td><td>1.00</td><td>1.27</td><td>78.76%</td></tr>
+<tr><td class='l'>下单成本(元)</td><td>52</td><td>40</td><td>130.97%</td></tr>
+<tr><td class='l'>客单价(元)</td><td>52</td><td>51</td><td>103.15%</td></tr>
+<tr><td class='l'>计价率</td><td>1.11</td><td>1.18</td><td>93.89%</td></tr>
+</tbody></table></div>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">数据概括</span>本期客户整体日均消耗 6.89 万、下单ROI 1.00、客单价 52 元、CPM 78.67 元；同水位大盘 17 家日均合计显著高于客户（客户为局部占比），但客户 CPM 78.67 元持平/高于大盘 76.91 元，出价竞争力与拿量优势明显。</div><div class="citem"><span class="ctag c-orange">关键问题</span>客户 ROI 1.00 与大盘 1.27 基本持平，但丽瑟商贸 ROI 仅 0.671 拖累整体；人均消耗规模较小，素材与转化效率仍依赖酷戒单直播间。</div><div class="citem"><span class="ctag c-green">优化建议</span>①按期望出价上限 52.24 元管控丽瑟出价；②酷戒维持 CPM 抢量优势并治理重复素材；③候柑以更低出价重启放量，目标整体日耗回到 10 万+。</div></div>
+<h2><span class="h2-emoji">🎬</span>Part 2 · ADQ 直播链路（按直播间细拆 · 3 主体 / 3 直播间）</h2>
+<div class="legend">分直播间主数据取自数仓聚合（与用户后台稳定快照一致）；深度模块按 3 主体汇总 + 同客单价水位大盘（17 家）对标。本期 3 主体各 1 个活跃直播间：酷戒商贸「阳阳-直击抗皱大眼袋DYZ」、丽瑟商贸「专攻大毛孔」、候柑科技「大眼袋看过来-肝素钠眼霜专场」。</div>
+<h3><span class="h3-txt">2.1 分直播间核心指标（含一键起量占比）</span></h3>
+<div class="table-wrap"><table class="tbl-dense"><thead><tr><th class='l'>直播间(主体)</th><th>日均消耗(万)</th><th>占比</th><th>ROI</th><th>成本</th><th>客单价</th><th>CPM</th><th>CTR</th><th>下单率</th><th>CTCVR</th><th>净出价</th><th>一键起量</th></tr></thead><tbody>
+<tr><td class='l'>(阳阳-直击抗皱大眼袋DYZ)<br><span style='color:#94a3b8;font-size:11px'>酷戒商贸</span></td><td>5.63</td><td>81.69%</td><td>1.06</td><td>48</td><td>50</td><td>80.46</td><td>3.01%</td><td>5.61%</td><td>16.90‱</td><td>43</td><td>2.44%</td></tr>
+<tr><td class='l'>(专攻大毛孔)<br><span style='color:#94a3b8;font-size:11px'>丽瑟商贸</span></td><td>1.06</td><td>15.41%</td><td>0.67</td><td>104</td><td>70</td><td>63.57</td><td>1.50%</td><td>4.04%</td><td>6.08‱</td><td>90</td><td>8.10%</td></tr>
+<tr><td class='l'>(大眼袋看过来-肝素钠眼霜专场)<br><span style='color:#94a3b8;font-size:11px'>候柑科技</span></td><td>0.20</td><td>2.90%</td><td>1.07</td><td>57</td><td>60</td><td>215.25</td><td>3.44%</td><td>11.07%</td><td>38.05‱</td><td>45</td><td>1.48%</td></tr>
+</tbody></table></div>
+<div class="note">一键起量占比 = 一键起量期消耗 ÷ 直播间总消耗；净出价 = is_roi=0 纯净下单单目标 CPA 出价。</div>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">酷戒商贸</span>直播<b>(阳阳-直击抗皱大眼袋DYZ)</b>：日均消耗 5.63 万，ROI 1.06（vs 大盘 1.27）、CPM 80.46 元（高于大盘 76.91 元=拿量优势），投产健康。</div><div class="citem"><span class="ctag c-blue">丽瑟商贸</span>直播<b>(专攻大毛孔)</b>：日均消耗 1.06 万，ROI 0.67（vs 大盘 1.27）、CPM 63.57 元（高于大盘 76.91 元=拿量优势），<b class="hl-orange">ROI&lt;1 投产倒挂，需降出价修复</b>。</div><div class="citem"><span class="ctag c-blue">候柑科技</span>直播<b>(大眼袋看过来-肝素钠眼霜专场)</b>：日均消耗 0.20 万，ROI 1.07（vs 大盘 1.27）、CPM 215.25 元（高于大盘 76.91 元=拿量优势），投产健康。</div></div>
+<h3><span class="h3-txt">2.2 分直播间 × 流量分布</span></h3>
+<h4>(阳阳-直击抗皱大眼袋DYZ) · 酷戒商贸</h4>
+<div class="table-wrap"><table class="tbl-dense"><thead><tr><th class='l'>二级流量</th><th>日均消耗(万)</th><th>占比</th><th>ROI</th></tr></thead><tbody><tr><td class='l'>微信小程序</td><td>3.68</td><td>67.10%</td><td>1.09</td></tr><tr><td class='l'>微信视频号</td><td>1.43</td><td>26.04%</td><td>1.01</td></tr><tr><td class='l'>平台与内容广告</td><td>0.38</td><td>6.86%</td><td>0.99</td></tr></tbody></table></div>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">酷戒商贸</span>直播间 (阳阳-直击抗皱大眼袋DYZ) 微信视频号占比 26.04%（ROI 1.01）；其余版位合计 73.96%。微信视频号 ROI 与整体相当。</div></div>
+<h4>(专攻大毛孔) · 丽瑟商贸</h4>
+<div class="table-wrap"><table class="tbl-dense"><thead><tr><th class='l'>二级流量</th><th>日均消耗(万)</th><th>占比</th><th>ROI</th></tr></thead><tbody><tr><td class='l'>微信视频号</td><td>0.60</td><td>67.40%</td><td>0.65</td></tr><tr><td class='l'>平台与内容广告</td><td>0.29</td><td>32.60%</td><td>0.74</td></tr></tbody></table></div>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">丽瑟商贸</span>直播间 (专攻大毛孔) 微信视频号占比 67.40%（ROI 0.65）；其余版位合计 32.60%。微信视频号 ROI 与整体相当。</div></div>
+<h4>(大眼袋看过来-肝素钠眼霜专场) · 候柑科技</h4>
+<div class="table-wrap"><table class="tbl-dense"><thead><tr><th class='l'>二级流量</th><th>日均消耗(万)</th><th>占比</th><th>ROI</th></tr></thead><tbody><tr><td class='l'>微信视频号</td><td>0.14</td><td>100.00%</td><td>1.00</td></tr></tbody></table></div>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">候柑科技</span>直播间 (大眼袋看过来-肝素钠眼霜专场) 微信视频号占比 100.00%（ROI 1.00）；其余版位合计 0.00%。微信视频号 ROI 与整体相当。</div></div>
+<h3><span class="h3-txt">2.3 分直播间基建指标</span></h3>
+<div class="table-wrap"><table class="tbl-dense"><thead><tr><th class='l'>直播间</th><th>日耗(万)</th><th>账户数</th><th>项目&广告数</th><th>新广告</th><th>指纹数</th><th>4+M重复占比</th><th>创意重复度</th><th>单场时长</th><th>开播天数</th><th>一键起量</th></tr></thead><tbody>
+<tr><td class='l'>(阳阳-直击抗皱大眼袋DYZ)<br><span style='color:#94a3b8;font-size:11px'>酷戒商贸</span></td><td>5.63</td><td>24</td><td>518</td><td>24.08%</td><td>1,455</td><td>63%</td><td>52%</td><td>647</td><td>15</td><td>2.44%</td></tr>
+<tr><td class='l'>(专攻大毛孔)<br><span style='color:#94a3b8;font-size:11px'>丽瑟商贸</span></td><td>1.06</td><td>15</td><td>155</td><td>22.60%</td><td>245</td><td>67%</td><td>70%</td><td>243</td><td>11</td><td>8.10%</td></tr>
+<tr><td class='l'>(大眼袋看过来-肝素钠眼霜专场)<br><span style='color:#94a3b8;font-size:11px'>候柑科技</span></td><td>0.20</td><td>20</td><td>141</td><td>11.90%</td><td>341</td><td>70%</td><td>45%</td><td>449</td><td>2</td><td>1.48%</td></tr>
+</tbody></table></div>
+<div class="note">口径：4+M重复占比=广告维度重复占比（越高=广告同质化越严重，用「商品表达多绑不同商品 ID」拆）；创意重复度=素材(TID)维度重复占比（越高=素材越同质，需补新素材）。两者口径不同，勿混用。</div>
+<div class="conclusion"><div class="citem"><span class="ctag c-orange">关键问题</span>4+M 重复广告占比反映广告维度重复度：需关注 ≥20% 健康线的直播间；单场时长与开播天数影响有效参竞体量，短时长直播间拿量受限。</div><div class="citem"><span class="ctag c-green">优化建议</span>对 4+M 重复偏高直播间用「商品表达多绑不同商品 ID」释放被过滤的参竞广告；拉长单场直播时长、提升新广告占比以突破消耗天花板。</div></div>
+<h3><span class="h3-txt">2.4 分直播间素材指标（纯微信视频号口径）</span></h3>
+<div class="note">⚠️ 本表与 2.5 漏斗均为「微信视频号」二级流量口径（filters 锁定，非混全流量），可直接与大盘对标。</div>
+
+<div class="table-wrap"><table class="tbl-dense"><thead><tr><th class='l'>直播间</th><th>2s完播</th><th>3s</th><th>5s</th><th>7s</th><th>10s</th><th>均播(s)</th><th>有效进度</th><th>CTR</th><th>CVR</th><th>CTCVR(‱)</th></tr></thead><tbody>
+<tr><td class='l'>(阳阳-直击抗皱大眼袋DYZ)<br><span style='color:#94a3b8;font-size:11px'>酷戒商贸</span></td><td>66.37%</td><td>49.48%</td><td>31.97%</td><td>25.44%</td><td>19.06%</td><td>8.49</td><td>7.55%</td><td>2.36%</td><td>11.26%</td><td>19.29‱</td></tr>
+<tr><td class='l'>(专攻大毛孔)<br><span style='color:#94a3b8;font-size:11px'>丽瑟商贸</span></td><td>48.38%</td><td>37.95%</td><td>27.92%</td><td>22.01%</td><td>16.67%</td><td>7.44</td><td>6.97%</td><td>1.47%</td><td>6.82%</td><td>6.30‱</td></tr>
+<tr><td class='l'>(大眼袋看过来-肝素钠眼霜专场)<br><span style='color:#94a3b8;font-size:11px'>候柑科技</span></td><td>68.36%</td><td>52.15%</td><td>35.24%</td><td>28.16%</td><td>20.39%</td><td>9.89</td><td>11.07%</td><td>3.81%</td><td>13.07%</td><td>39.93‱</td></tr>
+</tbody></table></div>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">数据概括</span>纯微信视频号口径：客户整体 2s/5s/10s 完播与 CTR/CTCVR 需对照同水位大盘判断入口与承接强弱。</div><div class="citem"><span class="ctag c-orange">关键问题</span>完播率偏低=外层素材钩子弱（前3秒吸引力不足）；CTCVR 偏低=直播间/商品页承接弱。</div><div class="citem"><span class="ctag c-green">优化建议</span>强化前 3 秒钩子提升完播；对 CTCVR 偏低的直播间优化直播间话术与货盘，提升承接转化。</div></div>
+<h3><span class="h3-txt">2.5 分直播间承接漏斗（UV 口径 · 纯微信视频号）</span></h3>
+<div class="table-wrap"><table class="tbl-dense"><thead><tr><th class='l'>直播间</th><th>进播率UV</th><th>观看率UV</th><th>气泡点击UV</th><th>漏斗下单率</th><th>人均观看</th><th>单场时长</th><th>开播天数</th><th>一键起量</th></tr></thead><tbody>
+<tr><td class='l'>(阳阳-直击抗皱大眼袋DYZ)<br><span style='color:#94a3b8;font-size:11px'>酷戒商贸</span></td><td>1.08%</td><td>77.46%</td><td>39.38%</td><td>24.46%</td><td>108</td><td>647</td><td>15</td><td>2.20%</td></tr>
+<tr><td class='l'>(专攻大毛孔)<br><span style='color:#94a3b8;font-size:11px'>丽瑟商贸</span></td><td>0.62%</td><td>74.17%</td><td>33.92%</td><td>13.36%</td><td>84</td><td>243</td><td>11</td><td>6.06%</td></tr>
+<tr><td class='l'>(大眼袋看过来-肝素钠眼霜专场)<br><span style='color:#94a3b8;font-size:11px'>候柑科技</span></td><td>2.20%</td><td>80.41%</td><td>41.17%</td><td>24.52%</td><td>111</td><td>449</td><td>2</td><td>1.04%</td></tr>
+</tbody></table></div>
+<div class="note">口径固定：二级流量=微信视频号，UV 口径（进播率/观看率/气泡点击率），漏斗下单率=PV 口径；live_stream_order_uv_rate 在该数据集全 NaN 未使用。</div>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">数据概括</span>四段漏斗逐级：进播→观看→商品气泡点击→下单，定位断点层。</div><div class="citem"><span class="ctag c-orange">关键问题</span>进播率/观看率低=素材外层吸引力不足；气泡点击率低=商品展示与讲解引导不足；下单率低=逼单/价格/信任断层。</div><div class="citem"><span class="ctag c-green">优化建议</span>逐直播间对照断点层补强：前 3 秒钩子提升进播、商品讲解密度提升气泡点击、逼单话术与信任背书提升下单。</div></div>
+<h3><span class="h3-txt">2.6 分直播间产品能力（含广告数 · 基建投入权衡）</span></h3>
+<h4>智投（is_smart_delivery_play_ad）</h4>
+<div class="table-wrap"><table class="tbl-dense"><thead><tr><th class='l'>直播间</th><th>智投</th><th>日耗(万)</th><th>广告数</th><th>ROI</th><th>净出价</th></tr></thead><tbody>
+<tr><td class='l'>(阳阳-直击抗皱大眼袋DYZ)<br><span style='color:#94a3b8;font-size:11px'>酷戒商贸</span> · 开启</td><td>是</td><td>5.00</td><td>1,301</td><td>1.06</td><td>43</td></tr>
+<tr><td class='l'>(阳阳-直击抗皱大眼袋DYZ) · 未开</td><td>否</td><td>0.62</td><td>177</td><td>1.04</td><td>43</td></tr>
+<tr><td class='l'>(专攻大毛孔)<br><span style='color:#94a3b8;font-size:11px'>丽瑟商贸</span> · 开启</td><td>是</td><td>0.25</td><td>372</td><td>0.59</td><td>91</td></tr>
+<tr><td class='l'>(专攻大毛孔) · 未开</td><td>否</td><td>0.81</td><td>76</td><td>0.70</td><td>88</td></tr>
+<tr><td class='l'>(大眼袋看过来-肝素钠眼霜专场)<br><span style='color:#94a3b8;font-size:11px'>候柑科技</span> · 开启</td><td>是</td><td>0.14</td><td>295</td><td>1.01</td><td>46</td></tr>
+<tr><td class='l'>(大眼袋看过来-肝素钠眼霜专场) · 未开</td><td>否</td><td>0.06</td><td>12</td><td>1.20</td><td>44</td></tr>
+</tbody></table></div>
+<div class="conclusion"><div class="citem"><span class="ctag c-green">酷戒商贸</span>(阳阳-直击抗皱大眼袋DYZ) 智投已充分覆盖（开启侧 ROI 1.06、占比 88.91%），或开启/未开启 ROI 差异不显著，无基建投入错配。</div><div class="citem"><span class="ctag c-green">丽瑟商贸</span>(专攻大毛孔) 智投已充分覆盖（开启侧 ROI 0.59、占比 23.78%），或开启/未开启 ROI 差异不显著，无基建投入错配。</div><div class="citem"><span class="ctag c-green">候柑科技</span>(大眼袋看过来-肝素钠眼霜专场) 智投已充分覆盖（开启侧 ROI 1.01、占比 70.87%），或开启/未开启 ROI 差异不显著，无基建投入错配。</div></div>
+<h4>潜客优投 & 创意优投 & 商品表达 & 出价能力</h4>
+<div class="table-wrap"><table><thead><tr><th class='l'>直播间</th><th>潜客优投</th><th>日耗(万)</th><th>广告数</th><th>调价系数</th><th>ROI</th></tr></thead><tbody>
+<tr><td class='l'>(阳阳-直击抗皱大眼袋DYZ)<br><span style='color:#94a3b8;font-size:11px'>酷戒商贸</span></td><td>已开启</td><td>0.37</td><td>374</td><td>1.10</td><td>1.27</td></tr>
+<tr><td class='l'>(专攻大毛孔)<br><span style='color:#94a3b8;font-size:11px'>丽瑟商贸</span></td><td>已开启</td><td>0.01</td><td>46</td><td>1.10</td><td>1.08</td></tr>
+<tr><td class='l'>(大眼袋看过来-肝素钠眼霜专场)<br><span style='color:#94a3b8;font-size:11px'>候柑科技</span></td><td>已开启</td><td>0.01</td><td>101</td><td>1.09</td><td>1.22</td></tr>
+</tbody></table></div>
+<div class="conclusion"><div class="citem"><span class="ctag c-green">酷戒商贸</span>(阳阳-直击抗皱大眼袋DYZ) 潜客优投已开启（调价系数 1.10、ROI 1.27），表现正向，可扩大覆盖至 10~15% 消耗。</div><div class="citem"><span class="ctag c-green">丽瑟商贸</span>(专攻大毛孔) 潜客优投已开启（调价系数 1.10、ROI 1.08），表现正向，可扩大覆盖至 10~15% 消耗。</div><div class="citem"><span class="ctag c-green">候柑科技</span>(大眼袋看过来-肝素钠眼霜专场) 潜客优投已开启（调价系数 1.09、ROI 1.22），表现正向，可扩大覆盖至 10~15% 消耗。</div></div>
+<div class="table-wrap"><table><thead><tr><th class='l'>直播间</th><th>创意优投</th><th>日耗(万)</th><th>智投项目数</th><th>ROI</th></tr></thead><tbody>
+<tr><td class='l'>(阳阳-直击抗皱大眼袋DYZ)<br><span style='color:#94a3b8;font-size:11px'>酷戒商贸</span></td><td>未开启</td><td>5.00</td><td>339</td><td>1.06</td></tr>
+<tr><td class='l'>(专攻大毛孔)<br><span style='color:#94a3b8;font-size:11px'>丽瑟商贸</span></td><td>未开启</td><td>0.25</td><td>79</td><td>0.59</td></tr>
+<tr><td class='l'>(大眼袋看过来-肝素钠眼霜专场)<br><span style='color:#94a3b8;font-size:11px'>候柑科技</span></td><td>未开启</td><td>0.14</td><td>129</td><td>1.01</td></tr>
+</tbody></table></div>
+<div class="conclusion"><div class="citem"><span class="ctag c-orange">关键问题</span>创意优投未开启的直播间（大盘优投使用率 35% 且显著正向）存在赢家跑得更快的扩量空间。</div><div class="citem"><span class="ctag c-green">优化建议</span>对跑量 TOP3 素材加开创意优投；先降原始项目出价 3~5% 后建优投项目提价 5~10%。</div></div>
+<div class="table-wrap"><table><thead><tr><th class='l'>直播间</th><th>产品库类型</th><th>日耗(万)</th><th>营销对象数</th><th>广告数</th><th>4+M重复</th><th>ROI</th></tr></thead><tbody>
+<tr><td class='l'>(阳阳-直击抗皱大眼袋DYZ)<br><span style='color:#94a3b8;font-size:11px'>酷戒商贸</span></td><td>64 (商品聚合页)</td><td>2.98</td><td>4</td><td>193</td><td>9</td><td>1.08</td></tr>
+<tr><td class='l'></td><td>11 (视频号直播)</td><td>2.65</td><td>1</td><td>1,288</td><td>70</td><td>1.04</td></tr>
+<tr><td class='l'>(专攻大毛孔)<br><span style='color:#94a3b8;font-size:11px'>丽瑟商贸</span></td><td>11 (视频号直播)</td><td>1.06</td><td>1</td><td>447</td><td>67</td><td>0.67</td></tr>
+<tr><td class='l'>(大眼袋看过来-肝素钠眼霜专场)<br><span style='color:#94a3b8;font-size:11px'>候柑科技</span></td><td>11 (视频号直播)</td><td>0.14</td><td>1</td><td>236</td><td>76</td><td>1.11</td></tr>
+<tr><td class='l'></td><td>64 (商品聚合页)</td><td>0.06</td><td>1</td><td>73</td><td>19</td><td>0.96</td></tr>
+</tbody></table></div>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">数据概括</span>商品表达（推广库类型）反映直播间绑定的商品 ID 数量；4+M 重复广告占比高 → 用「多绑不同商品 ID」拆重复。</div><div class="citem"><span class="ctag c-green">优化建议</span>对重复度偏高的直播间，每个直播间多绑定不同商品 ID，等价于多套不重复广告，释放被系统过滤的参竞素材。</div></div>
+<h4>出价能力结构（按直播间 × 优化目标组合叉乘展开）</h4>
+<div class="table-wrap"><table class="tbl-dense"><thead><tr><th class='l'>直播间</th><th>优化目标组合</th><th>日耗(万)</th><th>占本间</th><th>广告数</th><th>4+M重复</th><th>CTR</th><th>下单率</th><th>成本</th><th>ROI</th><th>下单出价(元)</th><th>ROI出价</th><th>计价率</th></tr></thead><tbody>
+<tr><td class="l" rowspan="2">(阳阳-直击抗皱大眼袋DYZ)<br><span style="color:#94a3b8;font-size:11px">酷戒商贸</span></td><td class='l'>ROI广告档（下单+ROI）</td><td>3.60</td><td>63.93%</td><td>768</td><td>61%</td><td>2.31%</td><td>6.97%</td><td>48</td><td>1.06</td><td>—</td><td>1.16</td><td>1.09</td></tr>
+<tr><td class='l'>单目标CPA档（下单）</td><td>2.03</td><td>36.07%</td><td>707</td><td>64%</td><td>4.47%</td><td>4.16%</td><td>48</td><td>1.05</td><td>43</td><td>—</td><td>1.09</td></tr>
+<tr><td class="l" rowspan="2">(专攻大毛孔)<br><span style="color:#94a3b8;font-size:11px">丽瑟商贸</span></td><td class='l'>ROI广告档（下单+ROI）</td><td>0.87</td><td>82.07%</td><td>233</td><td>68%</td><td>1.47%</td><td>4.21%</td><td>102</td><td>0.69</td><td>—</td><td>0.78</td><td>1.13</td></tr>
+<tr><td class='l'>单目标CPA档（下单）</td><td>0.19</td><td>17.93%</td><td>216</td><td>64%</td><td>1.69%</td><td>3.34%</td><td>118</td><td>0.60</td><td>90</td><td>—</td><td>1.30</td></tr>
+<tr><td class="l" rowspan="2">(大眼袋看过来-肝素钠眼霜专场)<br><span style="color:#94a3b8;font-size:11px">候柑科技</span></td><td class='l'>ROI广告档（下单+ROI）</td><td>0.13</td><td>63.62%</td><td>163</td><td>70%</td><td>3.28%</td><td>11.54%</td><td>58</td><td>1.04</td><td>—</td><td>1.33</td><td>1.28</td></tr>
+<tr><td class='l'>单目标CPA档（下单）</td><td>0.07</td><td>36.38%</td><td>147</td><td>71%</td><td>3.70%</td><td>10.38%</td><td>54</td><td>1.12</td><td>45</td><td>—</td><td>1.19</td></tr>
+</tbody></table></div>
+<div class="note">每间拆为「单目标CPA档」与「ROI广告档」两类出价组合，占本间=该档消耗÷该直播间总消耗。下单出价(元)=单目标CPA档 is_roi=0 纯净出价；ROI出价=ROI广告档的 roi_ad_avg_target_roi。期望出价上限=客单价÷考核ROI≈52.24 元（仅用于评价单目标CPA档）。</div>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">数据概括</span>每个直播间按优化目标组合拆为「单目标CPA档」「ROI广告档」两类：酷戒以 ROI广告档为主（3.60万，占本间约64%），丽瑟与候柑同样以 ROI广告档为主；两档出价分列，结构一目了然。</div><div class="citem"><span class="ctag c-orange">关键问题</span>丽瑟商贸两档投产均倒挂：ROI广告档 ROI 0.69、单目标CPA档 ROI 0.60，且单目标档出价 90 元、计价率 1.30 偏高，是拖累整体回报的主因。</div><div class="citem"><span class="ctag c-green">优化建议</span>①丽瑟单目标档出价向期望上限 52.24 元回落，同时提升 CTR×CTCVR 补偿 eCPM；②已跑通 ROI广告档的直播间维持 ROI出价≈考核值、把预算向其集中（目标占比 30%+）；③对重复最高的档位用「商品表达多绑商品 ID」拆 4+M 重复。</div></div>
+<h3><span class="h3-txt">2.7 分直播间退款率</span></h3>
+<div class="table-wrap"><table class="tbl-dense"><thead><tr><th class='l'>直播间</th><th>日均下单次数</th><th>1h</th><th>24h</th><th>3d</th><th>7d</th><th>14d</th><th>退款率(笔)</th></tr></thead><tbody>
+<tr><td class='l'>(阳阳-直击抗皱大眼袋DYZ)<br><span style='color:#94a3b8;font-size:11px'>酷戒商贸</span></td><td>1,182</td><td>14.85%</td><td>20.52%</td><td>24.24%</td><td>32.41%</td><td>35.09%</td><td>35.09%</td></tr>
+<tr><td class='l'>(专攻大毛孔)<br><span style='color:#94a3b8;font-size:11px'>丽瑟商贸</span></td><td>102</td><td>5.31%</td><td>9.45%</td><td>13.85%</td><td>24.02%</td><td>25.13%</td><td>25.13%</td></tr>
+<tr><td class='l'>(大眼袋看过来-肝素钠眼霜专场)<br><span style='color:#94a3b8;font-size:11px'>候柑科技</span></td><td>35</td><td>25.47%</td><td>33.58%</td><td>49.62%</td><td>121.13%</td><td>167.17%</td><td>167.17%</td></tr>
+</tbody></table></div>
+<div class="note">对标：同客单价水位大盘×视频号推广（host_type 全空，未下钻主播类型）；总下单次数&lt;100 的直播间不展示。</div>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">数据概括</span>分直播间退款率对照同水位大盘（1h 10.65%、14d 25.96%）。</div><div class="citem"><span class="ctag c-orange">关键问题</span>1h 偏高=冲动/逼单过度；14d 偏高=产品/物流/客服问题。差异&gt;10% 需关注。</div><div class="citem"><span class="ctag c-green">优化建议</span>1h 高→优化逼单话术+客服快速响应；14d 高→排查高退款商品+优化详情页与物流时效。</div></div>
+<h3><span class="h3-txt">2.8 分直播间店铺三率</span></h3>
+<div class="note">同客单价水位大盘×视频号推广（无 host_type 下钻）。仅列有效评论≥40 的店铺，可信度不足者标注。</div>
+<div class="table-wrap"><table><thead><tr><th class='l'>店铺</th><th>日均下单次数</th><th>有效评论</th><th>差评率</th><th>品退率</th><th>纠纷率</th><th>CCR</th></tr></thead><tbody>
+<tr><td class='l'>wx5dee62b844bce3ea</td><td>262</td><td>7</td><td>13.39%</td><td>0.23%</td><td>0.19%</td><td>3.27%</td></tr>
+<tr><td class='l'>wxfb3457a6f9e2f63f</td><td>232</td><td>4</td><td>0.00%</td><td>0.16%</td><td>0.16%</td><td>2.29%</td></tr>
+<tr><td class='l'>wx4b0026027306e58c</td><td>214</td><td>5</td><td>2.50%</td><td>0.31%</td><td>0.21%</td><td>2.54%</td></tr>
+<tr><td class='l'>wx2c0d756532a97aef</td><td>135</td><td>11</td><td>14.55%</td><td>0.21%</td><td>0.22%</td><td>3.81%</td></tr>
+<tr><td class='l'>wx539da597c9351c79</td><td>107</td><td>1</td><td>6.67%</td><td>0.04%</td><td>0.00%</td><td>1.60%</td></tr>
+<tr><td class='l'>wxcb4a41664283b299</td><td>106</td><td>0</td><td>—</td><td>0.00%</td><td>0.00%</td><td>0.29%</td></tr>
+<tr><td class='l'>wxbef6da3b3f015c5e</td><td>80</td><td>1</td><td>25.00%</td><td>0.43%</td><td>0.26%</td><td>3.59%</td></tr>
+<tr><td class='l'>wx7f9f991f6ac2514b</td><td>66</td><td>1</td><td>16.67%</td><td>0.11%</td><td>0.06%</td><td>2.87%</td></tr>
+<tr><td class='l'>wx2e048790373d5da5</td><td>25</td><td>0</td><td>0.00%</td><td>0.17%</td><td>0.00%</td><td>2.53%</td></tr>
+<tr><td class='l'>wxdb1df76c1e82a7d1</td><td>19</td><td>0</td><td>—</td><td>0.00%</td><td>0.00%</td><td>0.00%</td></tr>
+</tbody></table></div>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">数据概括</span>分店铺对照同水位大盘（差评率 8.86%、品退率 0.17%、纠纷率 0.21%）。</div><div class="citem"><span class="ctag c-orange">关键问题</span>双条件：vs 大盘 + 行业最低（品退&lt;0.1%、差评&lt;5.9%、纠纷&lt;0.4%）；任一不满足即关注。</div><div class="citem"><span class="ctag c-green">优化建议</span>品退高→排查高品退商品优化质量包装；差评高→评价抽奖/好评返现；纠纷高→异常订单应申尽申。</div></div>
+<h2><span class="h2-emoji">📌</span>末 Part · 小结与 To-Do</h2>
+<h3><span class="h3-txt">核心小结</span></h3>
+<div class="conclusion"><div class="citem"><span class="ctag c-blue">三大优势</span>①酷戒商贸（阳阳-直击抗皱大眼袋DYZ）基本盘稳健，ROI 1.00 持平考核、CPM 78.67 元高于大盘=拿量优势；②候柑科技 ROI 0.00 实际可行；③同水位大盘对标下，整体 ROI 与大盘持平、无效率短板。</div><div class="citem"><span class="ctag c-orange">三大压力点</span>①丽瑟商贸 ROI 仅 0.671（ROI&lt;1 投产倒挂）+ 出价 90 元远超期望上限；②整体日耗环比 -56%、九宫堂等主体停投、酷戒单点依赖 82%；③4+M 重复与素材同质化制约消耗天花板。</div><div class="citem"><span class="ctag c-green">核心策略(P0→P2)</span>P0：丽瑟出价降至 52.24 元附近并修复 ROI；酷戒/候柑降 4+M 重复+扩素材基建。P1：潜客优投/ROI 广告结构扩量；候柑重启放量；商品表达多绑商品 ID。P2：稳退款/差评；持续监控 CPM 抢量优势。</div></div>
+<h3><span class="h3-txt">To-Do（优先级 · 行动 · 预期）</span></h3>
+<div class="table-wrap"><table class="todo-tbl"><thead><tr><th>优先级</th><th>模块</th><th>具体行动</th><th>预期效果</th></tr></thead><tbody>
+<tr><td>P0</td><td>丽瑟商贸出价下调</td><td>将丽瑟整体出价由 90 元降至期望上限 52.24 元附近（降约 40%），同步提升 CTR×CTCVR 补偿 eCPM，目标 ROI 拉回 1.0+</td><td>丽瑟 ROI 0.67→1.0，止损投产倒挂</td></tr>
+<tr><td>P0</td><td>酷戒/候柑 降重复+扩基建</td><td>对 4+M 重复偏高直播间用商品表达多绑不同商品 ID 释放参竞广告；提升新广告占比与单场时长</td><td>释放被过滤素材，消耗天花板+20%</td></tr>
+<tr><td>P1</td><td>潜客优投扩量</td><td>对未开启的直播间从调价系数 1.05~1.15 起步开启潜客优投，目标 10~15% 消耗</td><td>增量消耗正向 ROI 溢价</td></tr>
+<tr><td>P1</td><td>ROI 广告结构迁移</td><td>将已跑通 ROI 广告的直播间预算 20~30% 迁移至「下单+ROI」广告（ROI 出价≈考核值、不超上限）</td><td>降重复+扩量，ROI 档占比→30%+</td></tr>
+<tr><td>P1</td><td>候柑重启放量</td><td>候柑 CPM 过高（215 元），降出价抢量、拉长单场时长，重启停投前的消耗盘子</td><td>候柑日耗 0.2→2 万+</td></tr>
+<tr><td>P2</td><td>退款/差评治理</td><td>对 14d 退款率与差评率超阈值的直播间排查高退款商品、优化详情页与物流</td><td>复购与店铺体验稳健</td></tr>
+<tr><td>P2</td><td>监控 CPM 抢量优势</td><td>保持出价竞争力（CPM 高于大盘=拿量优势），避免无谓压价导致消耗萎缩</td><td>维持 6.9 万+ 日耗并回升</td></tr>
+</tbody></table></div>
+<div class="legend">数据口径说明：①复盘期 2026-11-01~11-15（MTD，15 天）vs 环比期 2026-10-17~10-31（15 天）；②客户=酷戒商贸/丽瑟商贸/候柑科技 3 主体（九宫堂科技等 18 个截图主体本期 0 消耗已剔除）；③2.4/2.5 为纯微信视频号口径，其余深度模块按 3 主体汇总 + 同客单价水位大盘（客单价 41.8~62.6 元·17 家，含行业筛选、剔除自身）对标；④小店直购与全域通本期 0 消耗，相关章节整章不展示；⑤数值统一 2 位小数。</div>
+</div><div class="doc-footer">腾讯广告 · 客户复盘报告（增强版）｜复盘窗口 2026.11.01–11.15｜生成于 2026-11-18｜数据来源：腾讯广告经营数仓 g:biz_main_multiple:log_time</div><script>(function(){var _h=0,_t;function m(){var b=document.body;if(!b)return 0;return Math.max(b.scrollHeight,b.offsetHeight,Math.ceil(b.getBoundingClientRect().height))}function s(){var h=m();if(h>0&&h!==_h){_h=h;window.parent.postMessage({type:"iframe-resize",height:h},"*")}}function d(){clearTimeout(_t);_t=setTimeout(s,150)}if(document.readyState==="complete")s();else window.addEventListener("load",s);window.addEventListener("resize",d);if(typeof ResizeObserver!=="undefined"){var ro=new ResizeObserver(d);ro.observe(document.documentElement);if(document.body)ro.observe(document.body)}})();</script><div id="__idata_artifact_err_overlay__" style="position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);display:none;width:min(640px,calc(100vw - 48px));max-height:80vh;padding:24px 28px;background:#ffffff;border:1px solid #fca5a5;border-left:4px solid #ef4444;border-radius:12px;box-shadow:0 12px 32px rgba(0,0,0,0.12);z-index:2147483646;font-family:-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei','Segoe UI',sans-serif;color:#7f1d1d;box-sizing:border-box;"><div style="display:flex;align-items:center;gap:10px;font-size:16px;font-weight:600;margin-bottom:14px;"><span style="display:inline-flex;width:24px;height:24px;align-items:center;justify-content:center;background:#ef4444;color:#fff;border-radius:50%;font-size:14px;font-weight:bold;flex-shrink:0;">!</span><span>图表渲染失败</span></div><pre id="__idata_artifact_err_msg__" style="margin:0;padding:14px 16px;background:#fef2f2;border-radius:8px;font-size:12px;line-height:1.65;white-space:pre-wrap;word-break:break-word;font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,monospace;color:#7f1d1d;max-height:60vh;overflow:auto;"></pre><div style="margin-top:12px;font-size:11px;color:#9ca3af;line-height:1.5;"><span id="__idata_artifact_err_copy_inline__" style="color:#5867ed;cursor:pointer;text-decoration:underline;">复制错误</span><span style="margin-left:4px;">报告给大模型可自动修复该脚本</span></div><div style="margin-top:14px;display:flex;justify-content:flex-end;gap:8px;"><button id="__idata_artifact_err_copy_btn__" type="button" style="padding:6px 14px;font-size:12px;background:#fff;color:#5867ed;border:1px solid #5867ed;border-radius:6px;cursor:pointer;">复制错误</button><button id="__idata_artifact_err_ignore_btn__" type="button" style="padding:6px 14px;font-size:12px;background:#fff;color:#7f1d1d;border:1px solid #fca5a5;border-radius:6px;cursor:pointer;">忽略错误</button></div></div><script>(function(){var ov=document.getElementById('__idata_artifact_err_overlay__');var msg=document.getElementById('__idata_artifact_err_msg__');if(!ov||!msg)return;var shownSet={};var m=window.location.pathname.match(/\/artifacts_v2\/([^/]+)\/(.+)$/);var sessionId=m?m[1]:'';var artifactName=m?decodeURIComponent(m[2]):'';function _hash(s){var h=5381;for(var i=0;i<s.length;i++){h=((h<<5)+h+s.charCodeAt(i))|0;}return (h>>>0).toString(36);}function _ignoreKey(t){return 'adw:artifact:err-ignored:'+sessionId+':'+artifactName+':'+_hash(t);}function _show(t){if(!t||shownSet[t])return;shownSet[t]=1;try{if(localStorage.getItem(_ignoreKey(t))){return;}}catch(_e){}msg.textContent=String(t).slice(0,3000);ov.style.display='block';}var q=window.__idata_artifact_error__||[];for(var i=0;i<q.length;i++)_show(q[i]);window.addEventListener('error',function(ev){var parts=[];if(ev.error&&(ev.error.stack||ev.error.message)){parts.push(String(ev.error.stack||ev.error.message));}else{parts.push(ev.message||'Unknown error');}if(ev.filename){parts.push('\n(at '+ev.filename+':'+(ev.lineno||'?')+':'+(ev.colno||'?')+')');}_show(parts.join('\n'));});window.addEventListener('unhandledrejection',function(ev){var r=ev.reason;_show((r&&(r.stack||r.message))||r||'Unhandled Promise rejection');});function _copyError(){var txt=msg.textContent;if(!txt)return;if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(txt).then(function(){},function(){_copyFallback(txt);});}else{_copyFallback(txt);}}function _copyFallback(txt){var ta=document.createElement('textarea');ta.value=txt;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(_e){}document.body.removeChild(ta);}function _ignoreError(){var txt=msg.textContent;try{localStorage.setItem(_ignoreKey(txt),'1');}catch(_e){}ov.style.display='none';}var copyInline=document.getElementById('__idata_artifact_err_copy_inline__');if(copyInline)copyInline.addEventListener('click',_copyError);var copyBtn=document.getElementById('__idata_artifact_err_copy_btn__');if(copyBtn){copyBtn.addEventListener('click',function(){_copyError();var orig=copyBtn.textContent;copyBtn.textContent='已复制';setTimeout(function(){copyBtn.textContent=orig;},1500);});}var ignoreBtn=document.getElementById('__idata_artifact_err_ignore_btn__');if(ignoreBtn)ignoreBtn.addEventListener('click',_ignoreError);})();</script><style id="__adata_wm_style__">.__adata_wm__{position:fixed;inset:0;pointer-events:none;z-index:2147483647;background-repeat:repeat;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='160'><text x='50%' y='50%' fill='rgba(0,0,0,0.08)' font-size='14' font-family='-apple-system,Segoe UI,sans-serif' text-anchor='middle' transform='rotate(-25 120 80)'>mmorningmao</text></svg>")}</style><div class="__adata_wm__" aria-hidden="true"></div></body></html>
